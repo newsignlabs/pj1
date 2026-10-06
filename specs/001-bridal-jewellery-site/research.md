@@ -98,7 +98,40 @@
 - **Rationale**: A display serif is the strongest single lever for an artistic, editorial
   feel; self-hosting keeps Principle I (no third-party requests).
 
-## 11. Hosting & caching
+## 11. Manual hero slider (revision 4)
+
+- **Decision**: A horizontal `scroll-snap` track (`scroll-snap-type: x mandatory`,
+  `scroll-snap-stop: always`) of full-height slides. Touch users swipe natively. `main.js`
+  adds previous/next arrows and a counter; arrows call `scrollTo({behavior: "instant"})`, so
+  scenes change without animation, and wrap around. Off-screen slides are `inert`.
+  Without JS the track is still swipeable and the bar shows "Swipe for more scenes".
+- **Rationale**: No library, no autoplay, accessible (carousel/slide roles, labelled
+  buttons, `aria-live` counter, keyboard arrows on the focused track).
+- **Alternatives considered**: CSS-only `:target`/radio sliders (break history and
+  keyboard use); slider libraries (heavy, animate by default).
+
+## 12. Parallax quotes (revision 4)
+
+- **Decision**: Background `<img>` (lazy, `srcset`) in a 126%-tall layer, moved -10% → +10%
+  by a CSS scroll-driven animation (`animation-timeline: view()`) inside
+  `@media (prefers-reduced-motion: no-preference)` and `@supports`. Browsers without scroll
+  timelines get a passive, rAF-throttled scroll listener doing the same maths. The quote
+  section uses `overflow: clip` (not `hidden`, which would create a scroll container and
+  freeze the view timeline).
+- **Rationale**: Runs on the compositor in modern browsers, no library, honours reduced
+  motion, and lazy-loads the background like any other image.
+- **Alternatives considered**: `background-attachment: fixed` (ignored on iOS, janky on
+  Android, and CSS backgrounds can't lazy-load or use `srcset`).
+
+## 13. Logo and footer on phones (revision 4)
+
+- **Decision**: Header logo becomes an 88px round medallion centred between the menu and
+  call buttons, hanging below the header bar like a pendant. The footer is styled as end
+  credits: a 240px emblem (logo inside an SVG `textPath` ring reading "AURELIA ◆ BRIDAL
+  JEWELS ◆ HANDCRAFTED SINCE 1998"), a closing line, role/name credit rows, scene links,
+  "Fin." and a giant outlined wordmark.
+
+## 14. Hosting & caching
 
 - **Decision**: Zoho Catalyst Slate (static framework, root `./`) auto-deploys `main`. Any
   other static host also works. A `_headers` file sets long caching for `/assets/img/*`

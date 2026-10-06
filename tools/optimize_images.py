@@ -29,7 +29,10 @@ RULES = {
     "hero": [
         # hero-photo.jpg is the ungraded original; tools/grade_hero.py makes hero-cinematic.jpg
         ("hero-cinematic", 3 / 4, [540, 810, 1080], 250 * KB),
+        ("hero-detail", 3 / 4, [450, 600], 120 * KB),
     ],
+    # Soft-focus quote backgrounds, also cut by tools/grade_hero.py
+    "quotes": [(None, 1, [600, 1200], 120 * KB)],
     "collections": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
     "pieces": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
     "about": [(None, 4 / 5, [600, 900, 1200], 120 * KB)],

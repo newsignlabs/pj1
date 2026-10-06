@@ -22,6 +22,14 @@ ambient glow of the same frame, static SVG grain, vignette). Typography uses sel
 Cormorant Garamond (~47 KB WOFF2). Cards use `clip-path` chamfers with a 1px gradient edge.
 Hosting: Zoho Catalyst Slate (static framework) auto-deploys `main`.
 
+Revision 4 (mobile richness): the hero becomes a CSS scroll-snap slider of three scenes
+(full set, earrings close-up, pendant close-up — all cut from the product photo by
+`tools/grade_hero.py`), with JS arrows/counter that jump instantly. Quote interludes use
+soft-focus close-ups with CSS scroll-driven parallax (`animation-timeline: view()`), a
+passive scroll-listener fallback, and no motion under `prefers-reduced-motion`. The header
+logo becomes a hanging medallion on phones; the footer becomes "end credits" with a large
+emblem ringed by SVG text. Constitution 2.0.0 permits exactly these two kinds of motion.
+
 ## Technical Context
 
 **Language/Version**: HTML5, CSS3 (custom properties, grid, `svh` units), ES2017 vanilla JavaScript; Python 3.10+ for offline image tooling only
@@ -86,12 +94,13 @@ _headers                 # Cache/security headers (Netlify / Cloudflare Pages)
 assets/
 ├── css/styles.css       # Single mobile-first stylesheet
 ├── fonts/             # Cormorant Garamond WOFF2 (self-hosted, OFL)
-├── js/main.js           # Menu toggle (optional enhancement)
+├── js/main.js           # Menu toggle, manual slider arrows, parallax fallback
 ├── icons/              # favicon-32.png, apple-touch-icon.png (UI icons are an inline <symbol> sprite in each page)
 └── img/                 # GENERATED WebP variants (do not edit by hand)
-    ├── hero/            # hero-cinematic-{540,810,1080}.webp (graded product photo)
+    ├── hero/            # hero-cinematic-{540,810,1080}.webp, hero-detail-*-{450,600}.webp (slider scenes)
     ├── collections/     # <slug>-{400,600,800}.webp (cover images)
     ├── pieces/          # <slug>-{400,600,800}.webp
+    ├── quotes/          # quote-*-{600,1200}.webp (soft-focus parallax backgrounds)
     ├── about/           # about-{600,900,1200}.webp
     └── brand/           # logo-{64,128,256}.webp (transparent)
 images-src/              # Original photos (JPG/PNG), same folder layout as assets/img

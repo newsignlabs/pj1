@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 3)
+**Status**: Implemented (revision 4)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -13,6 +13,11 @@ logo; dark background in the logo's silver and pink.
 **Revision 3 (2026-10-06)**: artistic rather than corporate look; the hero shows the
 client's product photo (emerald and gold necklace set) in a cinematic style; cards with
 clipped edges. The site is hosted on Zoho Catalyst Slate, auto-deployed from `main`.
+
+**Revision 4 (2026-10-06)**: richer mobile experience. The logo was too small in the header
+and footer; the first section becomes a manual slider (arrows, no automatic motion); more
+quote sections with parallax background images; an artistic footer instead of a corporate
+template.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -63,8 +68,11 @@ one screen height, nothing moves, and both buttons lead to the right destination
 1. **Given** a visitor opens the Home page, **When** it loads, **Then** a single still hero
    image fills the visible screen height with the heading and two calls to action
    ("View Collections", "Visit the Showroom") readable on top of it.
-2. **Given** the Home page is displayed, **When** the visitor waits or scrolls, **Then** no
-   element animates, slides, fades, auto-rotates or scrolls on its own.
+2. **Given** the Home page is displayed, **When** the visitor waits, **Then** nothing moves;
+   the hero changes scene only when the visitor swipes or taps an arrow, instantly.
+3. **Given** a visitor scrolling past a quote section, **Then** its background drifts slower
+   than the page (parallax); **Given** the device asks for reduced motion, **Then** it stays
+   still.
 3. **Given** a visitor on the Home page, **When** they tap a featured collection,
    **Then** they land on that collection's section of the Collections page.
 
@@ -163,6 +171,14 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 **Brand & art direction**
 
+- **FR-030**: The Home hero MUST be a slider of at least three scenes cut from the client's
+  product photography, with previous/next arrows and a scene counter, swipeable on touch.
+- **FR-031**: The Home page MUST include at least three full-width quote sections with
+  background images and parallax; Collections and Contact MUST include one each.
+- **FR-032**: On phones the logo MUST be prominent (a medallion of at least 80px in the
+  header); the footer MUST show the logo as a large emblem.
+- **FR-033**: The footer MUST be artistic (end-credits style), not a corporate link grid.
+
 - **FR-028**: The visual style MUST feel artistic and editorial rather than like a typical
   corporate website (display serif typography, outlined numerals, asymmetric layouts).
 - **FR-029**: Collection, piece, highlight, contact and map cards MUST have clipped
@@ -186,8 +202,10 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 **Presentation constraints**
 
-- **FR-023**: The site MUST NOT use any animation, transition, carousel, slider, marquee,
-  parallax or auto-playing media.
+- **FR-023**: Nothing on the site may move on its own (no autoplay, auto-advancing
+  carousel, marquee, looping/entrance animation, transitions or video). Allowed: the manual
+  hero slider (instant changes) and scroll-linked parallax on quote backgrounds, which is
+  disabled for reduced-motion users.
 - **FR-024**: The site MUST be fully responsive from 320px to wide desktop screens without
   horizontal scrolling.
 - **FR-025**: The site MUST be built without heavy frameworks and run without a server
@@ -218,7 +236,8 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
   mobile page-quality audit.
 - **SC-006**: All three pages display correctly with no horizontal scrolling at 320px, 360px,
   768px, 1024px and 1440px widths.
-- **SC-007**: Zero moving elements on any page at any time.
+- **SC-007**: Zero elements move without visitor input (the hero changes only on swipe or
+  arrow; quote parallax only while scrolling, and never with reduced motion).
 
 ## Assumptions
 

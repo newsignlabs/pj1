@@ -1,10 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 → 1.2.0
-- Modified principles: I (self-hosted web fonts allowed; third-party font requests still banned),
-  III (a "cinematic" hero is a still frame: letterbox bars, grade, grain, glow — never motion)
-- Modified sections: Brand & Visual Identity → adds art direction and clipped-edge cards;
-  Performance Budgets → adds self-hosted fonts ≤ 60 KB
+- Version change: 1.2.0 → 2.0.0 (MAJOR: Principle III redefined)
+- Modified principles: III "Calm, Motion-Free Presentation" → "Calm, Visitor-Driven Motion":
+  nothing moves on its own; a manual hero slider (instant changes) and scroll-linked
+  parallax on quote backgrounds are allowed, the latter off for prefers-reduced-motion
+- Modified sections: Brand & Visual Identity (logo medallion, end-credits footer);
+  Performance Budgets (CSS 25 → 35 KB)
 - Templates requiring updates: none ✅
 - Follow-up TODOs: none
 -->
@@ -49,17 +50,21 @@ The site is image-heavy, so image delivery decides how fast it feels.
 **Rationale**: Bridal clients browse on phones, often on mobile data. Fast, light images
 are the single biggest factor in whether they keep browsing.
 
-### III. Calm, Motion-Free Presentation (NON-NEGOTIABLE)
+### III. Calm, Visitor-Driven Motion (NON-NEGOTIABLE)
 
-- No animations, transitions, carousels, sliders, marquees, parallax, auto-playing
-  media or scroll-triggered effects.
-- The home page hero banner is a single static image filling the viewport height. A
-  "cinematic" treatment is achieved with still means only: colour grading, letterbox
-  bars, vignette, static grain and glow.
-- Interactive state changes (hover, focus, menu open) happen instantly.
+- Nothing moves on its own: no autoplay, auto-advancing carousels, marquees, looping or
+  entrance animations, hover transitions, video or timers.
+- The home hero MAY be a slider of still "scenes" that changes only when the visitor swipes
+  or presses an arrow, and the change is instant (no slide animation).
+- Quote interludes MAY use parallax on their background image, tied directly to the
+  visitor's scrolling (CSS scroll-driven animation, with a small scroll-listener fallback),
+  and MUST be disabled for `prefers-reduced-motion: reduce`. This is the only motion
+  allowed, and it lives between the `motion-allowed` markers in the stylesheet.
+- A "cinematic" look is achieved with still means: colour grading, letterbox bars,
+  vignette, static grain and glow.
 
-**Rationale**: The jewellery is the focus. Motion distracts, costs performance and
-can cause discomfort for motion-sensitive visitors.
+**Rationale**: The jewellery is the focus. Visitor-driven effects add richness on phones;
+autonomous motion distracts, costs performance and can cause discomfort.
 
 ### IV. Mobile-First Responsive
 
@@ -87,8 +92,9 @@ can cause discomfort for motion-sensitive visitors.
 
 ## Brand & Visual Identity
 
-- The supplied logo (`images-src/brand/logo.png`) is used in the header and footer and as
-  the favicon.
+- The supplied logo (`images-src/brand/logo.png`) is used as the favicon, as a round
+  medallion that hangs below the header bar on phones, and as a large emblem (inside a
+  ring of text) in the footer.
 - Dark background throughout, with the logo's silver and pink as the only accent colours
   (WhatsApp green is allowed on WhatsApp buttons only).
 - Art direction is artistic and editorial, not corporate: a large display serif
@@ -96,13 +102,14 @@ can cause discomfort for motion-sensitive visitors.
   layouts, generous space.
 - Content cards (collections, pieces, highlights, contact, map) use clipped (chamfered)
   corners with a thin silver-to-pink edge.
+- The footer is styled as a film's end credits, never as a corporate link grid.
 
 ## Performance Budgets
 
 | Metric | Budget |
 |--------|--------|
 | HTML per page (uncompressed) | ≤ 40 KB |
-| Total CSS | ≤ 25 KB |
+| Total CSS | ≤ 35 KB (≈ 7 KB compressed) |
 | Total JavaScript | ≤ 10 KB |
 | Self-hosted fonts | ≤ 60 KB |
 | Hero image (largest variant) | ≤ 250 KB |
@@ -128,4 +135,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 1.2.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 2.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
