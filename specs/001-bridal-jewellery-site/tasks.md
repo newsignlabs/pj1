@@ -100,6 +100,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T031 Add lazy-loaded Google Maps embed and "Open in Google Maps" link to `contact.html`
 - [x] T032 Update `tools/check_site.py` (header logo eager, map iframe rules), constitution v1.1.0, spec and docs
 - [ ] T033 Replace the placeholder address so the map points at the real showroom (needs client input)
+- [x] T034 Add `.github/workflows/pages.yml` to check and publish the site to GitHub Pages on push to `main`
 
 ---
 
