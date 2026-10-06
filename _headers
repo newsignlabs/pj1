@@ -1,0 +1,23 @@
+# Cache and security headers for Netlify / Cloudflare Pages.
+# Other hosts: configure equivalent headers in the host's settings.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/css/*
+  Cache-Control: public, max-age=604800
+
+/assets/js/*
+  Cache-Control: public, max-age=604800
+
+/assets/icons/*
+  Cache-Control: public, max-age=2592000
+
+/assets/img/*
+  Cache-Control: public, max-age=2592000
