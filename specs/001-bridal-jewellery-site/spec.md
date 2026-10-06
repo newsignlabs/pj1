@@ -4,34 +4,40 @@
 
 **Created**: 2026-10-06
 
-**Status**: Ready for planning
+**Status**: Implemented (revision 2)
+
+**Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
+map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
+logo; dark background in the logo's silver and pink.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - Browse collections and enquire about a piece on WhatsApp (Priority: P1)
+### User Story 1 - Browse collections and contact the business on WhatsApp (Priority: P1)
 
 A bride-to-be (or a family member) opens the website on a phone, browses the bridal
-collections, finds a piece she likes and taps "Enquire on WhatsApp". WhatsApp opens with
-a message that already names the piece, and she sends it to the business.
+collections and finds pieces she likes. She taps the WhatsApp button and sends the business
+a message naming the pieces.
 
 **Why this priority**: This is the business outcome of the site: turning browsing into a
-conversation with the jeweller. Collections plus WhatsApp enquiry is a viable MVP alone.
+conversation with the jeweller. Collections plus WhatsApp is a viable MVP alone.
 
-**Independent Test**: Open the Collections page on a phone, tap the enquiry button on any
-piece, and confirm WhatsApp opens to the business number with the piece name pre-filled.
+**Independent Test**: Open the Collections page on a phone, tap the floating WhatsApp button,
+and confirm WhatsApp opens a chat with the business number and a greeting pre-filled.
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor on the Collections page, **When** they tap "Enquire on WhatsApp" on
-   a piece, **Then** WhatsApp (app on mobile, web/desktop app on computer) opens a chat with
-   the business number and a pre-filled message containing the piece name and collection.
+1. **Given** a visitor on any page, **When** they tap the WhatsApp button, **Then** WhatsApp
+   (app on mobile, web/desktop app on computer) opens a chat with the business number and a
+   short greeting pre-filled.
 2. **Given** a visitor on the Collections page, **When** they choose a category
    (e.g. Necklaces), **Then** they are taken directly to that category's pieces.
 3. **Given** a visitor scrolling a long collection on mobile data, **When** images come into
    view, **Then** each image appears without the page jumping, and images further down
    are not downloaded until the visitor approaches them.
+4. **Given** a visitor browsing pieces, **Then** each piece shows only its image, name and
+   description, with no per-piece buttons.
 
 ---
 
@@ -51,8 +57,8 @@ one screen height, nothing moves, and both buttons lead to the right destination
 **Acceptance Scenarios**:
 
 1. **Given** a visitor opens the Home page, **When** it loads, **Then** a single still hero
-   image fills the visible screen height with the heading and two calls to action readable
-   on top of it.
+   image fills the visible screen height with the heading and two calls to action
+   ("View Collections", "Visit the Showroom") readable on top of it.
 2. **Given** the Home page is displayed, **When** the visitor waits or scrolls, **Then** no
    element animates, slides, fades, auto-rotates or scrolls on its own.
 3. **Given** a visitor on the Home page, **When** they tap a featured collection,
@@ -60,27 +66,25 @@ one screen height, nothing moves, and both buttons lead to the right destination
 
 ---
 
-### User Story 3 - Contact the business (Priority: P3)
+### User Story 3 - Find and contact the showroom (Priority: P3)
 
-A visitor wants to book a store visit or ask a general question. On the Contact page they
-see the WhatsApp number, phone, email, address and opening hours, and can fill a short
-form (name, occasion/wedding date, message) that opens WhatsApp with their details composed
-into a message.
+A visitor wants to visit the store or ask a question. On the Contact page they see the
+WhatsApp number, phone, email, address, opening hours and a map of the showroom location.
 
-**Why this priority**: General enquiries and appointments matter, but WhatsApp is already
-reachable from every page, so this page completes rather than enables the core flow.
+**Why this priority**: Showroom visits matter, but WhatsApp is already reachable from every
+page, so this page completes rather than enables the core flow.
 
-**Independent Test**: Fill the Contact form and submit; confirm WhatsApp opens with a message
-containing the entered name, wedding date and message.
+**Independent Test**: Open the Contact page; confirm the map shows the showroom, "Open in
+Google Maps" gives directions, and the phone, email and WhatsApp links open the right apps.
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor on the Contact page, **When** they fill name and message and submit,
-   **Then** WhatsApp opens with a composed message containing those details.
-2. **Given** a visitor submits the form with the required name or message empty,
-   **Then** they see which field needs completing and WhatsApp does not open.
-3. **Given** a visitor on the Contact page, **When** they tap the phone number or email,
-   **Then** their device's dialler or mail app opens.
+1. **Given** a visitor on the Contact page, **When** they scroll to the map, **Then** an
+   interactive map centred on the showroom address loads.
+2. **Given** a visitor on the Contact page, **When** they tap "Open in Google Maps" or
+   "Get directions", **Then** Google Maps opens with the showroom address.
+3. **Given** a visitor on the Contact page, **When** they tap the phone number, email or
+   WhatsApp number, **Then** their dialler, mail app or WhatsApp opens.
 
 ---
 
@@ -95,8 +99,8 @@ containing the entered name, wedding date and message.
   accepted given current browser support (>97% of users).
 - **Very small screens (320px)** and **landscape phones**: the hero still fills one screen
   height and the heading and buttons remain visible and readable.
-- **Special characters in form input** (accents, emoji, "&", line breaks) are preserved in
-  the WhatsApp message.
+- **Map cannot load** (offline, blocked by an ad blocker): the address, hours and the
+  "Open in Google Maps" link remain visible next to the map area.
 - **Slow connection**: text and layout appear immediately; images reserve their space and
   fill in as they arrive.
 - **Visitor prefers reduced motion**: nothing changes, because there is no motion anywhere.
@@ -122,8 +126,8 @@ containing the entered name, wedding date and message.
 - **FR-006**: The Home page MUST show featured collections (at least 4) linking to the
   matching section of the Collections page.
 - **FR-007**: The Home page MUST include a short "about the business" section, a highlights
-  section (e.g. certified gold, custom designs, bridal styling) and a closing WhatsApp
-  call to action.
+  section (e.g. certified quality, custom designs, bridal styling) and a closing call to
+  action to visit the showroom.
 
 **Collections page**
 
@@ -131,26 +135,33 @@ containing the entered name, wedding date and message.
   Necklaces, Earrings, Bangles & Bracelets, Maang Tikka & Headpieces, and Rings.
 - **FR-009**: The Collections page MUST provide category links at the top that jump to each
   category section.
-- **FR-010**: Each piece MUST show an image, name and a short description, and an
-  "Enquire on WhatsApp" action.
+- **FR-010**: Each piece MUST show an image, name and a short description. Pieces MUST NOT
+  carry individual WhatsApp buttons.
 - **FR-011**: Each category MUST show at least 4 pieces.
 
 **WhatsApp integration**
 
-- **FR-012**: A WhatsApp action MUST be reachable on every page, including a fixed,
-  non-animated floating button that does not cover page content or buttons.
-- **FR-013**: Piece enquiries MUST pre-fill a message naming the piece and its collection.
-- **FR-014**: The Contact form MUST compose the visitor's name, optional wedding date,
-  optional phone and message into a WhatsApp message and open it; name and message are
-  required.
+- **FR-012**: A WhatsApp action MUST be reachable on every page through a fixed,
+  non-animated floating button that does not cover page content or buttons. Beyond the
+  floating button, header and footer, each page has at most one in-content WhatsApp
+  call to action.
+- **FR-013**: WhatsApp links MUST pre-fill a short greeting.
+- **FR-014**: The site MUST NOT include a contact form.
 - **FR-015**: All WhatsApp actions MUST target a single, configurable business number.
-- **FR-016**: The website MUST NOT store or transmit visitor form data anywhere other than
-  the WhatsApp message the visitor sends themselves.
+- **FR-016**: The website MUST NOT collect or store visitor data.
 
 **Contact page**
 
 - **FR-017**: The Contact page MUST show WhatsApp number, phone (tap to call), email
-  (tap to mail), store address and opening hours.
+  (tap to mail), store address, opening hours, and an embedded map of the showroom with
+  a link that opens Google Maps for directions. The map MUST load only when scrolled near.
+
+**Brand**
+
+- **FR-026**: The supplied logo MUST appear in the header and footer of every page and be
+  used as the favicon.
+- **FR-027**: All pages MUST use a dark background with the logo's silver and pink as
+  accent colours.
 
 **Images & performance**
 
@@ -178,16 +189,15 @@ containing the entered name, wedding date and message.
   identifier and cover image.
 - **Piece**: A jewellery item shown on the Collections page; has a name, short description,
   collection, and image.
-- **Enquiry message**: The text pre-filled into WhatsApp; composed from a piece (name +
-  collection) or from the Contact form fields (name, wedding date, phone, message).
-- **Business contact details**: WhatsApp number, phone, email, address, opening hours.
+- **Greeting message**: The short text pre-filled into WhatsApp links.
+- **Business contact details**: WhatsApp number, phone, email, address, opening hours,
+  map location.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: A visitor can go from the Home page to a pre-filled WhatsApp enquiry about a
-  specific piece in 3 taps or fewer.
+- **SC-001**: A visitor can open a WhatsApp chat with the business from any page in one tap.
 - **SC-002**: On a mid-range phone over a 4G connection, the Home page's hero and heading are
   visible within 2.5 seconds.
 - **SC-003**: Opening the Collections page downloads no more than the images visible in the

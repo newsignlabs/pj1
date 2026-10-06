@@ -7,9 +7,11 @@
 ## Summary
 
 A three-page static brochure site (Home, Collections, Contact) for a bridal jewellery
-business, written in plain HTML5, one CSS file and one small vanilla JS file. Visitors
-convert through WhatsApp click-to-chat links (`https://wa.me/<number>?text=<message>`),
-which are pre-filled per piece and composed from the Contact form. All imagery is served as
+business, written in plain HTML5, one CSS file and one small vanilla JS file, in a dark
+theme using the logo's silver and pink. Visitors convert through WhatsApp click-to-chat
+links (`https://wa.me/<number>?text=<message>`): a floating button on every page plus a
+few clear entry points. The Contact page shows details and a lazy-loaded Google Maps
+embed; there is no contact form. All imagery is served as
 compressed, multi-width WebP with native lazy loading and reserved dimensions; a Python
 (Pillow) script turns original photos into the required WebP variants. The Home hero is a
 single static `<picture>` filling `100svh`. No animation of any kind.
@@ -40,12 +42,12 @@ single static `<picture>` filling `100svh`. No animation of any kind.
 
 | Principle | Status | How the design complies |
 |-----------|--------|-------------------------|
-| I. Static & Framework-Free | ✅ | Plain HTML/CSS/JS; no deps; JS only enhances (menu toggle, form → WhatsApp); every link works without JS; system font stacks, no web fonts/CDNs |
+| I. Static & Framework-Free | ✅ | Plain HTML/CSS/JS; no deps; JS only enhances (menu toggle); every link works without JS; system font stacks, no web fonts/CDNs |
 | II. Image Performance First | ✅ | WebP only; `loading="lazy"` + `decoding="async"` on all non-hero images; hero `loading="eager"` (default) + `fetchpriority="high"`; `width`/`height` on every `<img>`; `srcset`/`sizes`; `tools/optimize_images.py` enforces quality and size budgets |
 | III. Calm, Motion-Free | ✅ | No `animation`, `transition`, `@keyframes`, carousels or video; `scroll-behavior: auto`; static `100svh` hero; enforced by `check_site.py` |
 | IV. Mobile-First Responsive | ✅ | Mobile-first CSS with `min-width` breakpoints at 640/960/1200px; 44px touch targets; collapsible nav |
-| V. WhatsApp Conversion | ✅ | Header/hero/footer/floating WhatsApp links on every page; per-piece pre-filled messages; single number replaced site-wide (see quickstart) |
-| VI. Accessible & Semantic | ✅ | Landmarks, skip link, alt text, visible focus, AA contrast palette, labelled form fields |
+| V. WhatsApp Conversion | ✅ | Floating button, header and footer WhatsApp links on every page; no per-piece buttons; single number replaced site-wide (see quickstart) |
+| VI. Accessible & Semantic | ✅ | Landmarks, skip link, alt text, visible focus, AA contrast palette (silver/pink on near-black), labelled fields |
 
 **Post-design re-check (after Phase 1)**: ✅ No violations; Complexity Tracking empty.
 
@@ -77,15 +79,17 @@ robots.txt
 _headers                 # Cache/security headers (Netlify / Cloudflare Pages)
 assets/
 ├── css/styles.css       # Single mobile-first stylesheet
-├── js/main.js           # Menu toggle + contact form → WhatsApp
-├── icons/favicon.svg    # (UI icons are an inline <symbol> sprite in each page: no extra request, works from file://)
+├── js/main.js           # Menu toggle (optional enhancement)
+├── icons/              # favicon-32.png, apple-touch-icon.png (UI icons are an inline <symbol> sprite in each page)
 └── img/                 # GENERATED WebP variants (do not edit by hand)
     ├── hero/            # hero-landscape-{1280,1920,2560}.webp, hero-portrait-{480,720,1080}.webp
     ├── collections/     # <slug>-{400,600,800}.webp (cover images)
     ├── pieces/          # <slug>-{400,600,800}.webp
-    └── about/           # about-{600,900,1200}.webp
+    ├── about/           # about-{600,900,1200}.webp
+    └── brand/           # logo-{64,128,256}.webp (transparent)
 images-src/              # Original photos (JPG/PNG), same folder layout as assets/img
 tools/
+├── build_brand_assets.py      # images-src/brand/logo.png → transparent logo WebP + favicons
 ├── generate_placeholders.py   # Creates placeholder originals in images-src/
 ├── optimize_images.py         # images-src/ → assets/img/*.webp (multi-width, compressed)
 └── check_site.py              # Static audit against the constitution
@@ -97,4 +101,6 @@ images live under `assets/img/` and are committed so no build step is needed at 
 
 ## Complexity Tracking
 
-No violations.
+| Violation | Why Needed | Simpler Alternative Rejected Because |
+|-----------|------------|-------------------------------------|
+| Third-party Google Maps iframe on Contact page | Client asked for a map of the showroom | A static map image needs an API key or manual screenshots and is not interactive; the iframe is lazy loaded so it costs nothing until the visitor scrolls to it |

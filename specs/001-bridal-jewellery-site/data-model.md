@@ -36,13 +36,12 @@ Relationship: Collection 1 — N Piece (min 4 per collection).
 | Widths | By group (see `contracts/image-pipeline.md`) |
 | Budget | ≤ 120 KB per variant (hero ≤ 250 KB) |
 
-## Enquiry message (transient — never stored)
+## Greeting message
 
-| Source | Template |
-|--------|----------|
-| Piece | `Hello! I'm interested in the {piece name} from your {collection name} collection. Could you share more details?` |
-| General | `Hello! I'd like to know more about your bridal jewellery collections.` |
-| Contact form | `Hello, I'm {name}.` + optional `Wedding date: {date}` + optional `Phone: {phone}` + `{message}` (one item per line) |
+| Where | Template |
+|-------|----------|
+| Floating button, header, footer, Contact page | `Hello! I'd like to know more about your bridal jewellery collections.` |
+| Collections page call to action | `Hello! I'd like to ask about a piece from your bridal collections.` |
 
 ## Business contact details
 

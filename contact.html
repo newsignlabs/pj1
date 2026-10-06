@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Aurelia Bridal Jewels</title>
   <meta name="description" content="Visit our bridal jewellery showroom or message us on WhatsApp to book a consultation.">
-  <meta name="theme-color" content="#3f0c18">
+  <meta name="theme-color" content="#0a090b">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact | Aurelia Bridal Jewels">
   <meta property="og:description" content="Visit our bridal jewellery showroom or message us on WhatsApp to book a consultation.">
   <meta property="og:image" content="assets/img/collections/bridal-sets-800.webp">
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
   <script src="assets/js/main.js" defer></script>
@@ -30,8 +31,11 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Aurelia Bridal Jewels — home">
-        <span class="brand__name">Aurelia</span>
-        <span class="brand__tag">Bridal Jewels</span>
+        <img class="brand__logo" src="assets/img/brand/logo-64.webp" srcset="assets/img/brand/logo-64.webp 64w, assets/img/brand/logo-128.webp 128w, assets/img/brand/logo-256.webp 256w" sizes="52px" width="52" height="52" alt="">
+        <span class="brand__text">
+          <span class="brand__name">Aurelia</span>
+          <span class="brand__tag">Bridal Jewels</span>
+        </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <svg class="icon icon--stroke icon-menu" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
@@ -42,7 +46,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="collections.html">Collections</a></li>
           <li><a href="contact.html" aria-current="page">Contact</a></li>
-          <li class="nav-cta"><a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener">WhatsApp Us</a></li>
+          <li class="nav-cta"><a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> WhatsApp</a></li>
         </ul>
       </nav>
     </div>
@@ -52,8 +56,8 @@
     <div class="page-intro">
       <div class="container">
         <span class="eyebrow">Contact</span>
-        <h1>Let's plan your bridal look</h1>
-        <p>Message us on WhatsApp, call, or visit the showroom. We recommend booking a consultation so a stylist can give you their full attention.</p>
+        <h1>Visit our showroom</h1>
+        <p>Message us on WhatsApp, call, or drop in. We recommend booking a consultation so a stylist can give you their full attention.</p>
       </div>
     </div>
 
@@ -96,7 +100,7 @@
               <div>
                 <strong>Opening hours</strong>
                 <table class="hours">
-                  <tr><td>Monday &ndash; Saturday</td><td>10:30 am &ndash; 8:00 pm</td></tr>
+                  <tr><td>Mon &ndash; Sat</td><td>10:30 am &ndash; 8 pm</td></tr>
                   <tr><td>Sunday</td><td>By appointment</td></tr>
                 </table>
               </div>
@@ -104,32 +108,11 @@
           </ul>
         </div>
 
-        <div class="form-card">
-          <h2>Send an enquiry</h2>
-          <p class="lead">Fill in your details and we'll open WhatsApp with your message ready to send.</p>
-          <form id="enquiry-form" data-wa-number="919876543210">
-            <div class="form-row">
-              <label for="name">Your name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required maxlength="80">
-            </div>
-            <div class="form-grid">
-              <div class="form-row">
-                <label for="wedding-date">Wedding date <span class="optional">(optional)</span></label>
-                <input id="wedding-date" name="wedding-date" type="date">
-              </div>
-              <div class="form-row">
-                <label for="phone">Phone <span class="optional">(optional)</span></label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20">
-              </div>
-            </div>
-            <div class="form-row">
-              <label for="message">Your message</label>
-              <textarea id="message" name="message" required maxlength="1000" placeholder="Tell us what you're looking for — the ceremony, your outfit colours, any pieces you liked."></textarea>
-            </div>
-            <button class="btn btn--wa btn--block" type="submit"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> Send on WhatsApp</button>
-            <p class="form-note">Your details go straight into a WhatsApp message that you send yourself. Nothing is stored on this website.</p>
-            <noscript><p class="form-note">JavaScript is turned off, so this form can't open WhatsApp. Please <a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener">message us on WhatsApp directly</a>.</p></noscript>
-          </form>
+        <div>
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000&amp;output=embed" title="Map showing the location of our showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="800" height="600"></iframe>
+          </div>
+          <p class="map-caption"><a href="https://www.google.com/maps/search/?api=1&query=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000" target="_blank" rel="noopener">Open in Google Maps</a> for directions.</p>
         </div>
       </div>
     </section>
@@ -140,8 +123,11 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="index.html" aria-label="Aurelia Bridal Jewels — home">
-            <span class="brand__name">Aurelia</span>
-            <span class="brand__tag">Bridal Jewels</span>
+            <img class="brand__logo" src="assets/img/brand/logo-64.webp" srcset="assets/img/brand/logo-64.webp 64w, assets/img/brand/logo-128.webp 128w, assets/img/brand/logo-256.webp 256w" sizes="52px" width="52" height="52" loading="lazy" decoding="async" alt="">
+            <span class="brand__text">
+              <span class="brand__name">Aurelia</span>
+              <span class="brand__tag">Bridal Jewels</span>
+            </span>
           </a>
           <p class="footer-about">Handcrafted bridal jewellery in gold, kundan, polki and diamond — designed with you for the most important day of your life.</p>
         </div>

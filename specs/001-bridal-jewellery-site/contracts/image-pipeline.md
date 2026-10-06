@@ -9,6 +9,7 @@
 | `collections` | 4:5 | 400, 600, 800 | 120 KB |
 | `pieces` | 4:5 | 400, 600, 800 | 120 KB |
 | `about` | 4:5 | 600, 900, 1200 | 120 KB |
+| `brand` — `logo` (via `tools/build_brand_assets.py`) | 1:1, black → transparent | 64, 128, 256 | — |
 
 Output: `assets/img/<group>/<slug>-<width>.webp`. Sources smaller than a target width are
 not upscaled; the largest available width is used instead.

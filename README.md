@@ -1,27 +1,29 @@
 # Aurelia Bridal Jewels — static website
 
 A fast, image-led brochure website for a bridal jewellery business: **Home**,
-**Collections** and **Contact** pages, with WhatsApp enquiries throughout.
+**Collections** and **Contact** pages. Dark theme in the logo's silver and pink, with
+WhatsApp as the way to get in touch.
 
 - Plain HTML, one CSS file (~16 KB) and one small JS file (~3 KB). No frameworks, no build step.
 - Every image is compressed **WebP** in several sizes (`srcset`), **lazy loaded**, with
   fixed dimensions so the page never jumps while loading.
 - Static full-screen hero banner. **No animation, transitions, sliders or marquees.**
 - Mobile-first and responsive from 320px phones to wide desktops.
-- WhatsApp click-to-chat links (`wa.me`) with pre-filled messages for every piece, plus a
-  contact form that writes the visitor's details into a WhatsApp message. Nothing is stored.
+- WhatsApp click-to-chat (`wa.me`) through a floating button on every page, plus the
+  header, footer and Contact page. No contact form; nothing is stored.
+- Contact page with opening hours and a Google Maps embed that loads only when scrolled to.
 
-> **Placeholder content:** the brand name, copy, contact details, WhatsApp number and
-> images are placeholders. Replace them before going live (see below).
+> **Placeholder content:** the brand name, copy, contact details, map address, WhatsApp
+> number and product images are placeholders (the logo is the real one). Replace them before going live (see below).
 
 ## Project layout
 
 ```text
 index.html, collections.html, contact.html, 404.html   pages
 assets/css/styles.css      all styles (mobile-first)
-assets/js/main.js          mobile menu + contact form → WhatsApp (optional enhancement)
+assets/js/main.js          mobile menu toggle (optional enhancement)
 assets/img/                generated WebP images: do not edit by hand
-assets/icons/favicon.svg
+assets/icons/              favicon-32.png, apple-touch-icon.png (built from the logo)
 images-src/                original photos (input to the image optimiser)
 tools/                     image tools and site audit (Python)
 specs/, .specify/, .claude/  Spec Kit: constitution, spec, plan and tasks
@@ -57,12 +59,22 @@ Requires Python 3.10+ and Pillow (`pip install Pillow`).
 
 `tools/generate_placeholders.py` recreates the placeholder artwork if needed.
 
+### Logo
+
+The logo source is `images-src/brand/logo.png` (drawn on black). After replacing it, run:
+
+```bash
+python3 tools/build_brand_assets.py
+```
+
+This turns the black background transparent and writes `assets/img/brand/logo-{64,128,256}.webp`,
+`assets/icons/favicon-32.png` and `assets/icons/apple-touch-icon.png`.
+
 ### Adding a piece
 
 1. Add `images-src/pieces/<new-slug>.jpg` and run the optimiser.
 2. In `collections.html`, copy an existing `<article class="piece">` block inside the right
-   collection and update the image paths, `alt` text, name, description and WhatsApp
-   message (the text after `?text=` is URL-encoded; spaces are `%20`).
+   collection and update the image paths, `alt` text, name and description.
 
 ## WhatsApp number and contact details
 
@@ -77,6 +89,14 @@ sed -i 's/+91 98765 43210/+91 XXXXX XXXXX/g' *.html
 Also update the email (`hello@aureliabridal.example`), address, opening hours and brand
 name in the HTML files.
 
+## Map
+
+The Contact page map is a Google Maps embed driven by the address text. In `contact.html`,
+replace the encoded address in both the `<iframe src="https://www.google.com/maps?q=…&amp;output=embed">`
+and the "Open in Google Maps" / "Get directions" links. Tip: in Google Maps, search for the
+business listing and use its exact name and address (e.g. `Aurelia Bridal Jewels, Main Bazaar, Jaipur`)
+so the pin lands on the shop.
+
 ## Quality checks
 
 ```bash
@@ -85,7 +105,8 @@ python3 tools/check_site.py
 
 This checks that images are WebP, lazy loaded (except the hero), have dimensions and alt text;
 that local links and anchors work; that every page has WhatsApp links using one
-number; that there is no animation/transition CSS or third-party scripts; and that HTML,
+number; that the only iframe is the lazy-loaded Google Maps embed; that there is no
+animation/transition CSS or third-party scripts; and that HTML,
 CSS, JS and images stay within their size budgets. The full rules are in
 [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
 

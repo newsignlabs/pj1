@@ -1,12 +1,10 @@
 <!--
 Sync Impact Report
-- Version change: (template) → 1.0.0
-- Principles added: I. Static & Framework-Free, II. Image Performance First,
-  III. Calm, Motion-Free Presentation, IV. Mobile-First Responsive,
-  V. WhatsApp as the Conversion Channel, VI. Accessible & Semantic
-- Sections added: Performance Budgets, Development Workflow & Quality Gates, Governance
-- Templates requiring updates: none (plan/spec/tasks templates are generic and
-  reference the constitution via the "Constitution Check" gate) ✅
+- Version change: 1.0.0 → 1.1.0
+- Modified principles: I (one permitted third-party embed: lazy Google Maps iframe),
+  V (WhatsApp kept to a few clear entry points; no per-item buttons)
+- Added sections: Brand & Visual Identity
+- Templates requiring updates: none ✅
 - Follow-up TODOs: none
 -->
 
@@ -25,7 +23,8 @@ minimal vanilla JavaScript.
 - JavaScript is progressive enhancement only. All content, navigation and WhatsApp
   links MUST work with JavaScript disabled.
 - Third-party runtime requests (web fonts, analytics, CDNs, embeds) are not allowed
-  unless justified in the plan's Complexity Tracking table.
+  unless justified in the plan's Complexity Tracking table. The only approved exception
+  is the Google Maps embed on the Contact page, which MUST be lazy loaded.
 
 **Rationale**: A small business brochure site gains nothing from a framework but pays
 for it in load time, maintenance and hosting cost.
@@ -68,9 +67,9 @@ can cause discomfort for motion-sensitive visitors.
 ### V. WhatsApp as the Conversion Channel
 
 - WhatsApp is the primary way visitors contact the business. A WhatsApp link MUST be
-  reachable from every page.
-- Product and collection enquiries MUST pre-fill a message that names the item, so the
-  business knows what the visitor is asking about.
+  reachable from every page (the floating button), without cluttering the design: no
+  per-item WhatsApp buttons; a page has at most one in-content WhatsApp call to action.
+- There is no contact form; visitors message the business directly.
 - All WhatsApp links use one business number written as a single placeholder string,
   so it can be changed site-wide with one find-and-replace (documented in the README).
 - No visitor data is collected or stored by the website itself.
@@ -81,6 +80,13 @@ can cause discomfort for motion-sensitive visitors.
 - All meaningful images have descriptive `alt` text; decorative images use `alt=""`.
 - Text contrast meets WCAG 2.1 AA; keyboard focus is always visible.
 - A skip-to-content link is provided on every page.
+
+## Brand & Visual Identity
+
+- The supplied logo (`images-src/brand/logo.png`) is used in the header and footer and as
+  the favicon.
+- Dark background throughout, with the logo's silver and pink as the only accent colours
+  (WhatsApp green is allowed on WhatsApp buttons only).
 
 ## Performance Budgets
 
@@ -112,4 +118,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 1.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

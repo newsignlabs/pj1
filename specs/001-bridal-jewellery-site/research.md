@@ -58,15 +58,24 @@
   `<button aria-expanded>` toggle on screens under 960px. Open/close is instant
   (`display` toggle, no transition).
 
-## 7. Contact form
+## 7. Contact page map (revision 2)
 
-- **Decision**: A `<form>` with native validation (`required`). JavaScript intercepts
-  submit, combines the fields into one message and opens `wa.me` in a new tab. A form
-  cannot merge several fields into the single `text` parameter without JS, so a visible
-  "or message us directly on WhatsApp" link next to the form covers the no-JS case.
-- **Rationale**: No backend and no stored data (FR-016).
+- **Decision**: Google Maps embed via `https://www.google.com/maps?q=<address>&output=embed`
+  in an `<iframe loading="lazy">` with a title, plus an "Open in Google Maps" link.
+- **Rationale**: No API key, familiar to visitors, and lazy loading means the map's
+  scripts and tiles load only when the visitor scrolls to it.
+- **Alternatives considered**: Maps Embed API (needs an API key); OpenStreetMap embed (less
+  familiar to visitors); static screenshot (not interactive).
+- The contact form from revision 1 was removed at the client's request.
 
-## 8. Hosting & caching
+## 8. Dark brand theme (revision 2)
+
+- **Decision**: Near-black background `#0a090b`, silver text `#dfe1e5`/`#f2f3f5`, pink
+  accents `#fc65b0` sampled from the logo. Pink buttons use near-black text (contrast
+  ≈ 7.5:1). The logo's black background is converted to transparency by
+  `tools/build_brand_assets.py`, so it sits on any dark surface.
+
+## 9. Hosting & caching
 
 - **Decision**: Any static host. A `_headers` file sets long caching for `/assets/img/*`
   (30 days) and shorter caching for CSS/JS (7 days), plus basic security headers.

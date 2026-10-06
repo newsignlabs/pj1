@@ -15,7 +15,7 @@ description: "Task list for the bridal jewellery showcase website"
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: US1 = Collections + WhatsApp enquiry, US2 = Home, US3 = Contact
+- **[Story]**: US1 = Collections + WhatsApp, US2 = Home, US3 = Contact
 
 ---
 
@@ -32,7 +32,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T004 Write `tools/generate_placeholders.py` producing placeholder originals for hero, collections, pieces and about in `images-src/`
 - [x] T005 Write `tools/optimize_images.py` converting `images-src/**` to multi-width compressed WebP in `assets/img/**` per `contracts/image-pipeline.md` (crop, resize, quality fallback, budget report)
 - [x] T006 Run the placeholder generator and the optimiser; commit generated WebP variants
-- [x] T007 [P] Create `assets/icons/favicon.svg` and an inline `<symbol>` icon sprite (whatsapp, phone, mail, pin, clock, menu, close) in each page
+- [x] T007 [P] Create favicon (replaced by logo-based icons in T027) and an inline `<symbol>` icon sprite (whatsapp, phone, mail, pin, clock, menu, close) in each page
 - [x] T008 Create `assets/css/styles.css`: design tokens, mobile-first base, header/nav, footer, floating WhatsApp button, buttons, grids, focus styles; no transitions/animations
 - [x] T009 [P] Create `assets/js/main.js`: `no-js` → `js` handling, nav toggle with `aria-expanded`, current year
 - [x] T010 Write `tools/check_site.py` audit (WebP-only images, lazy/decoding attributes, width/height/alt, local link and asset existence, single WhatsApp number, no motion CSS/markup, size budgets)
@@ -43,13 +43,13 @@ description: "Task list for the bridal jewellery showcase website"
 
 ## Phase 3: User Story 1 — Browse collections & enquire on WhatsApp (P1) 🎯 MVP
 
-**Goal**: Collections page with six categories, piece cards and pre-filled WhatsApp enquiries.
+**Goal**: Collections page with six categories and piece cards; WhatsApp via the floating button and one call to action.
 
-**Independent Test**: Tap "Enquire on WhatsApp" on any piece → WhatsApp opens with the piece and collection named.
+**Independent Test**: Tap the WhatsApp button → WhatsApp opens a chat with the business.
 
 - [x] T011 [US1] Build `collections.html` shell (header, page intro, category jump links, footer, floating WhatsApp button)
 - [x] T012 [US1] Add six collection sections with 4 piece cards each (lazy WebP `srcset`, dimensions, alt text) in `collections.html`
-- [x] T013 [US1] Add per-piece `wa.me` links with URL-encoded messages per `contracts/whatsapp-links.md` in `collections.html`
+- [x] T013 [US1] ~~Add per-piece `wa.me` links~~ (removed in revision 2, see T030)
 - [x] T014 [US1] Style category navigation and responsive piece grid (2 → 3 → 4 columns) in `assets/css/styles.css`
 
 **Checkpoint**: MVP — browsing and enquiry works on its own.
@@ -71,13 +71,13 @@ description: "Task list for the bridal jewellery showcase website"
 
 ## Phase 5: User Story 3 — Contact (P3)
 
-**Goal**: Contact details and a form that composes a WhatsApp message.
+**Goal**: Contact details and a showroom map.
 
-**Independent Test**: Submit the form → WhatsApp opens with name, date, phone and message.
+**Independent Test**: Map shows the showroom; phone, email, WhatsApp and directions links work.
 
-- [x] T019 [US3] Build `contact.html` with contact details (tel:, mailto:, address, hours) and the enquiry form
-- [x] T020 [US3] Implement form → WhatsApp message composition with native validation in `assets/js/main.js`
-- [x] T021 [US3] Style contact layout and form in `assets/css/styles.css`
+- [x] T019 [US3] Build `contact.html` with contact details (tel:, mailto:, address, hours)
+- [x] T020 [US3] ~~Implement form → WhatsApp message~~ (removed in revision 2, see T029)
+- [x] T021 [US3] Style contact layout in `assets/css/styles.css`
 
 ---
 
@@ -88,6 +88,18 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T024 Manual responsive check at 320/360/768/1280px (no horizontal scroll, hero = one screen)
 - [ ] T025 Replace placeholder brand name, copy, contact details, WhatsApp number and photography with the business's real content (needs client input)
 - [ ] T026 Run Lighthouse mobile audit on the deployed site and record scores (needs hosting)
+
+---
+
+## Phase 7: Revision 2 — client feedback
+
+- [x] T027 Add supplied logo as `images-src/brand/logo.png`; write `tools/build_brand_assets.py` (black → transparent, logo WebP sizes, favicons)
+- [x] T028 Restyle `assets/css/styles.css` to dark background with silver + pink brand palette; recolour placeholders in `tools/generate_placeholders.py`
+- [x] T029 Remove the contact form from `contact.html` and its JS from `assets/js/main.js`
+- [x] T030 Remove per-piece WhatsApp buttons from `collections.html`; hero/home CTAs point to Collections and Contact
+- [x] T031 Add lazy-loaded Google Maps embed and "Open in Google Maps" link to `contact.html`
+- [x] T032 Update `tools/check_site.py` (header logo eager, map iframe rules), constitution v1.1.0, spec and docs
+- [ ] T033 Replace the placeholder address so the map points at the real showroom (needs client input)
 
 ---
 

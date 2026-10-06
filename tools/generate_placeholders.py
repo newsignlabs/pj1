@@ -41,25 +41,24 @@ CATALOGUE = {
 }
 
 BACKGROUNDS = {
-    "bridal-sets": ("#3d0c16", "#8c2f3f"),
-    "necklaces": ("#2a1a12", "#7a5236"),
-    "earrings": ("#3b1f2b", "#b3727f"),
-    "bangles": ("#132a24", "#3f7a68"),
-    "maang-tikka": ("#2b1630", "#7d4d86"),
-    "rings": ("#1d2230", "#5b6b8c"),
-    "about": ("#4a2c1d", "#c79a73"),
-    "hero": ("#22060c", "#7a1f30"),
+    "bridal-sets": ("#050505", "#2a1622"),
+    "necklaces": ("#050505", "#24202a"),
+    "earrings": ("#050505", "#2e1424"),
+    "bangles": ("#050505", "#1e2228"),
+    "maang-tikka": ("#050505", "#2a1a2a"),
+    "rings": ("#050505", "#22222a"),
+    "about": ("#050505", "#2c1826"),
+    "hero": ("#000000", "#2a0f1e"),
 }
 
-GOLD = (212, 175, 106)
-GOLD_LIGHT = (246, 222, 160)
-GOLD_DARK = (150, 112, 52)
+GOLD = (206, 210, 216)  # silver (names kept for brevity)
+GOLD_LIGHT = (250, 250, 252)
+GOLD_DARK = (128, 132, 140)
 GEMS = {
-    "ruby": (160, 20, 45),
-    "emerald": (20, 110, 75),
-    "pearl": (240, 236, 226),
-    "polki": (232, 232, 240),
-    "sapphire": (30, 60, 140),
+    "pink": (232, 40, 130),
+    "rose": (252, 101, 176),
+    "pearl": (240, 238, 242),
+    "magenta": (190, 20, 105),
 }
 
 SCALE = 2  # supersample for smooth edges
@@ -246,11 +245,11 @@ def main():
 
     def hero_landscape(draw, w, h, rng):
         necklace(draw, w, h, rng, cx=w * 0.72, top=h * 0.1, width=w * 0.36, depth=h * 0.42,
-                 gem=GEMS["ruby"])
+                 gem=GEMS["pink"])
 
     def hero_portrait(draw, w, h, rng):
         necklace(draw, w, h, rng, cx=w * 0.5, top=h * 0.58, width=w * 0.78, depth=h * 0.2,
-                 gem=GEMS["ruby"])
+                 gem=GEMS["pink"])
 
     made += save(render((2560, 1440), BACKGROUNDS["hero"], hero_landscape, "hero-l"),
                  SRC / "hero" / "hero-landscape.jpg", force)
@@ -258,8 +257,8 @@ def main():
                  SRC / "hero" / "hero-portrait.jpg", force)
 
     def about(draw, w, h, rng):
-        ring(draw, w, h, rng, cx=w * 0.5, cy=h * 0.7, scale=0.8, gem=GEMS["emerald"])
-        bead(draw, w * 0.25, h * 0.25, w * 0.05, GEMS["ruby"])
+        ring(draw, w, h, rng, cx=w * 0.5, cy=h * 0.7, scale=0.8, gem=GEMS["magenta"])
+        bead(draw, w * 0.25, h * 0.25, w * 0.05, GEMS["pink"])
         bead(draw, w * 0.75, h * 0.3, w * 0.04, GEMS["pearl"])
 
     made += save(render((1200, 1500), BACKGROUNDS["about"], about, "about"),

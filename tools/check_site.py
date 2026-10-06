@@ -3,7 +3,9 @@
 
 Checks every top-level HTML page for:
   - images: WebP only, files exist, width/height/alt present, lazy loading
-    (loading="lazy" + decoding="async") on everything except the hero
+    (loading="lazy" + decoding="async") on everything except the hero and
+    the header logo
+  - iframes: only the Google Maps embed, lazy loaded, with a title
   - local links and assets resolve to real files (and #anchors exist)
   - WhatsApp: every page has a wa.me link and all links use one number
   - no motion: no animation/transition/@keyframes/marquee/autoplay/smooth scroll
@@ -41,7 +43,7 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.imgs, self.links, self.ids, self.scripts, self.styles = [], [], set(), [], []
-        self.wa_numbers, self.tags = [], []
+        self.wa_numbers, self.tags, self.iframes = [], [], []
         self.in_picture = False
 
     def handle_starttag(self, tag, attrs):
@@ -55,6 +57,8 @@ class Page(HTMLParser):
             self.imgs.append(a)
         if tag == "source" and self.in_picture:
             self.imgs.append({**a, "_source": True})
+        if tag == "iframe":
+            self.iframes.append(a)
         if tag == "a" and "href" in a:
             self.links.append(a["href"])
         if tag == "link" and "href" in a:
@@ -130,6 +134,9 @@ def main():
             if "alt" not in img:
                 fail(name, f"<img {label}> missing alt")
             is_hero = img.get("fetchpriority") == "high"
+            is_header_logo = "brand__logo" in img.get("class", "") and img.get("loading") != "lazy"
+            if is_header_logo:
+                continue
             if not is_hero:
                 if img.get("loading") != "lazy":
                     fail(name, f"<img {label}> is not lazy loaded")
@@ -137,6 +144,16 @@ def main():
                     fail(name, f"<img {label}> missing decoding=\"async\"")
             elif img.get("loading") == "lazy":
                 fail(name, f"hero <img {label}> must not be lazy loaded")
+
+        # Iframes (map only)
+        for frame in p.iframes:
+            src = frame.get("src", "")
+            if not src.startswith("https://www.google.com/maps"):
+                fail(name, f"iframe '{src[:60]}' is not the Google Maps embed")
+            if frame.get("loading") != "lazy":
+                fail(name, "map iframe is not lazy loaded")
+            if not frame.get("title"):
+                fail(name, "map iframe missing title")
 
         # Links & assets
         page_has_wa = False

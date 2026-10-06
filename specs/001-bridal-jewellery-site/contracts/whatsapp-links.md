@@ -21,20 +21,11 @@ Every WhatsApp link:
 
 - MUST be a real `href` (works without JS).
 - MUST open in a new tab (`target="_blank" rel="noopener"`) so the site stays open.
-- Piece enquiry links carry the piece-specific message in the `href` itself.
-
-## Contact form (JS enhanced)
-
-`<form id="enquiry-form" data-wa-number="919876543210">` with fields
-`name` (required), `wedding-date` (optional, `type="date"`), `phone` (optional, `type="tel"`),
-`message` (required). On submit `main.js`:
-
-1. Lets native validation run; aborts if invalid.
-2. Builds the message (see data-model.md), trimming each field.
-3. Opens `https://wa.me/<data-wa-number>?text=<encoded>` in a new tab.
-4. Does not store or send the data anywhere else.
+- Placement: floating button (every page), header button (desktop), footer link,
+  Contact page details, and at most one in-content call to action per page. No
+  per-piece WhatsApp buttons. No contact form.
 
 ## Invariants (checked by `tools/check_site.py`)
 
-- All `wa.me` links and `data-wa-number` attributes across all pages use the same number.
+- All `wa.me` links across all pages use the same number.
 - Every page contains at least one `wa.me` link and the floating button.
