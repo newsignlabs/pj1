@@ -25,7 +25,11 @@
 }
 
 /* ---------- Design tokens ---------- */
-:root {
+/* Dark is the default. .hero and .quote (photographic, graded to black) always
+   stay dark, like a cinema screen, so they re-declare the dark palette. */
+:root,
+.hero,
+.quote {
   color-scheme: dark;
 
   --bg: #08070a;
@@ -42,6 +46,46 @@
   --pink-soft: rgba(252, 101, 176, 0.55);
   --on-pink: #08070a;
 
+  --rule: rgba(201, 204, 210, 0.25);
+  --rule-strong: rgba(201, 204, 210, 0.6);
+  --edge-1: rgba(201, 204, 210, 0.28);
+  --edge-2: rgba(201, 204, 210, 0.06);
+  --numeral-stroke: rgba(201, 204, 210, 0.45);
+  --ghost-stroke: rgba(252, 101, 176, 0.14);
+  --caption-fade: rgba(8, 7, 10, 0.92);
+  --footer-bg: #000000;
+  --glow: rgba(252, 101, 176, 0.12);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f2ec;
+  --bg-alt: #efe7df;
+  --surface: #fffcf8;
+  --line: #dfd3c8;
+
+  --silver: #5b4f55;
+  --silver-bright: #221a1e;
+  --text: #2f262a;
+  --muted: #6c6066;
+
+  --pink: #b8155f;
+  --pink-soft: rgba(184, 21, 95, 0.45);
+  --on-pink: #ffffff;
+
+  --rule: rgba(34, 26, 30, 0.18);
+  --rule-strong: rgba(34, 26, 30, 0.45);
+  --edge-1: rgba(91, 79, 85, 0.35);
+  --edge-2: rgba(91, 79, 85, 0.1);
+  --numeral-stroke: rgba(34, 26, 30, 0.35);
+  --ghost-stroke: rgba(184, 21, 95, 0.2);
+  --caption-fade: rgba(247, 242, 236, 0.95);
+  --footer-bg: #efe7df;
+  --glow: rgba(184, 21, 95, 0.1);
+}
+
+:root {
   --wa: #128c55;
   --wa-dark: #0d6e42;
 
@@ -277,7 +321,7 @@ ul {
 }
 
 .btn--outline {
-  border-color: rgba(201, 204, 210, 0.6);
+  border-color: var(--rule-strong);
   color: var(--silver-bright);
 }
 
@@ -305,7 +349,7 @@ ul {
   position: relative;
   display: block;
   padding: 1px;
-  background: linear-gradient(150deg, var(--pink-soft), rgba(201, 204, 210, 0.28) 28%, rgba(201, 204, 210, 0.06) 62%, var(--pink-soft));
+  background: linear-gradient(150deg, var(--pink-soft), var(--edge-1) 28%, var(--edge-2) 62%, var(--pink-soft));
   clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
   color: inherit;
   text-decoration: none;
@@ -334,7 +378,7 @@ a.card:focus-visible {
 }
 
 a.card:hover {
-  background: linear-gradient(150deg, var(--pink), rgba(201, 204, 210, 0.5) 40%, var(--pink));
+  background: linear-gradient(150deg, var(--pink), var(--edge-1) 40%, var(--pink));
   color: inherit;
 }
 
@@ -357,9 +401,9 @@ a.card:hover {
 
 .site-header__inner {
   display: grid;
-  grid-template-columns: 2.75rem 1fr 2.75rem;
+  grid-template-columns: 3.5rem 1fr 3.5rem;
   grid-template-areas:
-    "toggle brand call"
+    "toggle brand end"
     "nav nav nav";
   align-items: center;
   column-gap: 0.5rem;
@@ -426,13 +470,13 @@ a.card:hover {
 }
 
 .header-call {
-  grid-area: call;
+  grid-area: end;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  border: 1px solid rgba(201, 204, 210, 0.6);
+  border: 1px solid var(--rule-strong);
   color: var(--silver-bright);
 }
 
@@ -449,7 +493,7 @@ a.card:hover {
   width: 2.75rem;
   height: 2.75rem;
   padding: 0;
-  border: 1px solid rgba(201, 204, 210, 0.6);
+  border: 1px solid var(--rule-strong);
   background: none;
   color: var(--silver-bright);
   cursor: pointer;
@@ -471,6 +515,14 @@ a.card:hover {
 
 #site-nav {
   grid-area: nav;
+}
+
+/* Overlay-only pieces (eyebrow, numerals, notes, contact line) */
+.menu-eyebrow,
+.menu-num,
+.menu-note,
+.menu-extra {
+  display: none;
 }
 
 /* Without JS the links are always visible (a row under the medallion). */
@@ -508,45 +560,202 @@ a.card:hover {
   display: none;
 }
 
+/* Theme switch: a small pill with the pink bead on the moon (dark) or sun (light) side */
+.theme-switch {
+  grid-area: end;
+  justify-self: end;
+  position: relative;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  width: 3.5rem;
+  height: 2rem;
+  padding: 0 0.3rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--silver);
+  cursor: pointer;
+}
+
+.theme-switch[hidden] {
+  display: none;
+}
+
+.theme-switch .icon {
+  position: absolute;
+  top: 50%;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-top: -0.45rem;
+}
+
+.theme-switch .icon-moon { left: 0.45rem; }
+.theme-switch .icon-sun { right: 0.45rem; }
+
+.theme-switch__bead {
+  position: relative;
+  z-index: 1;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.theme-switch[aria-checked="true"] .theme-switch__bead {
+  margin-left: auto;
+}
+
+.theme-switch:hover {
+  border-color: var(--pink);
+}
+
 @media (max-width: 59.99rem) {
   .js .nav-toggle {
     display: inline-flex;
+    position: relative;
+    z-index: 45;
   }
 
-  .js .nav-menu {
+  .js .header-call {
     display: none;
   }
 
-  .js .site-header.is-open .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: block;
-    padding: 2.5rem var(--gutter) 1.25rem;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
+  .js #site-nav {
+    display: none;
+  }
+
+  /* Full-screen menu: a framed "programme" of scenes with an embroidered border */
+  .js .site-header.is-open #site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--header-h) + 2.5rem) 2.5rem 2.5rem;
+    overflow-y: auto;
+    background:
+      radial-gradient(ellipse at 50% 35%, var(--glow), transparent 65%),
+      url("../icons/jaali-dark.svg") center / 44px 44px,
+      var(--bg);
     text-align: center;
+  }
+
+  .js .site-header.is-open #site-nav::before {
+    content: "";
+    position: fixed;
+    top: var(--header-h);
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    border: 24px solid transparent;
+    border-image: url("../icons/embroidery-dark.svg") 30 round;
+    pointer-events: none;
+  }
+
+  .js .site-header.is-open .menu-eyebrow {
+    display: inline-flex;
+    margin-bottom: 1.25rem;
+  }
+
+  .js .site-header.is-open .nav-menu {
+    display: block;
+    width: 100%;
+    max-width: 22rem;
+    padding: 0;
+  }
+
+  .js .site-header.is-open .nav-menu li + li::before {
+    content: "\25C6";
+    display: block;
+    margin: 0.4rem 0;
+    font-size: 0.5rem;
+    color: var(--pink);
   }
 
   .js .site-header.is-open .nav-menu a {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    min-height: 3.25rem;
-    border-bottom: 1px solid var(--line);
-    font-family: var(--font-display);
-    font-size: 1.625rem;
-    font-weight: 500;
-    font-style: italic;
-    letter-spacing: 0.02em;
+    padding: 0.4rem 0;
+    box-shadow: none;
+    color: var(--silver-bright);
+    letter-spacing: normal;
     text-transform: none;
   }
 
-  .js .site-header.is-open .nav-menu a[aria-current="page"] {
-    box-shadow: none;
+  .js .site-header.is-open .menu-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
     color: var(--pink);
   }
+
+  .js .site-header.is-open .menu-label {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.05;
+  }
+
+  .js .site-header.is-open .menu-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .js .site-header.is-open .nav-menu a[aria-current="page"] .menu-label {
+    color: var(--pink);
+  }
+
+  .js .site-header.is-open .menu-extra {
+    display: block;
+    margin-top: 2rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+
+  .menu-extra a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+    color: var(--silver-bright);
+    text-decoration: none;
+  }
+
+  .menu-extra p {
+    margin: 0;
+  }
+
+  :root[data-theme="light"] .site-header.is-open #site-nav {
+    background:
+      radial-gradient(ellipse at 50% 35%, var(--glow), transparent 65%),
+      url("../icons/jaali-light.svg") center / 44px 44px,
+      var(--bg);
+  }
+
+  :root[data-theme="light"] .site-header.is-open #site-nav::before {
+    border-image-source: url("../icons/embroidery-light.svg");
+  }
+}
+
+.menu-open {
+  overflow: hidden;
+}
+
+.menu-open .wa-float {
+  display: none;
 }
 
 /* Header laid over the home hero */
@@ -559,7 +768,8 @@ a.card:hover {
   border-bottom: 0;
 }
 
-.js .site-header--overlay.is-open {
+.js .site-header--overlay.is-open,
+:root[data-theme="light"] .site-header--overlay {
   background: var(--bg);
 }
 
@@ -597,6 +807,14 @@ a.card:hover {
     display: none;
   }
 
+  #site-nav {
+    margin-left: auto;
+  }
+
+  .theme-switch {
+    margin-left: 2rem;
+  }
+
   .nav-menu {
     padding: 0;
     gap: 2.25rem;
@@ -609,7 +827,7 @@ a.card:hover {
   .nav-menu .nav-cta a {
     gap: 0.5rem;
     padding: 0 1.25rem;
-    border: 1px solid rgba(201, 204, 210, 0.6);
+    border: 1px solid var(--rule-strong);
     color: var(--silver-bright);
   }
 
@@ -913,7 +1131,7 @@ a.card:hover {
   font-weight: 500;
   line-height: 0.75;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(201, 204, 210, 0.45);
+  -webkit-text-stroke: 1px var(--numeral-stroke);
 }
 
 .section-title h2 {
@@ -951,7 +1169,7 @@ a.card:hover {
   line-height: 1;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(252, 101, 176, 0.14);
+  -webkit-text-stroke: 1px var(--ghost-stroke);
   pointer-events: none;
   user-select: none;
 }
@@ -990,7 +1208,7 @@ a.card:hover {
   right: 0;
   bottom: 0;
   padding: 3rem 1rem 1rem;
-  background: linear-gradient(180deg, transparent, rgba(8, 7, 10, 0.92) 70%);
+  background: linear-gradient(180deg, transparent, var(--caption-fade) 70%);
 }
 
 .collection-card__num {
@@ -1244,6 +1462,115 @@ a.card:hover {
 }
 /* motion-allowed:end */
 
+/* ---------- Quote cards: full-screen, embroidered border ----------
+   Alternate with the parallax quotes. A stitched frame (running stitch,
+   beaded row, diamond knots, corner rosettes) on a lattice ground. */
+.quote-card {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 40%, var(--glow), transparent 65%),
+    url("../icons/jaali-dark.svg") center / 44px 44px,
+    var(--bg-alt);
+}
+
+.quote-card__frame {
+  display: flex;
+  width: min(100%, 42rem);
+  min-height: calc(100svh - 2rem);
+  border: 24px solid transparent;
+  border-image: url("../icons/embroidery-dark.svg") 30 round;
+}
+
+.quote-card__inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 2.5rem 1.25rem;
+  background: radial-gradient(ellipse at 50% 30%, var(--surface), var(--bg) 85%);
+  text-align: center;
+}
+
+.quote-card .brand__medallion {
+  margin: 0 0 1.75rem;
+}
+
+.quote-card .quote__mark {
+  display: block;
+  height: 3.5rem;
+  font-family: var(--font-display);
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--pink);
+}
+
+.quote-card blockquote {
+  margin: 0;
+}
+
+.quote-card blockquote p {
+  max-width: 14ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 8vw, 4rem);
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--silver-bright);
+}
+
+.quote-card blockquote em {
+  font-style: normal;
+  color: var(--pink);
+}
+
+.quote-card figcaption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+.quote-card figcaption::before,
+.quote-card figcaption::after {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: var(--pink);
+}
+
+@media (min-width: 40rem) {
+  .quote-card {
+    padding: 2rem;
+  }
+
+  .quote-card__frame {
+    min-height: min(calc(100svh - 4rem), 44rem);
+    border-width: 30px;
+  }
+}
+
+:root[data-theme="light"] .quote-card {
+  background:
+    radial-gradient(ellipse at 50% 40%, var(--glow), transparent 65%),
+    url("../icons/jaali-light.svg") center / 44px 44px,
+    var(--bg-alt);
+}
+
+:root[data-theme="light"] .quote-card__frame {
+  border-image-source: url("../icons/embroidery-light.svg");
+}
+
 /* ---------- Collections page ---------- */
 .category-nav {
   border-bottom: 1px solid var(--line);
@@ -1446,8 +1773,8 @@ a.card:hover {
   overflow: hidden;
   padding: 5rem 0 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(252, 101, 176, 0.12), transparent 55%),
-    #000000;
+    radial-gradient(ellipse at 50% 0%, var(--glow), transparent 55%),
+    var(--footer-bg);
   border-top: 1px solid var(--line);
   color: var(--muted);
   text-align: center;
@@ -1493,10 +1820,20 @@ a.card:hover {
 
 .emblem__ring circle {
   fill: none;
-  stroke: rgba(201, 204, 210, 0.25);
+  stroke: var(--rule);
+}
+
+.emblem::before {
+  content: "";
+  position: absolute;
+  width: 11.5rem;
+  height: 11.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #221c26 0%, #000000 72%);
 }
 
 .emblem__logo {
+  position: relative;
   width: 9rem;
   height: 9rem;
 }
@@ -1619,6 +1956,11 @@ a.card:hover {
   .emblem__logo {
     width: 10rem;
     height: 10rem;
+  }
+
+  .emblem::before {
+    width: 13rem;
+    height: 13rem;
   }
 
   .footer-spacer {

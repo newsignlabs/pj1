@@ -9,8 +9,12 @@ WhatsApp as the way to get in touch.
   fixed dimensions so the page never jumps while loading.
 - Cinematic hero slider: three graded scenes cut from the product photo, changed only by
   swiping or tapping the arrows (instantly). Nothing moves on its own.
-- Quote interludes with soft-focus backgrounds and scroll-linked parallax (switched off
-  for visitors who ask their device for reduced motion).
+- Quote interludes that alternate between soft-focus photo quotes with scroll-linked
+  parallax (off for visitors who ask for reduced motion) and full-screen cards with an
+  embroidered border.
+- Dark theme by default, with a light (ivory) theme from the switch in the top bar,
+  remembered on the device.
+- On phones the menu opens as a full-screen, embroidered "programme" of scenes.
 - Logo as a hanging medallion in the header on phones, and an end-credits footer with a
   large ringed emblem.
 - Artistic, editorial design: self-hosted Cormorant Garamond, outlined chapter numerals,

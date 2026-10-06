@@ -30,6 +30,12 @@ passive scroll-listener fallback, and no motion under `prefers-reduced-motion`. 
 logo becomes a hanging medallion on phones; the footer becomes "end credits" with a large
 emblem ringed by SVG text. Constitution 2.0.0 permits exactly these two kinds of motion.
 
+Revision 5: colours become theme tokens (`:root` dark, `:root[data-theme="light"]` ivory);
+`.hero` and `.quote` re-declare the dark tokens so they stay dark. An inline head script
+applies the saved theme before first paint; `main.js` drives a `role="switch"` button.
+The phone menu becomes a full-screen overlay with an embroidered border-image frame.
+Embroidery and lattice patterns are small SVG files in `assets/icons/` (one per theme).
+
 ## Technical Context
 
 **Language/Version**: HTML5, CSS3 (custom properties, grid, `svh` units), ES2017 vanilla JavaScript; Python 3.10+ for offline image tooling only
