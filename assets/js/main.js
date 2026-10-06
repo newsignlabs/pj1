@@ -1,39 +1,89 @@
 /*
  * Aurelia Bridal Jewels — progressive enhancement only.
  * The site works without this file: menu links show, the hero slider can be
- * swiped, and quote backgrounds simply stay still.
+ * swiped, quote backgrounds stay still, and the site stays in the dark theme.
  * Nothing here moves on its own: no timers, no autoplay.
  */
 (function () {
   "use strict";
 
-  /* ---------- Mobile navigation ---------- */
+  /* ---------- Theme switch (dark default, light optional, remembered) ---------- */
+  var root = document.documentElement;
+  var themeSwitch = document.querySelector(".theme-switch");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  var applyTheme = function (theme) {
+    var light = theme === "light";
+    root.setAttribute("data-theme", light ? "light" : "dark");
+    if (themeSwitch) {
+      themeSwitch.setAttribute("aria-checked", String(light));
+    }
+    if (themeMeta) {
+      themeMeta.setAttribute("content", light ? "#f7f2ec" : "#08070a");
+    }
+  };
+
+  if (themeSwitch) {
+    themeSwitch.hidden = false;
+    applyTheme(root.getAttribute("data-theme"));
+    themeSwitch.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(next);
+      try { localStorage.setItem("aurelia-theme", next); } catch (e) { /* private mode */ }
+    });
+  }
+
+  /* ---------- Mobile navigation: full-screen menu ---------- */
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("site-nav");
 
-  if (header && toggle) {
+  if (header && toggle && nav) {
+    var isOpen = function () { return header.classList.contains("is-open"); };
+
     var setOpen = function (open) {
       header.classList.toggle("is-open", open);
+      root.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      if (open) {
+        var first = nav.querySelector("a");
+        if (first) { first.focus(); }
+      }
     };
 
     toggle.addEventListener("click", function () {
-      setOpen(!header.classList.contains("is-open"));
+      setOpen(!isOpen());
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && header.classList.contains("is-open")) {
+      if (!isOpen()) { return; }
+      if (event.key === "Escape") {
         setOpen(false);
         toggle.focus();
+        return;
+      }
+      // Keep keyboard focus inside the open menu (toggle, theme switch and links).
+      if (event.key === "Tab") {
+        var items = [toggle].concat(Array.prototype.slice.call(nav.querySelectorAll("a")));
+        if (themeSwitch && !themeSwitch.hidden) { items.push(themeSwitch); }
+        items = items.filter(function (el) { return el.offsetParent !== null; });
+        var i = items.indexOf(document.activeElement);
+        var next = i === -1 ? 0 : (i + (event.shiftKey ? -1 : 1) + items.length) % items.length;
+        event.preventDefault();
+        items[next].focus();
       }
     });
 
-    document.addEventListener("click", function (event) {
-      if (header.classList.contains("is-open") && !header.contains(event.target)) {
-        setOpen(false);
-      }
+    // Following a link (including same-page anchors) closes the menu.
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) { setOpen(false); }
     });
+
+    // The menu is phone-only: close it if the screen grows past the breakpoint.
+    var wide = window.matchMedia("(min-width: 60rem)");
+    var onWide = function () { if (wide.matches && isOpen()) { setOpen(false); } };
+    if (wide.addEventListener) { wide.addEventListener("change", onWide); }
   }
 
   /* ---------- Footer year ---------- */

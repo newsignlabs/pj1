@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 4)
+**Status**: Implemented (revision 5)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -18,6 +18,10 @@ clipped edges. The site is hosted on Zoho Catalyst Slate, auto-deployed from `ma
 and footer; the first section becomes a manual slider (arrows, no automatic motion); more
 quote sections with parallax background images; an artistic footer instead of a corporate
 template.
+
+**Revision 5 (2026-10-06)**: a more creative full-screen phone menu; some parallax quotes
+become full-screen cards with embroidered borders so the page is not monotonous; a light
+version with a switch in the top bar.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -173,11 +177,17 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 - **FR-030**: The Home hero MUST be a slider of at least three scenes cut from the client's
   product photography, with previous/next arrows and a scene counter, swipeable on touch.
-- **FR-031**: The Home page MUST include at least three full-width quote sections with
-  background images and parallax; Collections and Contact MUST include one each.
+- **FR-031**: The Home page MUST include at least three full-width quote sections;
+  Collections and Contact MUST include one each. Quote styles MUST alternate between
+  parallax photo quotes and full-screen cards with an embroidered border (FR-035).
 - **FR-032**: On phones the logo MUST be prominent (a medallion of at least 80px in the
   header); the footer MUST show the logo as a large emblem.
 - **FR-033**: The footer MUST be artistic (end-credits style), not a corporate link grid.
+- **FR-034**: On phones the menu MUST open as a full-screen, artistic overlay (numbered
+  scenes, embroidered frame, contact line) that traps keyboard focus, closes with Escape or
+  by choosing a link, and prevents the page behind from scrolling.
+- **FR-035**: Quote cards MUST fill the screen and carry an embroidered border in the
+  brand's silver and pink, adapted to the active theme.
 
 - **FR-028**: The visual style MUST feel artistic and editorial rather than like a typical
   corporate website (display serif typography, outlined numerals, asymmetric layouts).
@@ -186,8 +196,9 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 - **FR-026**: The supplied logo MUST appear in the header and footer of every page and be
   used as the favicon.
-- **FR-027**: All pages MUST use a dark background with the logo's silver and pink as
-  accent colours.
+- **FR-027**: All pages MUST use a dark theme by default with the logo's silver and pink as
+  accent colours. A light theme MUST be available from a switch in the top bar on every
+  page, apply instantly without a flash on reload, and be remembered on the device.
 
 **Images & performance**
 

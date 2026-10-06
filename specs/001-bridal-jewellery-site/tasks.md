@@ -125,6 +125,17 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 10: Revision 5 — menu, cards, light theme
+
+- [x] T047 Tokenise colours; add `:root[data-theme="light"]` ivory palette; keep `.hero` and `.quote` dark
+- [x] T048 Theme switch in the top bar (`role="switch"`, remembered, no flash via inline head script, updates theme-color)
+- [x] T049 Full-screen phone menu with embroidered frame, numbered scenes, contact line, focus trap, scroll lock
+- [x] T050 Embroidered border and lattice SVGs (`assets/icons/embroidery-*.svg`, `jaali-*.svg`)
+- [x] T051 Convert three quotes to full-screen embroidered cards (Home II, Collections, Contact); two parallax quotes remain on Home
+- [x] T052 CSS budget 40 KB; constitution 2.1.0, spec revision 5, plan, research, README updated
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.

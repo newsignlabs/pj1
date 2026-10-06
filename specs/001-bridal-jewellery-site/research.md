@@ -131,7 +131,36 @@
   JEWELS ◆ HANDCRAFTED SINCE 1998"), a closing line, role/name credit rows, scene links,
   "Fin." and a giant outlined wordmark.
 
-## 14. Hosting & caching
+## 14. Embroidered border (revision 5)
+
+- **Decision**: A 90×90 SVG tile used as `border-image` (slice 30, `round`): an outer
+  running stitch, a fine thread, a row of pink beads (dot-dashed stroke with round caps),
+  diamond knots and a rosette at each corner. One file per theme
+  (`assets/icons/embroidery-{dark,light}.svg`, 3.6 KB each), plus a faint lattice ("jaali")
+  tile for the ground. The SVG must declare `width`/`height`, or the browser assumes
+  300×150 and the slices land in the wrong places.
+- **Rationale**: Scales to any card size, crisp at any DPR, no images to download per card.
+
+## 15. Light theme (revision 5)
+
+- **Decision**: All colours are custom properties. Dark on `:root`; light on
+  `:root[data-theme="light"]`; `.hero, .quote` re-declare the dark set so photographic
+  sections stay dark. An inline script in `<head>` reads `localStorage["aurelia-theme"]`
+  before first paint (no flash); the switch is `role="switch"` with `aria-checked`, hidden
+  without JS, and updates `<meta name="theme-color">`. Light pink `#b8155f` keeps text
+  contrast at ≈5.8:1 on ivory.
+- **Alternatives considered**: following `prefers-color-scheme` by default (rejected: the
+  brand is dark-first; the visitor chooses).
+
+## 16. Full-screen phone menu (revision 5)
+
+- **Decision**: Under 960px the `<nav>` becomes a fixed full-screen overlay: embroidered
+  frame, "Choose a scene" eyebrow, numbered italic scenes with small notes, a call/WhatsApp
+  line and hours. Opening is instant. JS locks page scroll, focuses the first link, keeps
+  Tab inside (toggle, links, theme switch), and closes on Escape, link choice or resizing
+  to desktop. The floating WhatsApp button is hidden while it is open.
+
+## 17. Hosting & caching
 
 - **Decision**: Zoho Catalyst Slate (static framework, root `./`) auto-deploys `main`. Any
   other static host also works. A `_headers` file sets long caching for `/assets/img/*`

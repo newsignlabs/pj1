@@ -1,11 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 1.2.0 → 2.0.0 (MAJOR: Principle III redefined)
-- Modified principles: III "Calm, Motion-Free Presentation" → "Calm, Visitor-Driven Motion":
-  nothing moves on its own; a manual hero slider (instant changes) and scroll-linked
-  parallax on quote backgrounds are allowed, the latter off for prefers-reduced-motion
-- Modified sections: Brand & Visual Identity (logo medallion, end-credits footer);
-  Performance Budgets (CSS 25 → 35 KB)
+- Version change: 2.0.0 → 2.1.0 (MINOR: light theme and new brand components)
+- Modified sections: Brand & Visual Identity (optional light theme via a header switch;
+  full-screen phone menu; embroidered quote cards); Performance Budgets (CSS 35 → 40 KB)
+- Principles unchanged (the menu, theme switch and cards add no motion)
 - Templates requiring updates: none ✅
 - Follow-up TODOs: none
 -->
@@ -95,21 +93,27 @@ autonomous motion distracts, costs performance and can cause discomfort.
 - The supplied logo (`images-src/brand/logo.png`) is used as the favicon, as a round
   medallion that hangs below the header bar on phones, and as a large emblem (inside a
   ring of text) in the footer.
-- Dark background throughout, with the logo's silver and pink as the only accent colours
-  (WhatsApp green is allowed on WhatsApp buttons only).
+- Dark is the default theme. A light (ivory) theme is available from a switch in the top
+  bar and is remembered on the device. The hero and photographic quote sections stay dark
+  in both themes, like a cinema screen. The logo's silver and pink are the only accent
+  colours (WhatsApp green is allowed on WhatsApp buttons only).
 - Art direction is artistic and editorial, not corporate: a large display serif
   (Cormorant Garamond), italic pink accents, outlined numerals, asymmetric/staggered
   layouts, generous space.
 - Content cards (collections, pieces, highlights, contact, map) use clipped (chamfered)
   corners with a thin silver-to-pink edge.
 - The footer is styled as a film's end credits, never as a corporate link grid.
+- On phones the menu is a full-screen "programme" framed by an embroidered border, never a
+  plain drop-down list.
+- Quote interludes alternate between parallax photo quotes and full-screen cards with an
+  embroidered border (running stitch, beaded row, diamond knots, corner rosettes).
 
 ## Performance Budgets
 
 | Metric | Budget |
 |--------|--------|
 | HTML per page (uncompressed) | ≤ 40 KB |
-| Total CSS | ≤ 35 KB (≈ 7 KB compressed) |
+| Total CSS | ≤ 40 KB (≈ 8.5 KB compressed) |
 | Total JavaScript | ≤ 10 KB |
 | Self-hosted fonts | ≤ 60 KB |
 | Hero image (largest variant) | ≤ 250 KB |
@@ -135,4 +139,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 2.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 2.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

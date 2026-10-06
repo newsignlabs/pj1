@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 KB = 1024
 BUDGETS = {
     "html": 40 * KB,
-    "css": 35 * KB,
+    "css": 40 * KB,
     "js": 10 * KB,
     "image": 120 * KB,
     "hero": 250 * KB,

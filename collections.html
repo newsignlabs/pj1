@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Collections | Aurelia Bridal Jewels</title>
   <meta name="description" content="Bridal sets, necklaces, earrings, bangles, maang tikkas and rings, all handcrafted and customisable.">
-  <meta name="theme-color" content="#0a090b">
+  <meta name="theme-color" content="#08070a">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Collections | Aurelia Bridal Jewels">
   <meta property="og:description" content="Bridal sets, necklaces, earrings, bangles, maang tikkas and rings, all handcrafted and customisable.">
@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
-  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+  <script>(function (d) { d.className = d.className.replace("no-js", "js"); try { var t = localStorage.getItem("aurelia-theme"); if (t === "light" || t === "dark") { d.setAttribute("data-theme", t); } } catch (e) {} })(document.documentElement);</script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
@@ -29,6 +29,8 @@
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-prev" viewBox="0 0 44 16"><path d="M43 8H2M9 1 2 8l7 7" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
     <symbol id="i-next" viewBox="0 0 44 16"><path d="M1 8h41M35 1l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   </svg>
 
   <header class="site-header">
@@ -48,13 +50,19 @@
       </a>
       <a class="header-call" href="tel:+919876543210" aria-label="Call Aurelia Bridal Jewels"><svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg></a>
       <nav id="site-nav" aria-label="Main">
+        <span class="eyebrow menu-eyebrow">Choose a scene</span>
         <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="collections.html" aria-current="page">Collections</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html"><span class="menu-num" aria-hidden="true">I</span><span class="menu-label">Home</span><span class="menu-note" aria-hidden="true">The opening scene</span></a></li>
+          <li><a href="collections.html" aria-current="page"><span class="menu-num" aria-hidden="true">II</span><span class="menu-label">Collections</span><span class="menu-note" aria-hidden="true">Six chapters</span></a></li>
+          <li><a href="contact.html"><span class="menu-num" aria-hidden="true">III</span><span class="menu-label">Contact</span><span class="menu-note" aria-hidden="true">Visit the atelier</span></a></li>
           <li class="nav-cta"><a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> WhatsApp</a></li>
         </ul>
+        <div class="menu-extra">
+          <a href="tel:+919876543210">Call +91 98765 43210</a> &middot; <a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener">WhatsApp</a>
+          <p>Mon &ndash; Sat, 10:30&nbsp;am &ndash; 8&nbsp;pm</p>
+        </div>
       </nav>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light theme" hidden><svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg><svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg><span class="theme-switch__bead"></span></button>
     </div>
   </header>
 
@@ -279,16 +287,17 @@
         </div>
       </div>
     </section>
-    <section class="quote" aria-label="Quote">
-      <div class="quote__bg" aria-hidden="true">
-        <img src="assets/img/quotes/quote-pendant-600.webp" srcset="assets/img/quotes/quote-pendant-600.webp 600w, assets/img/quotes/quote-pendant-1200.webp 1200w" sizes="100vw"
-             width="1200" height="1200" loading="lazy" decoding="async" alt="">
+    <section class="quote-card" aria-label="Quote">
+      <div class="quote-card__frame">
+        <figure class="quote-card__inner">
+          <span class="brand__medallion" aria-hidden="true">
+            <img class="brand__logo" src="assets/img/brand/logo-128.webp" srcset="assets/img/brand/logo-64.webp 64w, assets/img/brand/logo-128.webp 128w, assets/img/brand/logo-256.webp 256w" sizes="68px" width="68" height="68" loading="lazy" decoding="async" alt="">
+          </span>
+          <span class="quote__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote><p>Every chapter of a wedding deserves <em>its own light.</em></p></blockquote>
+          <figcaption>From the Aurelia atelier</figcaption>
+        </figure>
       </div>
-      <figure class="container quote__inner">
-        <span class="quote__mark" aria-hidden="true">&ldquo;</span>
-        <blockquote><p>Every chapter of a wedding deserves <em>its own light.</em></p></blockquote>
-        <figcaption>From the Aurelia atelier</figcaption>
-      </figure>
     </section>
 
     <section class="collection" id="bangles" aria-labelledby="bangles-title">
