@@ -7,8 +7,12 @@ WhatsApp as the way to get in touch.
 - Plain HTML, one CSS file (~16 KB) and one small JS file (~3 KB). No frameworks, no build step.
 - Every image is compressed **WebP** in several sizes (`srcset`), **lazy loaded**, with
   fixed dimensions so the page never jumps while loading.
-- Cinematic, still hero: the product photo is colour-graded and framed as a letterboxed
-  film still. **No animation, transitions, sliders or marquees.**
+- Cinematic hero slider: three graded scenes cut from the product photo, changed only by
+  swiping or tapping the arrows (instantly). Nothing moves on its own.
+- Quote interludes with soft-focus backgrounds and scroll-linked parallax (switched off
+  for visitors who ask their device for reduced motion).
+- Logo as a hanging medallion in the header on phones, and an end-credits footer with a
+  large ringed emblem.
 - Artistic, editorial design: self-hosted Cormorant Garamond, outlined chapter numerals,
   staggered layouts and clipped-edge cards.
 - Mobile-first and responsive from 320px phones to wide desktops.
@@ -63,19 +67,21 @@ Requires Python 3.10+ and Pillow (`pip install Pillow`).
 
 `tools/generate_placeholders.py` recreates the placeholder artwork if needed.
 
-### Hero photo
+### Hero photo, scenes and quote backgrounds
 
-The hero uses a real product photo, `images-src/hero/hero-photo.jpg`. To change it, replace
-that file and run:
+Everything in the hero slider and the quote backgrounds is cut from one real product photo,
+`images-src/hero/hero-photo.jpg`. To change it, replace that file and run:
 
 ```bash
-python3 tools/grade_hero.py              # writes images-src/hero/hero-cinematic.jpg
-python3 tools/optimize_images.py         # writes assets/img/hero/hero-cinematic-*.webp
+python3 tools/grade_hero.py          # writes images-src/hero/*.jpg and images-src/quotes/*.jpg
+python3 tools/optimize_images.py     # writes the WebP variants
 ```
 
-The grade crops to 3:4, mutes the background outside the jewellery, adds a filmic curve
-and a vignette to black. If a new photo is framed differently, pass a crop:
-`python3 tools/grade_hero.py <left> <top> <width>` (the height is always width × 4/3).
+The script crops each frame (full set, earrings close-up, pendant close-up, and three
+square close-ups for quotes), mutes the background, adds a filmic curve and vignette, and
+softly blurs the quote frames. If a new photo is framed differently, adjust the crop boxes
+in `FRAMES` at the top of `tools/grade_hero.py`. Adding more product photos later can give
+each slide and quote its own picture.
 
 ### Logo
 

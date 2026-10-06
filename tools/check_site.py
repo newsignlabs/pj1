@@ -8,7 +8,9 @@ Checks every top-level HTML page for:
   - iframes: only the Google Maps embed, lazy loaded, with a title
   - local links and assets resolve to real files (and #anchors exist)
   - WhatsApp: every page has a wa.me link and all links use one number
-  - no motion: no animation/transition/@keyframes/marquee/autoplay/smooth scroll
+  - no autonomous motion: no animation/transition/@keyframes/marquee/autoplay/smooth
+    scroll, except scroll-linked parallax between the CSS "motion-allowed" markers,
+    which must be gated on prefers-reduced-motion and scroll timelines; no timers
   - no third-party scripts, stylesheets or fonts
   - size budgets for HTML, CSS, JS, self-hosted fonts and image variants
 
@@ -24,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 KB = 1024
 BUDGETS = {
     "html": 40 * KB,
-    "css": 25 * KB,
+    "css": 35 * KB,
     "js": 10 * KB,
     "image": 120 * KB,
     "hero": 250 * KB,
@@ -188,6 +190,12 @@ def main():
     for css in (ROOT / "assets" / "css").glob("*.css"):
         text = css.read_text(encoding="utf-8")
         css_total += len(text.encode())
+        allowed = re.search(r"/\* motion-allowed:start.*?motion-allowed:end \*/", text, flags=re.S)
+        if allowed:
+            block = allowed.group(0)
+            if "prefers-reduced-motion: no-preference" not in block or "animation-timeline" not in block:
+                fail(css.name, "motion-allowed block must be scroll-linked and respect prefers-reduced-motion")
+            text = text.replace(block, "")
         stripped = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
         for m in MOTION_CSS.finditer(stripped):
             line = stripped[: m.start()].count("\n") + 1
@@ -201,8 +209,9 @@ def main():
     if js_total > BUDGETS["js"]:
         fail("JS", f"{js_total / KB:.1f} KB (budget {BUDGETS['js'] // KB} KB)")
     for js in (ROOT / "assets" / "js").glob("*.js"):
-        if re.search(r"requestAnimationFrame|\.animate\(|setInterval", js.read_text(encoding="utf-8")):
-            fail(js.name, "script appears to animate (requestAnimationFrame/animate/setInterval)")
+        code = re.sub(r"/\*.*?\*/|//[^\n]*", "", js.read_text(encoding="utf-8"), flags=re.S)
+        if re.search(r"\.animate\(|setInterval|setTimeout|autoplay", code):
+            fail(js.name, "script appears to move things on its own (animate/setInterval/setTimeout/autoplay)")
 
     fonts_total = sum(len(f.read_bytes()) for f in (ROOT / "assets" / "fonts").glob("*.woff2"))
     if fonts_total > BUDGETS["fonts"]:

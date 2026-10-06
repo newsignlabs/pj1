@@ -114,6 +114,17 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 9: Revision 4 — mobile richness
+
+- [x] T041 Extend `tools/grade_hero.py` to cut two close-up scenes and three soft-focus quote backgrounds; add `hero-detail` and `quotes` rules to `tools/optimize_images.py`
+- [x] T042 Hero becomes a manual scroll-snap slider (3 scenes) with arrows, counter, keyboard and swipe in `index.html`, `assets/css/styles.css`, `assets/js/main.js`
+- [x] T043 Add parallax quote interludes (3 on Home, 1 on Collections, 1 on Contact) with CSS scroll-driven animation, JS fallback and reduced-motion opt-out
+- [x] T044 Header: logo medallion hanging below the bar on phones, call button, display-serif mobile menu
+- [x] T045 Footer: end credits with ringed logo emblem, credit rows, scene links, "Fin." and outlined wordmark
+- [x] T046 `tools/check_site.py`: allow only the marked parallax block, ban timers/autoplay in JS (comments ignored), CSS budget 35 KB; constitution 2.0.0 and docs updated
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.
