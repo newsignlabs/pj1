@@ -112,19 +112,6 @@ CSS, JS and images stay within their size budgets. The full rules are in
 
 ## Deploying
 
-### GitHub Pages (set up)
-
-`.github/workflows/pages.yml` runs `tools/check_site.py` and publishes the public files
-(pages, `assets/`, `robots.txt`) on every push to `main`. One-time setup in the repository:
-
-1. **Settings → General → Default branch:** `main`
-2. **Settings → Pages → Build and deployment → Source:** `GitHub Actions`
-
-The site is served at `https://newsignlabs.github.io/pj1/`. To redeploy without a code
-change, run the workflow from the **Actions** tab ("Deploy to GitHub Pages" → *Run workflow*).
-
-### Other hosts
-
 Any static host works (GitHub Pages, Netlify, Cloudflare Pages, shared hosting). Upload the
 pages, `assets/`, `robots.txt` and `_headers`. `images-src/`, `tools/`, `specs/`,
 `.specify/` and `.claude/` are not needed on the server. `_headers` sets caching and
