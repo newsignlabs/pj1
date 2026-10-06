@@ -103,6 +103,17 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 8: Revision 3 — art direction
+
+- [x] T035 Remove the GitHub Pages workflow (site is hosted on Catalyst Slate, auto-deployed from `main`)
+- [x] T036 Add the client's product photo as `images-src/hero/hero-photo.jpg`; write `tools/grade_hero.py` (cinematic grade) and switch the hero pipeline to `hero-cinematic-{540,810,1080}.webp`
+- [x] T037 Self-host Cormorant Garamond in `assets/fonts/` (with OFL licence) and preload it
+- [x] T038 Rewrite `assets/css/styles.css`: cinematic letterboxed hero (glow, grain, vignette), clipped-edge cards, outlined numerals, staggered grids, editorial type
+- [x] T039 Rebuild `index.html`, `collections.html`, `contact.html`, `404.html` with chapter-style sections and clipped cards
+- [x] T040 Add font budget to `tools/check_site.py`; update constitution v1.2.0, spec, plan, research, contracts and README
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.

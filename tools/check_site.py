@@ -10,7 +10,7 @@ Checks every top-level HTML page for:
   - WhatsApp: every page has a wa.me link and all links use one number
   - no motion: no animation/transition/@keyframes/marquee/autoplay/smooth scroll
   - no third-party scripts, stylesheets or fonts
-  - size budgets for HTML, CSS, JS and image variants
+  - size budgets for HTML, CSS, JS, self-hosted fonts and image variants
 
 Usage: python3 tools/check_site.py      (exit code 1 on any failure)
 """
@@ -28,6 +28,7 @@ BUDGETS = {
     "js": 10 * KB,
     "image": 120 * KB,
     "hero": 250 * KB,
+    "fonts": 60 * KB,
 }
 MOTION_CSS = re.compile(r"\b(animation|transition)\s*:|@keyframes|scroll-behavior\s*:\s*smooth", re.I)
 WA_LINK = re.compile(r"^https://wa\.me/(\d+)(\?text=.*)?$")
@@ -202,6 +203,10 @@ def main():
     for js in (ROOT / "assets" / "js").glob("*.js"):
         if re.search(r"requestAnimationFrame|\.animate\(|setInterval", js.read_text(encoding="utf-8")):
             fail(js.name, "script appears to animate (requestAnimationFrame/animate/setInterval)")
+
+    fonts_total = sum(len(f.read_bytes()) for f in (ROOT / "assets" / "fonts").glob("*.woff2"))
+    if fonts_total > BUDGETS["fonts"]:
+        fail("Fonts", f"{fonts_total / KB:.1f} KB (budget {BUDGETS['fonts'] // KB} KB)")
 
     # Image files
     img_root = ROOT / "assets" / "img"

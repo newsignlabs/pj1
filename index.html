@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aurelia Bridal Jewels | Handcrafted Bridal Jewellery</title>
-  <meta name="description" content="Handcrafted bridal jewellery — kundan, polki, temple gold and diamond sets, necklaces, earrings, bangles and maang tikkas. Enquire on WhatsApp.">
+  <meta name="description" content="Handcrafted bridal jewellery: kundan, polki, temple gold and diamond sets, necklaces, earrings, bangles and maang tikkas.">
   <meta name="theme-color" content="#0a090b">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aurelia Bridal Jewels | Handcrafted Bridal Jewellery">
-  <meta property="og:description" content="Handcrafted bridal jewellery — kundan, polki, temple gold and diamond sets, necklaces, earrings, bangles and maang tikkas. Enquire on WhatsApp.">
+  <meta property="og:description" content="Handcrafted bridal jewellery: kundan, polki, temple gold and diamond sets, necklaces, earrings, bangles and maang tikkas.">
   <meta property="og:image" content="assets/img/collections/bridal-sets-800.webp">
   <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
   <script src="assets/js/main.js" defer></script>
@@ -54,110 +55,125 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <picture class="hero__media">
-        <source media="(orientation: portrait) and (max-width: 959px)"
-                srcset="assets/img/hero/hero-portrait-480.webp 480w, assets/img/hero/hero-portrait-720.webp 720w, assets/img/hero/hero-portrait-1080.webp 1080w"
-                sizes="100vw" width="1080" height="1920">
-        <img src="assets/img/hero/hero-landscape-1280.webp"
-             srcset="assets/img/hero/hero-landscape-1280.webp 1280w, assets/img/hero/hero-landscape-1920.webp 1920w, assets/img/hero/hero-landscape-2560.webp 2560w"
-             sizes="100vw" width="2560" height="1440"
-             fetchpriority="high" decoding="async"
-             alt="Gold bridal necklace with ruby pendant on deep red velvet">
-      </picture>
-      <div class="container hero__content">
-        <p class="hero__eyebrow">Bridal Jewellery &middot; Since 1998</p>
-        <h1 id="hero-title">Jewellery for the day you'll remember forever</h1>
-        <p class="hero__lead">Handcrafted kundan, polki, temple gold and diamond pieces, designed with you for your wedding and every celebration around it.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="collections.html">View Collections</a>
-          <a class="btn btn--outline" href="contact.html">Visit the Showroom</a>
+      <div class="hero__stage">
+        <picture class="hero__media">
+          <img src="assets/img/hero/hero-cinematic-810.webp"
+               srcset="assets/img/hero/hero-cinematic-540.webp 540w, assets/img/hero/hero-cinematic-810.webp 810w, assets/img/hero/hero-cinematic-1080.webp 1080w"
+               sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw"
+               width="1080" height="1440" fetchpriority="high" decoding="async"
+               alt="Gold necklace and earring set with emerald stones, white stones and pearl drops, displayed on a black bust">
+        </picture>
+        <div class="container hero__content">
+          <p class="hero__eyebrow"><span>Scene I</span> The Emerald Vow</p>
+          <h1 id="hero-title">Made for the moment you say <em>forever</em></h1>
+          <p class="hero__lead">Kundan, polki, temple gold and diamond, shaped by hand for your wedding and every celebration around it.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="collections.html">Collections</a>
+            <a class="btn btn--outline" href="contact.html">The Atelier</a>
+          </div>
         </div>
       </div>
+      <p class="hero__credits"><span>Aurelia Bridal Jewels</span><span>Handcrafted since 1998</span></p>
     </section>
 
     <section class="section" aria-labelledby="featured-title">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Our collections</span>
-          <h2 id="featured-title">Find your bridal pieces</h2>
-          <p>From the engagement ring to the wedding-day set, explore jewellery made for every ceremony.</p>
-        </div>
+        <header class="section-title">
+          <span class="section-title__num" aria-hidden="true">I</span>
+          <div>
+            <span class="eyebrow">The collections</span>
+            <h2 id="featured-title">Six chapters of a <em>bridal</em> story</h2>
+          </div>
+          <p>From the engagement ring to the wedding-day set, every ceremony has its own piece.</p>
+        </header>
         <ul class="collection-grid">
-          <li>
-            <a class="collection-card" href="collections.html#bridal-sets">
-              <img src="assets/img/collections/bridal-sets-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#bridal-sets">
+              <div class="card__inner">
+                <img src="assets/img/collections/bridal-sets-400.webp"
              srcset="assets/img/collections/bridal-sets-400.webp 400w, assets/img/collections/bridal-sets-600.webp 600w, assets/img/collections/bridal-sets-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Bridal Sets collection">
-              <div class="collection-card__body">
-                <h3>Bridal Sets</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter I</span>
+                  <h3>Bridal Sets</h3>
+                </div>
               </div>
             </a>
           </li>
-          <li>
-            <a class="collection-card" href="collections.html#necklaces">
-              <img src="assets/img/collections/necklaces-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#necklaces">
+              <div class="card__inner">
+                <img src="assets/img/collections/necklaces-400.webp"
              srcset="assets/img/collections/necklaces-400.webp 400w, assets/img/collections/necklaces-600.webp 600w, assets/img/collections/necklaces-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Necklaces collection">
-              <div class="collection-card__body">
-                <h3>Necklaces</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter II</span>
+                  <h3>Necklaces</h3>
+                </div>
               </div>
             </a>
           </li>
-          <li>
-            <a class="collection-card" href="collections.html#earrings">
-              <img src="assets/img/collections/earrings-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#earrings">
+              <div class="card__inner">
+                <img src="assets/img/collections/earrings-400.webp"
              srcset="assets/img/collections/earrings-400.webp 400w, assets/img/collections/earrings-600.webp 600w, assets/img/collections/earrings-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Earrings collection">
-              <div class="collection-card__body">
-                <h3>Earrings</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter III</span>
+                  <h3>Earrings</h3>
+                </div>
               </div>
             </a>
           </li>
-          <li>
-            <a class="collection-card" href="collections.html#bangles">
-              <img src="assets/img/collections/bangles-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#bangles">
+              <div class="card__inner">
+                <img src="assets/img/collections/bangles-400.webp"
              srcset="assets/img/collections/bangles-400.webp 400w, assets/img/collections/bangles-600.webp 600w, assets/img/collections/bangles-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Bangles &amp; Bracelets collection">
-              <div class="collection-card__body">
-                <h3>Bangles &amp; Bracelets</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter IV</span>
+                  <h3>Bangles &amp; Bracelets</h3>
+                </div>
               </div>
             </a>
           </li>
-          <li>
-            <a class="collection-card" href="collections.html#maang-tikka">
-              <img src="assets/img/collections/maang-tikka-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#maang-tikka">
+              <div class="card__inner">
+                <img src="assets/img/collections/maang-tikka-400.webp"
              srcset="assets/img/collections/maang-tikka-400.webp 400w, assets/img/collections/maang-tikka-600.webp 600w, assets/img/collections/maang-tikka-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Maang Tikka &amp; Headpieces collection">
-              <div class="collection-card__body">
-                <h3>Maang Tikka &amp; Headpieces</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter V</span>
+                  <h3>Maang Tikka &amp; Headpieces</h3>
+                </div>
               </div>
             </a>
           </li>
-          <li>
-            <a class="collection-card" href="collections.html#rings">
-              <img src="assets/img/collections/rings-400.webp"
+          <li class="card-wrap">
+            <a class="card collection-card" href="collections.html#rings">
+              <div class="card__inner">
+                <img src="assets/img/collections/rings-400.webp"
              srcset="assets/img/collections/rings-400.webp 400w, assets/img/collections/rings-600.webp 600w, assets/img/collections/rings-800.webp 800w"
              sizes="(min-width: 1200px) 370px, (min-width: 640px) 31vw, 46vw"
              width="800" height="1000" loading="lazy" decoding="async"
              alt="Rings collection">
-              <div class="collection-card__body">
-                <h3>Rings</h3>
-                <span class="collection-card__link">Explore</span>
+                <div class="collection-card__caption">
+                  <span class="collection-card__num">Chapter VI</span>
+                  <h3>Rings</h3>
+                </div>
               </div>
             </a>
           </li>
@@ -168,44 +184,63 @@
     <section class="section section--alt" aria-labelledby="about-title">
       <div class="container about">
         <div class="about__media">
-          <img src="assets/img/about/about-600.webp"
+          <div class="card card--plain">
+            <div class="card__inner">
+              <img src="assets/img/about/about-600.webp"
              srcset="assets/img/about/about-600.webp 600w, assets/img/about/about-900.webp 900w, assets/img/about/about-1200.webp 1200w"
-             sizes="(min-width: 1200px) 560px, (min-width: 960px) 46vw, 100vw"
+             sizes="(min-width: 1200px) 520px, (min-width: 960px) 42vw, 100vw"
              width="1200" height="1500" loading="lazy" decoding="async"
              alt="Emerald ring and gemstones on a jeweller&#x27;s workbench">
+            </div>
+          </div>
         </div>
         <div class="about__text">
           <span class="eyebrow">Our story</span>
-          <h2 id="about-title">Three generations of bridal craftsmanship</h2>
-          <p>What began as a small family workshop is today a trusted name for brides and their families. Every piece is designed in-house and finished by hand by our karigars, using techniques passed down through generations.</p>
-          <p>We take the time to understand your outfit, your ceremonies and your budget, so the jewellery you wear feels unmistakably yours.</p>
+          <h2 id="about-title">Three generations of <em>karigars</em></h2>
+          <p>What began as a small family workshop is today where brides and their families come to find heirlooms. Every piece is designed in-house and finished by hand, using techniques passed down through generations.</p>
+          <p class="italic-note">&ldquo;Every piece begins as a promise, and ends as an heirloom.&rdquo;</p>
           <a class="btn btn--outline" href="contact.html">Book a consultation</a>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--flush-top" aria-labelledby="why-title">
+    <section class="section" aria-labelledby="why-title">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Why brides choose us</span>
-          <h2 id="why-title">Made with care, made to last</h2>
-        </div>
+        <header class="section-title">
+          <span class="section-title__num" aria-hidden="true">II</span>
+          <div>
+            <span class="eyebrow">Why brides choose us</span>
+            <h2 id="why-title">Made with care, <em>made to last</em></h2>
+          </div>
+        </header>
         <ul class="highlights">
-          <li class="highlight">
-            <h3>Certified purity</h3>
-            <p>Hallmarked 22k and 18k gold with certified diamonds and gemstones.</p>
+          <li class="card highlight">
+            <div class="card__inner">
+              <span class="highlight__num" aria-hidden="true">01</span>
+              <h3>Certified purity</h3>
+              <p>Hallmarked 22k and 18k gold with certified diamonds and gemstones.</p>
+            </div>
           </li>
-          <li class="highlight">
-            <h3>Custom designs</h3>
-            <p>Bring an idea or a family heirloom — we design around your outfit and story.</p>
+          <li class="card highlight">
+            <div class="card__inner">
+              <span class="highlight__num" aria-hidden="true">02</span>
+              <h3>Made for you</h3>
+              <p>Bring an idea or a family heirloom, and we design around your outfit and your story.</p>
+            </div>
           </li>
-          <li class="highlight">
-            <h3>Bridal styling</h3>
-            <p>One-to-one styling sessions to match jewellery with your lehenga or saree.</p>
+          <li class="card highlight">
+            <div class="card__inner">
+              <span class="highlight__num" aria-hidden="true">03</span>
+              <h3>Bridal styling</h3>
+              <p>One-to-one sessions to match jewellery with your lehenga or saree.</p>
+            </div>
           </li>
-          <li class="highlight">
-            <h3>Lifetime care</h3>
-            <p>Free cleaning, polishing and repairs for every piece you buy from us.</p>
+          <li class="card highlight">
+            <div class="card__inner">
+              <span class="highlight__num" aria-hidden="true">04</span>
+              <h3>Lifetime care</h3>
+              <p>Free cleaning, polishing and repairs for every piece you buy from us.</p>
+            </div>
           </li>
         </ul>
       </div>
@@ -213,9 +248,10 @@
 
     <section class="cta-band" aria-labelledby="cta-title">
       <div class="container">
-        <h2 id="cta-title">See the collection in person</h2>
-        <p>Visit our showroom for a one-to-one bridal consultation. We'll help you choose pieces that suit your outfit, ceremonies and budget.</p>
-        <a class="btn btn--primary" href="contact.html">Find the showroom</a>
+        <div class="ornament" aria-hidden="true"><span></span></div>
+        <h2 id="cta-title">See it <em>in person</em></h2>
+        <p>Visit the atelier for a one-to-one bridal consultation, and we'll help you choose pieces for your outfit, your ceremonies and your budget.</p>
+        <a class="btn btn--primary" href="contact.html">Find the atelier</a>
       </div>
     </section>
   </main>
@@ -231,7 +267,7 @@
               <span class="brand__tag">Bridal Jewels</span>
             </span>
           </a>
-          <p class="footer-about">Handcrafted bridal jewellery in gold, kundan, polki and diamond — designed with you for the most important day of your life.</p>
+          <p class="footer-about">Bridal jewellery in gold, kundan, polki and diamond, made by hand for the most important day of your life.</p>
         </div>
         <div>
           <h2>Explore</h2>

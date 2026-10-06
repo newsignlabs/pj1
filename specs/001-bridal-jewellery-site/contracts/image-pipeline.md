@@ -4,8 +4,7 @@
 
 | Group (`images-src/<group>/`) | Aspect (centre-cropped) | Output widths (px) | Budget per file |
 |-------------------------------|-------------------------|--------------------|-----------------|
-| `hero` — `hero-landscape` | 16:9 | 1280, 1920, 2560 | 250 KB |
-| `hero` — `hero-portrait` | 9:16 | 480, 720, 1080 | 250 KB |
+| `hero` — `hero-cinematic` (graded by `tools/grade_hero.py` from `hero-photo.jpg`) | 3:4 | 540, 810, 1080 | 250 KB |
 | `collections` | 4:5 | 400, 600, 800 | 120 KB |
 | `pieces` | 4:5 | 400, 600, 800 | 120 KB |
 | `about` | 4:5 | 600, 900, 1200 | 120 KB |
@@ -31,14 +30,13 @@ budget the script retries at lower quality (down to 50) and warns if still over.
      alt="Kundan choker necklace in 22k gold">
 ```
 
-## Markup — hero (eager, art-directed)
+## Markup — hero (eager, cinematic still)
 
 ```html
-<picture>
-  <source media="(orientation: portrait) and (max-width: 959px)"
-          srcset="…hero-portrait-480.webp 480w, …-720.webp 720w, …-1080.webp 1080w" sizes="100vw">
-  <img src="…hero-landscape-1280.webp"
-       srcset="…-1280.webp 1280w, …-1920.webp 1920w, …-2560.webp 2560w" sizes="100vw"
-       width="2560" height="1440" fetchpriority="high" decoding="async" alt="…">
+<picture class="hero__media">
+  <img src="assets/img/hero/hero-cinematic-810.webp"
+       srcset="…-540.webp 540w, …-810.webp 810w, …-1080.webp 1080w"
+       sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw"
+       width="1080" height="1440" fetchpriority="high" decoding="async" alt="…">
 </picture>
 ```
