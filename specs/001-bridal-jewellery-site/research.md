@@ -75,8 +75,32 @@
   ≈ 7.5:1). The logo's black background is converted to transparency by
   `tools/build_brand_assets.py`, so it sits on any dark surface.
 
-## 9. Hosting & caching
+## 9. Cinematic hero without motion (revision 3)
 
-- **Decision**: Any static host. A `_headers` file sets long caching for `/assets/img/*`
+- **Decision**: Grade the product photo offline (crop to 3:4, mute the pink wall and green
+  grass outside a focus ellipse, filmic S-curve, cool shadows / warm highlights, vignette to
+  black) with `tools/grade_hero.py`. In CSS, frame it as a film still: black letterbox bars
+  (header on top, credits below), the graded frame melting into black via `mask-image`, a
+  blurred copy of the same frame as ambient glow, and a static SVG noise layer for grain.
+- **Rationale**: "Cinematic" without any motion, so it honours Principle III; grading at
+  build time keeps the delivered WebP small (27–79 KB) and avoids heavy runtime filters on
+  the main image.
+- **Alternatives considered**: Video/Ken Burns pan (motion, banned); CSS filters on the
+  photo (cannot do selective desaturation, and costs paint time on phones).
+
+## 10. Typography and clipped cards (revision 3)
+
+- **Decision**: Self-host Cormorant Garamond (normal variable + italic, Latin subset, 47 KB)
+  with `font-display: swap` and a preload for the upright face. Cards are chamfered with
+  `clip-path: polygon(...)`; a 1px gradient edge comes from a padded outer element whose
+  inner face is cut 0.6px less, so the diagonal edge stays ~1px. Focus rings on clipped
+  links are drawn with `drop-shadow` on an unclipped wrapper.
+- **Rationale**: A display serif is the strongest single lever for an artistic, editorial
+  feel; self-hosting keeps Principle I (no third-party requests).
+
+## 11. Hosting & caching
+
+- **Decision**: Zoho Catalyst Slate (static framework, root `./`) auto-deploys `main`. Any
+  other static host also works. A `_headers` file sets long caching for `/assets/img/*`
   (30 days) and shorter caching for CSS/JS (7 days), plus basic security headers.
   Hosts like Netlify/Cloudflare Pages apply Brotli/gzip automatically.

@@ -27,8 +27,8 @@ MIN_QUALITY = 50
 # group -> list of (slug prefix or None for "any", aspect w/h, widths, budget bytes)
 RULES = {
     "hero": [
-        ("hero-portrait", 9 / 16, [480, 720, 1080], 250 * KB),
-        ("hero-landscape", 16 / 9, [1280, 1920, 2560], 250 * KB),
+        # hero-photo.jpg is the ungraded original; tools/grade_hero.py makes hero-cinematic.jpg
+        ("hero-cinematic", 3 / 4, [540, 810, 1080], 250 * KB),
     ],
     "collections": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
     "pieces": [(None, 4 / 5, [400, 600, 800], 120 * KB)],

@@ -1,9 +1,10 @@
 <!--
 Sync Impact Report
-- Version change: 1.0.0 → 1.1.0
-- Modified principles: I (one permitted third-party embed: lazy Google Maps iframe),
-  V (WhatsApp kept to a few clear entry points; no per-item buttons)
-- Added sections: Brand & Visual Identity
+- Version change: 1.1.0 → 1.2.0
+- Modified principles: I (self-hosted web fonts allowed; third-party font requests still banned),
+  III (a "cinematic" hero is a still frame: letterbox bars, grade, grain, glow — never motion)
+- Modified sections: Brand & Visual Identity → adds art direction and clipped-edge cards;
+  Performance Budgets → adds self-hosted fonts ≤ 60 KB
 - Templates requiring updates: none ✅
 - Follow-up TODOs: none
 -->
@@ -22,6 +23,7 @@ minimal vanilla JavaScript.
   page MUST be deployable by copying files to any static host.
 - JavaScript is progressive enhancement only. All content, navigation and WhatsApp
   links MUST work with JavaScript disabled.
+- Web fonts MUST be self-hosted (WOFF2, openly licensed, `font-display: swap`).
 - Third-party runtime requests (web fonts, analytics, CDNs, embeds) are not allowed
   unless justified in the plan's Complexity Tracking table. The only approved exception
   is the Google Maps embed on the Contact page, which MUST be lazy loaded.
@@ -51,7 +53,9 @@ are the single biggest factor in whether they keep browsing.
 
 - No animations, transitions, carousels, sliders, marquees, parallax, auto-playing
   media or scroll-triggered effects.
-- The home page hero banner is a single static image filling the viewport height.
+- The home page hero banner is a single static image filling the viewport height. A
+  "cinematic" treatment is achieved with still means only: colour grading, letterbox
+  bars, vignette, static grain and glow.
 - Interactive state changes (hover, focus, menu open) happen instantly.
 
 **Rationale**: The jewellery is the focus. Motion distracts, costs performance and
@@ -87,6 +91,11 @@ can cause discomfort for motion-sensitive visitors.
   the favicon.
 - Dark background throughout, with the logo's silver and pink as the only accent colours
   (WhatsApp green is allowed on WhatsApp buttons only).
+- Art direction is artistic and editorial, not corporate: a large display serif
+  (Cormorant Garamond), italic pink accents, outlined numerals, asymmetric/staggered
+  layouts, generous space.
+- Content cards (collections, pieces, highlights, contact, map) use clipped (chamfered)
+  corners with a thin silver-to-pink edge.
 
 ## Performance Budgets
 
@@ -95,6 +104,7 @@ can cause discomfort for motion-sensitive visitors.
 | HTML per page (uncompressed) | ≤ 40 KB |
 | Total CSS | ≤ 25 KB |
 | Total JavaScript | ≤ 10 KB |
+| Self-hosted fonts | ≤ 60 KB |
 | Hero image (largest variant) | ≤ 250 KB |
 | Any product/collection image variant | ≤ 120 KB |
 | Initial page weight on mobile (before scrolling) | ≤ 500 KB |
@@ -118,4 +128,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 1.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 1.2.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

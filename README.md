@@ -7,7 +7,10 @@ WhatsApp as the way to get in touch.
 - Plain HTML, one CSS file (~16 KB) and one small JS file (~3 KB). No frameworks, no build step.
 - Every image is compressed **WebP** in several sizes (`srcset`), **lazy loaded**, with
   fixed dimensions so the page never jumps while loading.
-- Static full-screen hero banner. **No animation, transitions, sliders or marquees.**
+- Cinematic, still hero: the product photo is colour-graded and framed as a letterboxed
+  film still. **No animation, transitions, sliders or marquees.**
+- Artistic, editorial design: self-hosted Cormorant Garamond, outlined chapter numerals,
+  staggered layouts and clipped-edge cards.
 - Mobile-first and responsive from 320px phones to wide desktops.
 - WhatsApp click-to-chat (`wa.me`) through a floating button on every page, plus the
   header, footer and Contact page. No contact form; nothing is stored.
@@ -22,6 +25,7 @@ WhatsApp as the way to get in touch.
 index.html, collections.html, contact.html, 404.html   pages
 assets/css/styles.css      all styles (mobile-first)
 assets/js/main.js          mobile menu toggle (optional enhancement)
+assets/fonts/              Cormorant Garamond WOFF2 (self-hosted, SIL OFL)
 assets/img/                generated WebP images: do not edit by hand
 assets/icons/              favicon-32.png, apple-touch-icon.png (built from the logo)
 images-src/                original photos (input to the image optimiser)
@@ -58,6 +62,20 @@ Requires Python 3.10+ and Pillow (`pip install Pillow`).
    headline is placed there.
 
 `tools/generate_placeholders.py` recreates the placeholder artwork if needed.
+
+### Hero photo
+
+The hero uses a real product photo, `images-src/hero/hero-photo.jpg`. To change it, replace
+that file and run:
+
+```bash
+python3 tools/grade_hero.py              # writes images-src/hero/hero-cinematic.jpg
+python3 tools/optimize_images.py         # writes assets/img/hero/hero-cinematic-*.webp
+```
+
+The grade crops to 3:4, mutes the background outside the jewellery, adds a filmic curve
+and a vignette to black. If a new photo is framed differently, pass a crop:
+`python3 tools/grade_hero.py <left> <top> <width>` (the height is always width × 4/3).
 
 ### Logo
 
@@ -112,10 +130,13 @@ CSS, JS and images stay within their size budgets. The full rules are in
 
 ## Deploying
 
-Any static host works (GitHub Pages, Netlify, Cloudflare Pages, shared hosting). Upload the
-pages, `assets/`, `robots.txt` and `_headers`. `images-src/`, `tools/`, `specs/`,
-`.specify/` and `.claude/` are not needed on the server. `_headers` sets caching and
-security headers on Netlify and Cloudflare Pages.
+The live site is hosted on **Zoho Catalyst Slate** (static framework, root `./`), which
+auto-deploys every push to `main`. Merge a pull request into `main` and Slate rebuilds the
+site within a minute.
+
+Any other static host also works: upload the pages, `assets/`, `robots.txt` and
+`_headers`. `images-src/`, `tools/`, `specs/`, `.specify/` and `.claude/` are not needed on
+the server. `_headers` sets caching and security headers on Netlify and Cloudflare Pages.
 
 ## Spec Kit
 

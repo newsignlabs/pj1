@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Aurelia Bridal Jewels</title>
-  <meta name="description" content="Visit our bridal jewellery showroom or message us on WhatsApp to book a consultation.">
+  <meta name="description" content="Visit our bridal jewellery atelier or message us on WhatsApp to book a consultation.">
   <meta name="theme-color" content="#0a090b">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact | Aurelia Bridal Jewels">
-  <meta property="og:description" content="Visit our bridal jewellery showroom or message us on WhatsApp to book a consultation.">
+  <meta property="og:description" content="Visit our bridal jewellery atelier or message us on WhatsApp to book a consultation.">
   <meta property="og:image" content="assets/img/collections/bridal-sets-800.webp">
   <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
   <script src="assets/js/main.js" defer></script>
@@ -54,63 +55,68 @@
 
   <main id="main">
     <div class="page-intro">
+      <span class="page-intro__ghost" aria-hidden="true">Atelier</span>
       <div class="container">
         <span class="eyebrow">Contact</span>
-        <h1>Visit our showroom</h1>
+        <h1>Come and <em>see us</em></h1>
         <p>Message us on WhatsApp, call, or drop in. We recommend booking a consultation so a stylist can give you their full attention.</p>
       </div>
     </div>
 
     <section class="section">
       <div class="container contact">
-        <div>
-          <h2>Get in touch</h2>
-          <ul class="contact-list">
-            <li>
-              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
-              <div>
-                <strong>WhatsApp</strong>
-                <a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener">+91 98765 43210</a>
-              </div>
-            </li>
-            <li>
-              <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>
-              <div>
-                <strong>Phone</strong>
-                <a href="tel:+919876543210">+91 98765 43210</a>
-              </div>
-            </li>
-            <li>
-              <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg>
-              <div>
-                <strong>Email</strong>
-                <a href="mailto:hello@aureliabridal.example">hello@aureliabridal.example</a>
-              </div>
-            </li>
-            <li>
-              <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-pin"></use></svg>
-              <div>
-                <strong>Showroom</strong>
-                <address>12 Jewellers&#x27; Lane, Main Bazaar<br>Your City 000000</address>
-                <a href="https://www.google.com/maps/search/?api=1&query=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000" target="_blank" rel="noopener">Get directions</a>
-              </div>
-            </li>
-            <li>
-              <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg>
-              <div>
-                <strong>Opening hours</strong>
-                <table class="hours">
-                  <tr><td>Mon &ndash; Sat</td><td>10:30 am &ndash; 8 pm</td></tr>
-                  <tr><td>Sunday</td><td>By appointment</td></tr>
-                </table>
-              </div>
-            </li>
-          </ul>
+        <div class="card contact-card">
+          <div class="card__inner">
+            <h2 class="sr-only">Contact details</h2>
+            <ul class="contact-list">
+              <li>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <a href="https://wa.me/919876543210?text=Hello%21%20I%27d%20like%20to%20know%20more%20about%20your%20bridal%20jewellery%20collections." target="_blank" rel="noopener">+91 98765 43210</a>
+                </div>
+              </li>
+              <li>
+                <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>
+                <div>
+                  <strong>Phone</strong>
+                  <a href="tel:+919876543210">+91 98765 43210</a>
+                </div>
+              </li>
+              <li>
+                <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:hello@aureliabridal.example">hello@aureliabridal.example</a>
+                </div>
+              </li>
+              <li>
+                <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-pin"></use></svg>
+                <div>
+                  <strong>Atelier</strong>
+                  <address>12 Jewellers&#x27; Lane, Main Bazaar<br>Your City 000000</address>
+                  <a href="https://www.google.com/maps/search/?api=1&query=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000" target="_blank" rel="noopener">Get directions</a>
+                </div>
+              </li>
+              <li>
+                <svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg>
+                <div>
+                  <strong>Opening hours</strong>
+                  <table class="hours">
+                    <tr><td>Mon &ndash; Sat</td><td>10:30 am &ndash; 8 pm</td></tr>
+                    <tr><td>Sunday</td><td>By appointment</td></tr>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <div class="map">
-            <iframe src="https://www.google.com/maps?q=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000&amp;output=embed" title="Map showing the location of our showroom" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="800" height="600"></iframe>
+        <div class="map-wrap">
+          <div class="card map-card">
+            <div class="card__inner">
+              <iframe src="https://www.google.com/maps?q=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000&amp;output=embed" title="Map showing the location of our atelier" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen width="800" height="600"></iframe>
+            </div>
           </div>
           <p class="map-caption"><a href="https://www.google.com/maps/search/?api=1&query=12%20Jewellers%27%20Lane%2C%20Main%20Bazaar%2C%20Your%20City%20000000" target="_blank" rel="noopener">Open in Google Maps</a> for directions.</p>
         </div>
@@ -129,7 +135,7 @@
               <span class="brand__tag">Bridal Jewels</span>
             </span>
           </a>
-          <p class="footer-about">Handcrafted bridal jewellery in gold, kundan, polki and diamond — designed with you for the most important day of your life.</p>
+          <p class="footer-about">Bridal jewellery in gold, kundan, polki and diamond, made by hand for the most important day of your life.</p>
         </div>
         <div>
           <h2>Explore</h2>

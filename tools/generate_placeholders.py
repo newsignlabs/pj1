@@ -48,7 +48,6 @@ BACKGROUNDS = {
     "maang-tikka": ("#050505", "#2a1a2a"),
     "rings": ("#050505", "#22222a"),
     "about": ("#050505", "#2c1826"),
-    "hero": ("#000000", "#2a0f1e"),
 }
 
 GOLD = (206, 210, 216)  # silver (names kept for brevity)
@@ -242,19 +241,6 @@ def main():
                      SRC / "collections" / f"{collection}.jpg", force)
         for slug in pieces:
             made += save(render(piece_size, colours, motif, slug), SRC / "pieces" / f"{slug}.jpg", force)
-
-    def hero_landscape(draw, w, h, rng):
-        necklace(draw, w, h, rng, cx=w * 0.72, top=h * 0.1, width=w * 0.36, depth=h * 0.42,
-                 gem=GEMS["pink"])
-
-    def hero_portrait(draw, w, h, rng):
-        necklace(draw, w, h, rng, cx=w * 0.5, top=h * 0.58, width=w * 0.78, depth=h * 0.2,
-                 gem=GEMS["pink"])
-
-    made += save(render((2560, 1440), BACKGROUNDS["hero"], hero_landscape, "hero-l"),
-                 SRC / "hero" / "hero-landscape.jpg", force)
-    made += save(render((1080, 1920), BACKGROUNDS["hero"], hero_portrait, "hero-p"),
-                 SRC / "hero" / "hero-portrait.jpg", force)
 
     def about(draw, w, h, rng):
         ring(draw, w, h, rng, cx=w * 0.5, cy=h * 0.7, scale=0.8, gem=GEMS["magenta"])

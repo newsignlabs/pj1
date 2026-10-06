@@ -16,6 +16,12 @@ compressed, multi-width WebP with native lazy loading and reserved dimensions; a
 (Pillow) script turns original photos into the required WebP variants. The Home hero is a
 single static `<picture>` filling `100svh`. No animation of any kind.
 
+Revision 3 (art direction): the hero is the client's product photo, colour-graded offline by
+`tools/grade_hero.py` and framed as a letterboxed film still (CSS letterbox bars, blurred
+ambient glow of the same frame, static SVG grain, vignette). Typography uses self-hosted
+Cormorant Garamond (~47 KB WOFF2). Cards use `clip-path` chamfers with a 1px gradient edge.
+Hosting: Zoho Catalyst Slate (static framework) auto-deploys `main`.
+
 ## Technical Context
 
 **Language/Version**: HTML5, CSS3 (custom properties, grid, `svh` units), ES2017 vanilla JavaScript; Python 3.10+ for offline image tooling only
@@ -79,10 +85,11 @@ robots.txt
 _headers                 # Cache/security headers (Netlify / Cloudflare Pages)
 assets/
 ├── css/styles.css       # Single mobile-first stylesheet
+├── fonts/             # Cormorant Garamond WOFF2 (self-hosted, OFL)
 ├── js/main.js           # Menu toggle (optional enhancement)
 ├── icons/              # favicon-32.png, apple-touch-icon.png (UI icons are an inline <symbol> sprite in each page)
 └── img/                 # GENERATED WebP variants (do not edit by hand)
-    ├── hero/            # hero-landscape-{1280,1920,2560}.webp, hero-portrait-{480,720,1080}.webp
+    ├── hero/            # hero-cinematic-{540,810,1080}.webp (graded product photo)
     ├── collections/     # <slug>-{400,600,800}.webp (cover images)
     ├── pieces/          # <slug>-{400,600,800}.webp
     ├── about/           # about-{600,900,1200}.webp
@@ -90,6 +97,7 @@ assets/
 images-src/              # Original photos (JPG/PNG), same folder layout as assets/img
 tools/
 ├── build_brand_assets.py      # images-src/brand/logo.png → transparent logo WebP + favicons
+├── grade_hero.py              # images-src/hero/hero-photo.jpg → hero-cinematic.jpg (cinematic grade)
 ├── generate_placeholders.py   # Creates placeholder originals in images-src/
 ├── optimize_images.py         # images-src/ → assets/img/*.webp (multi-width, compressed)
 └── check_site.py              # Static audit against the constitution

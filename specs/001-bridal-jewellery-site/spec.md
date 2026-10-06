@@ -4,11 +4,15 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 2)
+**Status**: Implemented (revision 3)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
 logo; dark background in the logo's silver and pink.
+
+**Revision 3 (2026-10-06)**: artistic rather than corporate look; the hero shows the
+client's product photo (emerald and gold necklace set) in a cinematic style; cards with
+clipped edges. The site is hosted on Zoho Catalyst Slate, auto-deployed from `main`.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -121,7 +125,8 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 **Home page**
 
 - **FR-005**: The Home page MUST open with a static hero banner that fills exactly the
-  visible screen height on all devices, showing a heading, a short tagline, a
+  visible screen height on all devices, presenting the client's product photograph as a
+  graded, letterboxed "film still" (no motion), showing a heading, a short tagline, a
   "View Collections" button and a "Chat on WhatsApp" button.
 - **FR-006**: The Home page MUST show featured collections (at least 4) linking to the
   matching section of the Collections page.
@@ -156,7 +161,12 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
   (tap to mail), store address, opening hours, and an embedded map of the showroom with
   a link that opens Google Maps for directions. The map MUST load only when scrolled near.
 
-**Brand**
+**Brand & art direction**
+
+- **FR-028**: The visual style MUST feel artistic and editorial rather than like a typical
+  corporate website (display serif typography, outlined numerals, asymmetric layouts).
+- **FR-029**: Collection, piece, highlight, contact and map cards MUST have clipped
+  (chamfered) corners.
 
 - **FR-026**: The supplied logo MUST appear in the header and footer of every page and be
   used as the favicon.
