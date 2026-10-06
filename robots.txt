@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /images-src/
+Disallow: /tools/
+Disallow: /specs/
