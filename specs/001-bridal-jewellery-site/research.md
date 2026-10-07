@@ -134,7 +134,7 @@
 
 - **Decision**: Header logo becomes an 88px round medallion centred between the menu and
   call buttons, hanging below the header bar like a pendant. The footer is styled as end
-  credits: a 240px emblem (logo inside an SVG `textPath` ring reading "AURELIA ◆ BRIDAL
+  credits: a 240px emblem (logo inside an SVG `textPath` ring reading "CUTE LOOK ◆ BRIDAL
   JEWELS ◆ HANDCRAFTED SINCE 1998"), a closing line, role/name credit rows, scene links,
   "Fin." and a giant outlined wordmark.
 
@@ -152,7 +152,7 @@
 
 - **Decision**: All colours are custom properties. Dark on `:root`; light on
   `:root[data-theme="light"]`; `.hero, .quote` re-declare the dark set so photographic
-  sections stay dark. An inline script in `<head>` reads `localStorage["aurelia-theme"]`
+  sections stay dark. An inline script in `<head>` reads `localStorage["cutelook-theme"]`
   before first paint (no flash); the switch is `role="switch"` with `aria-checked`, hidden
   without JS, and updates `<meta name="theme-color">`. Light pink `#b8155f` keeps text
   contrast at ≈5.8:1 on ivory.
@@ -167,7 +167,22 @@
   Tab inside (toggle, links, theme switch), and closes on Escape, link choice or resizing
   to desktop. The floating WhatsApp button is hidden while it is open.
 
-## 17. Hosting & caching
+## 17. Brand rename, caption strips, photo quote card (revision 7)
+
+- **Brand**: "Aurelia" became **Cute Look** in every page, the footer ring text, credits,
+  quote captions, email placeholder, page titles and the theme storage key
+  (`cutelook-theme`; a previously saved theme choice resets once). The footer wordmark
+  drops from 31vw to 23vw to fit the longer name.
+- **Caption strips**: the gradient fade at the bottom of collection cards read as a muddy
+  white haze in light mode. It is now a solid band (`--strip-bg`: `#ffffff` light,
+  `rgba(8,7,10,.55)` dark) with its own clipped top-right corner, which the card's
+  bottom-right chamfer also clips.
+- **Photo in a quote card**: the client's photograph of a worn temple necklace
+  (`images-src/features/worn-temple-pendant.jpg`, 3:4, WebP 400/600/895) sits in an arched
+  window (rounded top, thin pink rule, inner mat) — stacked above the quote on phones,
+  beside it on desktop. New image group `features`.
+
+## 18. Hosting & caching
 
 - **Decision**: Zoho Catalyst Slate (static framework, root `./`) auto-deploys `main`. Any
   other static host also works. A `_headers` file sets long caching for `/assets/img/*`

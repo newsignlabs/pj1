@@ -1,4 +1,4 @@
-# Aurelia Bridal Jewels — static website
+# Cute Look Bridal Jewels — static website
 
 A fast, image-led brochure website for a bridal jewellery business: **Home**,
 **Collections** and **Contact** pages. Dark theme in the logo's silver and pink, with
@@ -116,7 +116,7 @@ sed -i 's/919876543210/91XXXXXXXXXX/g' *.html
 sed -i 's/+91 98765 43210/+91 XXXXX XXXXX/g' *.html
 ```
 
-Also update the email (`hello@aureliabridal.example`), address, opening hours and brand
+Also update the email (`hello@cutelookbridal.example`), address, opening hours and brand
 name in the HTML files.
 
 ## Map
@@ -124,7 +124,7 @@ name in the HTML files.
 The Contact page map is a Google Maps embed driven by the address text. In `contact.html`,
 replace the encoded address in both the `<iframe src="https://www.google.com/maps?q=…&amp;output=embed">`
 and the "Open in Google Maps" / "Get directions" links. Tip: in Google Maps, search for the
-business listing and use its exact name and address (e.g. `Aurelia Bridal Jewels, Main Bazaar, Jaipur`)
+business listing and use its exact name and address (e.g. `Cute Look Bridal Jewels, Main Bazaar, Jaipur`)
 so the pin lands on the shop.
 
 ## Quality checks

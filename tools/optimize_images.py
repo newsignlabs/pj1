@@ -33,6 +33,8 @@ RULES = {
     ],
     # Soft-focus quote backgrounds, also cut by tools/grade_hero.py
     "quotes": [(None, 1, [600, 1200], 120 * KB)],
+    # Photographs shown inside quote cards
+    "features": [(None, 3 / 4, [400, 600, 895], 120 * KB)],
     "collections": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
     "pieces": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
     "about": [(None, 4 / 5, [600, 900, 1200], 120 * KB)],

@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 6)
+**Status**: Implemented (revision 7)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -25,6 +25,11 @@ version with a switch in the top bar.
 
 **Revision 6 (2026-10-07)**: the logo must look as big on desktop as on phones; the hero's
 first scene uses the client's new studio photograph (black backdrop, pink smoke).
+
+**Revision 7 (2026-10-07)**: the brand name becomes **Cute Look** everywhere; collection
+card captions become a solid white strip with a clipped corner in light mode (see-through
+in dark mode) instead of a white gradient; the client's photograph of a worn temple
+necklace goes inside the framed quote card "Some jewels are worn. Ours are inherited." 
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -190,7 +195,10 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
   scenes, embroidered frame, contact line) that traps keyboard focus, closes with Escape or
   by choosing a link, and prevents the page behind from scrolling.
 - **FR-035**: Quote cards MUST fill the screen and carry an embroidered border in the
-  brand's silver and pink, adapted to the active theme.
+  brand's silver and pink, adapted to the active theme. A card MAY hold a photograph in an
+  arched window (the Home card "Some jewels are worn…" shows the worn temple necklace).
+- **FR-036**: Collection card captions MUST sit on a strip with a clipped corner: solid
+  white in the light theme, see-through in the dark theme (no gradient fades).
 
 - **FR-028**: The visual style MUST feel artistic and editorial rather than like a typical
   corporate website (display serif typography, outlined numerals, asymmetric layouts).
@@ -255,10 +263,10 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 ## Assumptions
 
-- The business name, copy, prices and real product photography are not yet provided. The
-  first release uses a placeholder brand name ("Aurelia Bridal Jewels"), placeholder
-  copy, a placeholder WhatsApp number and generated placeholder images, all designed to be
-  replaced without code changes beyond content edits.
+- The business name is **Cute Look** (shown as "Cute Look Bridal Jewels"; it replaced the
+  first-release placeholder "Aurelia" in revision 7). Copy, prices, contact details and most
+  product photography are still placeholders, designed to be replaced without code changes
+  beyond content edits.
 - Prices are not shown; pricing is discussed on WhatsApp (common for bridal jewellery).
 - Content is in English only.
 - The catalogue is small enough (tens of pieces) to be maintained by editing HTML directly;
