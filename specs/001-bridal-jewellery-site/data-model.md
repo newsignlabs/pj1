@@ -46,5 +46,5 @@ Relationship: Collection 1 — N Piece (min 4 per collection).
 ## Business contact details
 
 Placeholders, to be replaced before launch: WhatsApp `+91 98765 43210`
-(`919876543210` in links), phone, email `hello@aureliabridal.example`, address,
+(`919876543210` in links), phone, email `hello@cutelookbridal.example`, address,
 opening hours.

@@ -144,6 +144,14 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 12: Revision 7 — Cute Look, caption strips, photo quote
+
+- [x] T056 Rename the brand to Cute Look across pages, footer ring, credits, captions, email placeholder, theme storage key and docs
+- [x] T057 Collection card captions: solid white strip with clipped corner (light), see-through strip (dark)
+- [x] T058 Add `images-src/features/worn-temple-pendant.jpg` (new `features` image group) inside the "Some jewels are worn…" quote card in an arched window
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.

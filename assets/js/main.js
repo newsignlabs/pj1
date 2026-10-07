@@ -1,5 +1,5 @@
 /*
- * Aurelia Bridal Jewels — progressive enhancement only.
+ * Cute Look Bridal Jewels — progressive enhancement only.
  * The site works without this file: menu links show, the hero slider can be
  * swiped, quote backgrounds stay still, and the site stays in the dark theme.
  * Nothing here moves on its own: no timers, no autoplay.
@@ -29,7 +29,7 @@
     themeSwitch.addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
       applyTheme(next);
-      try { localStorage.setItem("aurelia-theme", next); } catch (e) { /* private mode */ }
+      try { localStorage.setItem("cutelook-theme", next); } catch (e) { /* private mode */ }
     });
   }
 

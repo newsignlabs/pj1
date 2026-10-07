@@ -1,11 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 2.1.0 → 2.1.1 (PATCH: wording)
-- Brand & Visual Identity: the hanging logo medallion now applies on every screen size
+- Version change: 2.1.1 → 2.1.2 (PATCH: brand name)
+- The business is now named Cute Look; no principle changes
 - Templates requiring updates: none ✅
 -->
 
-# Bridal Jewellery Website Constitution
+# Cute Look Bridal Jewellery Website Constitution
 
 ## Core Principles
 
@@ -136,4 +136,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 2.1.1 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 2.1.2 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

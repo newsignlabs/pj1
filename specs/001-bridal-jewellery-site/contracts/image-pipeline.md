@@ -7,6 +7,7 @@
 | `hero` — `hero-cinematic` (from the studio shot `hero-studio.jpg`, vignette only, by `tools/grade_hero.py`) | 3:4 | 540, 720, 895 | 250 KB |
 | `hero` — `hero-detail-*` (close-up scenes cut by `tools/grade_hero.py`) | 3:4 | 450, 600 | 120 KB |
 | `quotes` (soft-focus close-ups cut by `tools/grade_hero.py`) | 1:1 | 600, 1200 | 120 KB |
+| `features` (photographs inside quote cards) | 3:4 | 400, 600, 895 | 120 KB |
 | `collections` | 4:5 | 400, 600, 800 | 120 KB |
 | `pieces` | 4:5 | 400, 600, 800 | 120 KB |
 | `about` | 4:5 | 600, 900, 1200 | 120 KB |

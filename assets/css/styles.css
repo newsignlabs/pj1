@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Aurelia Bridal Jewels — single mobile-first stylesheet
+   Cute Look Bridal Jewels — single mobile-first stylesheet
    Art direction: cinematic, editorial, dark. Silver and pink from the logo.
    Clipped-edge cards. Constitution rule: nothing moves on its own — no
    autonomous animation, transitions or smooth scrolling. The one exception,
@@ -52,7 +52,7 @@
   --edge-2: rgba(201, 204, 210, 0.06);
   --numeral-stroke: rgba(201, 204, 210, 0.45);
   --ghost-stroke: rgba(252, 101, 176, 0.14);
-  --caption-fade: rgba(8, 7, 10, 0.92);
+  --strip-bg: rgba(8, 7, 10, 0.55); /* see-through caption strip */
   --footer-bg: #000000;
   --glow: rgba(252, 101, 176, 0.12);
 }
@@ -80,7 +80,7 @@
   --edge-2: rgba(91, 79, 85, 0.1);
   --numeral-stroke: rgba(34, 26, 30, 0.35);
   --ghost-stroke: rgba(184, 21, 95, 0.2);
-  --caption-fade: rgba(247, 242, 236, 0.95);
+  --strip-bg: #ffffff; /* solid white caption strip */
   --footer-bg: #efe7df;
   --glow: rgba(184, 21, 95, 0.1);
 }
@@ -1212,13 +1212,16 @@ a.card:hover {
   position: relative;
 }
 
+/* Caption strip: a solid band with its own clipped top-right corner (the card's
+   bottom-right chamfer clips it too). White in light mode, see-through in dark. */
 .collection-card__caption {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 3rem 1rem 1rem;
-  background: linear-gradient(180deg, transparent, var(--caption-fade) 70%);
+  padding: 0.7rem 1rem 0.85rem;
+  background: var(--strip-bg);
+  clip-path: polygon(0 0, calc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0 100%);
 }
 
 .collection-card__num {
@@ -1579,6 +1582,58 @@ a.card:hover {
 
 :root[data-theme="light"] .quote-card__frame {
   border-image-source: url("../icons/embroidery-light.svg");
+}
+
+/* Quote card with a photograph in an arched window */
+.quote-card__inner--photo {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0;
+}
+
+.quote-card__photo {
+  width: min(62vw, 16rem);
+  margin-bottom: 1.5rem;
+  padding: 6px;
+  border: 1px solid var(--pink-soft);
+  border-radius: 999px 999px 0 0;
+  background: var(--bg);
+}
+
+.quote-card__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+}
+
+@media (min-width: 60rem) {
+  .quote-card__inner--photo {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    grid-template-areas:
+      "photo mark"
+      "photo quote"
+      "photo caption";
+    column-gap: 3rem;
+    padding-inline: 3rem;
+  }
+
+  .quote-card__inner--photo .quote-card__photo {
+    grid-area: photo;
+    align-self: center;
+    width: 100%;
+    max-width: 18rem;
+    margin: 0;
+  }
+
+  .quote-card__inner--photo .quote__mark { grid-area: mark; align-self: end; }
+  .quote-card__inner--photo blockquote { grid-area: quote; }
+  .quote-card__inner--photo figcaption { grid-area: caption; align-self: start; }
+
+  .quote-card__frame--wide {
+    width: min(100%, 60rem);
+  }
 }
 
 /* ---------- Collections page ---------- */
@@ -1942,7 +1997,7 @@ a.card:hover {
   margin-top: 1rem;
   margin-bottom: -0.32em;
   font-family: var(--font-display);
-  font-size: 31vw;
+  font-size: 23vw;
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
