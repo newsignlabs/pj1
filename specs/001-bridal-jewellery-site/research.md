@@ -88,6 +88,13 @@
 - **Alternatives considered**: Video/Ken Burns pan (motion, banned); CSS filters on the
   photo (cannot do selective desaturation, and costs paint time on phones).
 
+- **Revision 6**: scene I now uses a studio photograph already lit on pure black with pink
+  smoke (`images-src/hero/hero-studio.jpg`, 895×1193). It gets only an edge vignette: the
+  filmic curve and split tone used for the older photo lifted its blacks to grey-blue.
+  CSS adds two faint pink radial hazes so the smoke seems to continue past the photo's
+  masked edges. The close-up scenes and quote backgrounds still come from the higher-
+  resolution original.
+
 ## 10. Typography and clipped cards (revision 3)
 
 - **Decision**: Self-host Cormorant Garamond (normal variable + italic, Latin subset, 47 KB)

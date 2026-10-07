@@ -1,11 +1,8 @@
 <!--
 Sync Impact Report
-- Version change: 2.0.0 → 2.1.0 (MINOR: light theme and new brand components)
-- Modified sections: Brand & Visual Identity (optional light theme via a header switch;
-  full-screen phone menu; embroidered quote cards); Performance Budgets (CSS 35 → 40 KB)
-- Principles unchanged (the menu, theme switch and cards add no motion)
+- Version change: 2.1.0 → 2.1.1 (PATCH: wording)
+- Brand & Visual Identity: the hanging logo medallion now applies on every screen size
 - Templates requiring updates: none ✅
-- Follow-up TODOs: none
 -->
 
 # Bridal Jewellery Website Constitution
@@ -90,8 +87,8 @@ autonomous motion distracts, costs performance and can cause discomfort.
 
 ## Brand & Visual Identity
 
-- The supplied logo (`images-src/brand/logo.png`) is used as the favicon, as a round
-  medallion that hangs below the header bar on phones, and as a large emblem (inside a
+- The supplied logo (`images-src/brand/logo.png`) is used as the favicon, as a large round
+  medallion that hangs below the header bar on every screen size, and as a large emblem (inside a
   ring of text) in the footer.
 - Dark is the default theme. A light (ivory) theme is available from a switch in the top
   bar and is remembered on the device. The hero and photographic quote sections stay dark
@@ -139,4 +136,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 2.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 2.1.1 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

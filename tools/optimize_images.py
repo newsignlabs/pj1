@@ -27,8 +27,8 @@ MIN_QUALITY = 50
 # group -> list of (slug prefix or None for "any", aspect w/h, widths, budget bytes)
 RULES = {
     "hero": [
-        # hero-photo.jpg is the ungraded original; tools/grade_hero.py makes hero-cinematic.jpg
-        ("hero-cinematic", 3 / 4, [540, 810, 1080], 250 * KB),
+        # hero-photo.jpg / hero-studio.jpg are ungraded originals; tools/grade_hero.py makes the rest
+        ("hero-cinematic", 3 / 4, [540, 720, 895], 250 * KB),
         ("hero-detail", 3 / 4, [450, 600], 120 * KB),
     ],
     # Soft-focus quote backgrounds, also cut by tools/grade_hero.py

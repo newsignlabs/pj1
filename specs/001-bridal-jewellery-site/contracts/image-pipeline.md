@@ -4,7 +4,7 @@
 
 | Group (`images-src/<group>/`) | Aspect (centre-cropped) | Output widths (px) | Budget per file |
 |-------------------------------|-------------------------|--------------------|-----------------|
-| `hero` — `hero-cinematic` (graded by `tools/grade_hero.py` from `hero-photo.jpg`) | 3:4 | 540, 810, 1080 | 250 KB |
+| `hero` — `hero-cinematic` (from the studio shot `hero-studio.jpg`, vignette only, by `tools/grade_hero.py`) | 3:4 | 540, 720, 895 | 250 KB |
 | `hero` — `hero-detail-*` (close-up scenes cut by `tools/grade_hero.py`) | 3:4 | 450, 600 | 120 KB |
 | `quotes` (soft-focus close-ups cut by `tools/grade_hero.py`) | 1:1 | 600, 1200 | 120 KB |
 | `collections` | 4:5 | 400, 600, 800 | 120 KB |
@@ -36,9 +36,9 @@ budget the script retries at lower quality (down to 50) and warns if still over.
 
 ```html
 <picture class="hero__media">
-  <img src="assets/img/hero/hero-cinematic-810.webp"
-       srcset="…-540.webp 540w, …-810.webp 810w, …-1080.webp 1080w"
+  <img src="assets/img/hero/hero-cinematic-720.webp"
+       srcset="…-540.webp 540w, …-720.webp 720w, …-895.webp 895w"
        sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw"
-       width="1080" height="1440" fetchpriority="high" decoding="async" alt="…">
+       width="895" height="1193" fetchpriority="high" decoding="async" alt="…">
 </picture>
 ```

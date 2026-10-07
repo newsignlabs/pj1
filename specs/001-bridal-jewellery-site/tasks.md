@@ -136,6 +136,14 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 11: Revision 6 — desktop logo, studio hero
+
+- [x] T053 Desktop header: 108px hanging logo medallion (as on phones) and larger wordmark
+- [x] T054 Add the studio photograph as `images-src/hero/hero-studio.jpg`; `tools/grade_hero.py` gives it a vignette-only grade; hero sizes 540/720/895
+- [x] T055 Scene I uses the studio shot with a pink smoke haze around it; spec, research, contract, README updated
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.
