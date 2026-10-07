@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Cut cinematic frames out of the hero product photo and colour-grade them.
+"""Cut cinematic frames out of the product photos and colour-grade them.
 
-    images-src/hero/hero-photo.jpg  ->  images-src/hero/hero-cinematic.jpg        (slide I, full set)
-                                        images-src/hero/hero-detail-earrings.jpg   (slide II, close-up)
+    images-src/hero/hero-studio.jpg ->  images-src/hero/hero-cinematic.jpg        (slide I, studio shot)
+    images-src/hero/hero-photo.jpg  ->  images-src/hero/hero-detail-earrings.jpg   (slide II, close-up)
                                         images-src/hero/hero-detail-pendant.jpg    (slide III, close-up)
                                         images-src/quotes/quote-*.jpg              (soft-focus quote backgrounds)
 
+Studio shot: already lit on black with pink smoke, so it only gets a gentle filmic
+curve and an edge vignette; its colours are kept.
 Slides: crop to 3:4, mute the busy backdrop (pink wall, green grass) outside the
 jewellery, filmic S-curve with warm highlights and cool shadows, vignette to black.
 Quote backgrounds: square close-ups, darker and softly blurred (shallow depth of
@@ -22,11 +24,15 @@ import numpy as np
 from PIL import Image, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "images-src" / "hero" / "hero-photo.jpg"
+SOURCES = {
+    "photo": ROOT / "images-src" / "hero" / "hero-photo.jpg",
+    "studio": ROOT / "images-src" / "hero" / "hero-studio.jpg",
+}
 
-# name -> (output path, (left, top, width), aspect h/w, focus (cx, cy, rx, ry), kind)
+# name -> (output folder, (left, top, width), aspect h/w, focus (cx, cy, rx, ry), kind)
+# kind "studio" uses hero-studio.jpg; every other kind is cut from hero-photo.jpg.
 FRAMES = {
-    "hero-cinematic": ("hero", (60, 150, 1080), 4 / 3, (0.5, 0.44, 0.46, 0.40), "slide"),
+    "hero-cinematic": ("hero", (0, 0, 895), 4 / 3, (0.5, 0.45, 0.6, 0.55), "studio"),
     "hero-detail-earrings": ("hero", (225, 150, 600), 4 / 3, (0.5, 0.36, 0.5, 0.42), "slide"),
     "hero-detail-pendant": ("hero", (300, 600, 600), 4 / 3, (0.5, 0.42, 0.5, 0.45), "slide"),
     "quote-chain": ("quotes", (170, 330, 460), 1.0, (0.5, 0.5, 0.6, 0.6), "quote"),
@@ -54,10 +60,17 @@ def grade(img, focus_box, kind):
     focus = np.asarray(Image.fromarray((focus * 255).astype(np.uint8)).filter(
         ImageFilter.GaussianBlur(blur))).astype(np.float32)[..., None] / 255.0
 
-    # 1. Mute the backdrop, keep the jewellery rich.
-    luma = (rgb @ LUMA)[..., None]
-    sat = (0.18 + 0.92 * focus) if kind == "slide" else 0.75
-    rgb = luma + (rgb - luma) * sat
+    # 1. Mute the backdrop, keep the jewellery rich (the studio shot keeps its colours).
+    if kind != "studio":
+        luma = (rgb @ LUMA)[..., None]
+        sat = (0.18 + 0.92 * focus) if kind == "slide" else 0.75
+        rgb = luma + (rgb - luma) * sat
+
+    if kind == "studio":
+        # Already lit on pure black: keep its blacks and colours, only deepen the edges.
+        vignette = 0.12 + 0.88 * (1.0 - smoothstep(0.5, 1.55, dist))[..., None]
+        rgb = rgb * (0.6 + 0.4 * vignette)
+        return Image.fromarray((np.clip(rgb, 0, 1) * 255).astype(np.uint8))
 
     # 2. Filmic S-curve with slightly lifted blacks.
     rgb = np.clip(rgb, 0, 1)
@@ -78,8 +91,9 @@ def grade(img, focus_box, kind):
 
 
 def main():
-    photo = Image.open(SRC).convert("RGB")
+    photos = {k: Image.open(v).convert("RGB") for k, v in SOURCES.items()}
     for name, (folder, (left, top, width), aspect, focus_box, kind) in FRAMES.items():
+        photo = photos["studio" if kind == "studio" else "photo"]
         height = round(width * aspect)
         frame = photo.crop((left, top, left + width, top + height))
         if kind == "quote":

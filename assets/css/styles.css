@@ -782,21 +782,23 @@ a.card:hover {
 
   .brand {
     align-self: center;
+    gap: 1rem;
   }
 
+  /* Desktop: the same hanging medallion as on phones, a size larger */
   .brand__medallion {
-    width: 3.75rem;
-    height: 3.75rem;
-    margin: 0;
-    box-shadow:
-      0 0 0 1px rgba(201, 204, 210, 0.5),
-      0 0 0 4px var(--bg),
-      0 0 0 5px var(--pink-soft);
+    width: 6.75rem;
+    height: 6.75rem;
+    margin: 0.5rem 0 -2.75rem;
   }
 
   .brand__logo {
-    width: 3rem;
-    height: 3rem;
+    width: 5.25rem;
+    height: 5.25rem;
+  }
+
+  .brand__name {
+    font-size: 2.25rem;
   }
 
   .brand__text {
@@ -889,6 +891,14 @@ a.card:hover {
 }
 
 .hero__slide--1::before { background-image: url("../img/hero/hero-cinematic-540.webp"); }
+
+/* Scene I (studio shot with pink smoke): let the smoke drift beyond the photo's edges */
+.hero__slide--1 {
+  background:
+    radial-gradient(ellipse 45% 35% at 78% 82%, rgba(214, 120, 160, 0.22), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 22% 88%, rgba(214, 120, 160, 0.16), transparent 70%),
+    #000000;
+}
 .hero__slide--2::before { background-image: url("../img/hero/hero-detail-earrings-450.webp"); }
 .hero__slide--3::before { background-image: url("../img/hero/hero-detail-pendant-450.webp"); }
 

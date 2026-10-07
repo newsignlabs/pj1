@@ -73,8 +73,10 @@ Requires Python 3.10+ and Pillow (`pip install Pillow`).
 
 ### Hero photo, scenes and quote backgrounds
 
-Everything in the hero slider and the quote backgrounds is cut from one real product photo,
-`images-src/hero/hero-photo.jpg`. To change it, replace that file and run:
+Scene I of the hero is the studio photograph `images-src/hero/hero-studio.jpg` (lit on
+black with pink smoke); it only gets an edge vignette. The close-up scenes and the quote
+backgrounds are cut from the original product photo, `images-src/hero/hero-photo.jpg`.
+To change either, replace the file and run:
 
 ```bash
 python3 tools/grade_hero.py          # writes images-src/hero/*.jpg and images-src/quotes/*.jpg
