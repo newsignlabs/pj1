@@ -124,6 +124,11 @@
   (`aria-pressed`). Following the WAI carousel pattern, the status region is
   `aria-live="off"` while playing and `polite` when paused. The timer lives between
   `autoplay-allowed` markers so the audit can confirm it is the only one.
+- **Revision 10**: by client request the arrow and pause buttons are gone and each slide's
+  photo fills the whole hero (`object-fit: cover`, under the transparent header) with
+  gradients for legibility; the progress bars sit over the photo. Without a pause button
+  (WCAG 2.2.2 trade-off accepted by the client), the slideshow still stops on hover,
+  focus, touch and hidden tab and never runs with reduced motion.
 
 ## 12. Parallax quotes (revision 4)
 

@@ -68,12 +68,12 @@
 
   <main id="main">
     <section class="hero" data-slider aria-roledescription="carousel" aria-labelledby="hero-title">
-      <div class="hero__slides" tabindex="0" aria-label="Featured designs — swipe or use the arrows">
+      <div class="hero__slides" tabindex="0" aria-label="Featured designs — swipe to browse">
         <article class="hero__slide hero__slide--1" aria-roledescription="slide" aria-label="1 of 3">
           <picture class="hero__media">
             <img src="assets/img/hero/hero-cinematic-720.webp"
                  srcset="assets/img/hero/hero-cinematic-540.webp 540w, assets/img/hero/hero-cinematic-720.webp 720w, assets/img/hero/hero-cinematic-895.webp 895w"
-                 sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw" width="895" height="1193" fetchpriority="high" decoding="async"
+                 sizes="100vw" width="895" height="1193" fetchpriority="high" decoding="async"
                  alt="Gold necklace and earring set with emerald stones and pearl drops on a black bust, wrapped in pink smoke">
           </picture>
           <div class="container hero__content">
@@ -90,7 +90,7 @@
           <picture class="hero__media">
             <img src="assets/img/hero/hero-detail-earrings-450.webp"
                  srcset="assets/img/hero/hero-detail-earrings-450.webp 450w, assets/img/hero/hero-detail-earrings-600.webp 600w"
-                 sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw" width="600" height="800" loading="lazy" decoding="async"
+                 sizes="100vw" width="600" height="800" loading="lazy" decoding="async"
                  alt="Close-up of gold drop earrings with emerald centres and pearl fringes">
           </picture>
           <div class="container hero__content">
@@ -106,7 +106,7 @@
           <picture class="hero__media">
             <img src="assets/img/hero/hero-detail-pendant-450.webp"
                  srcset="assets/img/hero/hero-detail-pendant-450.webp 450w, assets/img/hero/hero-detail-pendant-600.webp 600w"
-                 sizes="(min-width: 960px) 60vh, (orientation: landscape) 60vh, 100vw" width="600" height="800" loading="lazy" decoding="async"
+                 sizes="100vw" width="600" height="800" loading="lazy" decoding="async"
                  alt="Close-up of the necklace pendant: an emerald inside rings of white stones with pearl drops">
           </picture>
           <div class="container hero__content">
@@ -120,14 +120,11 @@
         </article>
       </div>
       <div class="hero__controls">
-        <button class="hero__arrow" type="button" data-prev hidden aria-label="Previous slide"><svg class="icon icon--stroke" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
         <div class="hero__dots" role="group" aria-label="Choose a slide" hidden>
           <button class="hero__dot" type="button" data-goto="0" aria-label="Slide 1 of 3"><span></span></button>
           <button class="hero__dot" type="button" data-goto="1" aria-label="Slide 2 of 3"><span></span></button>
           <button class="hero__dot" type="button" data-goto="2" aria-label="Slide 3 of 3"><span></span></button>
         </div>
-        <button class="hero__arrow" type="button" data-next hidden aria-label="Next slide"><svg class="icon icon--stroke" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
-        <button class="hero__play" type="button" data-play hidden aria-label="Pause slideshow"><svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5l11 7-11 7z"/></svg></button>
         <p class="sr-only" data-status aria-live="off"></p>
         <p class="hero__credits">Swipe for more</p>
       </div>

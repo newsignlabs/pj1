@@ -92,16 +92,13 @@
     year.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Hero slider: auto-advances, with arrows, progress bars, swipe and keyboard ---------- */
+  /* ---------- Hero slider: auto-advances, with slide indicators, swipe and keyboard ---------- */
   var slider = document.querySelector("[data-slider]");
   if (slider) {
     var track = slider.querySelector(".hero__slides");
     var slides = track.querySelectorAll(".hero__slide");
-    var prev = slider.querySelector("[data-prev]");
-    var next = slider.querySelector("[data-next]");
     var dotsBox = slider.querySelector(".hero__dots");
     var dots = slider.querySelectorAll("[data-goto]");
-    var playBtn = slider.querySelector("[data-play]");
     var status = slider.querySelector("[data-status]");
     var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var index = 0;
@@ -133,11 +130,7 @@
       schedule();
     };
 
-    prev.hidden = false;
-    next.hidden = false;
     dotsBox.hidden = false;
-    prev.addEventListener("click", function () { go(index - 1); });
-    next.addEventListener("click", function () { go(index + 1); });
     Array.prototype.forEach.call(dots, function (dot) {
       dot.addEventListener("click", function () { go(Number(dot.getAttribute("data-goto"))); });
     });
@@ -164,11 +157,11 @@
     });
 
     /* autoplay-allowed:start — the site's only timer (constitution III). Auto-advance
-       stops for prefers-reduced-motion, and pauses on the pause button, while the pointer
-       or keyboard focus is in the hero, while it is touched, and when the tab is hidden. */
+       is off for prefers-reduced-motion, and pauses while the pointer or keyboard focus
+       is in the hero, while it is touched, and when the tab is hidden. */
     var DELAY = 6000;
     var timer = null;
-    var userPaused = still;
+    var userPaused = still; // no auto-advance at all for reduced motion
     var held = false;
 
     function schedule() {
@@ -190,22 +183,8 @@
     track.addEventListener("touchend", function () { hold(false); }, { passive: true });
     document.addEventListener("visibilitychange", schedule);
 
-    var setPlayLabel = function () {
-      playBtn.setAttribute("aria-label", userPaused ? "Play slideshow" : "Pause slideshow");
-      playBtn.setAttribute("aria-pressed", String(userPaused));
-      // Announce slide changes only while the slideshow is paused (WAI carousel pattern).
-      status.setAttribute("aria-live", userPaused ? "polite" : "off");
-    };
-
-    if (!still) {
-      playBtn.hidden = false;
-      playBtn.addEventListener("click", function () {
-        userPaused = !userPaused;
-        setPlayLabel();
-        schedule();
-      });
-    }
-    setPlayLabel();
+    // Announce slide changes only when not auto-advancing (WAI carousel pattern).
+    status.setAttribute("aria-live", userPaused ? "polite" : "off");
     /* autoplay-allowed:end */
 
     update();

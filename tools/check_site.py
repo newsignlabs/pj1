@@ -211,11 +211,12 @@ def main():
     for js in (ROOT / "assets" / "js").glob("*.js"):
         source = js.read_text(encoding="utf-8")
         # The hero slider's auto-advance is the one permitted timer; it must stop for
-        # reduced motion and offer a pause control.
+        # reduced motion and pause on hover, focus and hidden tabs.
         block = re.search(r"/\* autoplay-allowed:start.*?/\* autoplay-allowed:end \*/", source, flags=re.S)
         if block:
-            if "prefers-reduced-motion" not in source or "visibilitychange" not in block.group(0) or "data-play" not in source:
-                fail(js.name, "autoplay block must honour reduced motion, pause when hidden and have a pause button")
+            b = block.group(0)
+            if "prefers-reduced-motion" not in source or "visibilitychange" not in b or "mouseenter" not in b or "focusin" not in b:
+                fail(js.name, "autoplay block must honour reduced motion and pause on hover, focus and hidden tabs")
             source = source.replace(block.group(0), "")
         code = re.sub(r"/\*.*?\*/|//[^\n]*", "", source, flags=re.S)
         if re.search(r"\.animate\(|setInterval|setTimeout|autoplay", code):

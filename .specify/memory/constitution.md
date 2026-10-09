@@ -1,9 +1,8 @@
 <!--
 Sync Impact Report
-- Version change: 2.2.0 → 3.0.0 (MAJOR: Principle III redefined)
-- Principle III: the hero slider may auto-advance (client request), with pause/play,
-  pause on hover/focus/touch and hidden tab, and no auto-advance for reduced motion
-- Performance Budgets: CSS 40 → 45 KB
+- Version change: 3.0.0 → 4.0.0 (MAJOR: Principle III redefined)
+- Principle III: pause/play button no longer required (client request); the slideshow
+  MUST still pause on hover/focus/touch and hidden tab and stay off for reduced motion
 - Templates requiring updates: none ✅
 -->
 
@@ -51,8 +50,8 @@ are the single biggest factor in whether they keep browsing.
 
 - The only motion allowed is:
   1. the home hero slider, which MAY auto-advance (about every 6 s, sliding smoothly to the
-     next slide). It MUST offer a pause/play button, pause while the pointer or keyboard
-     focus is in the hero, while it is touched and while the tab is hidden, and MUST NOT
+     next slide). It MUST pause while the pointer or keyboard focus is in the hero, while
+     it is touched and while the tab is hidden, and MUST NOT
      auto-advance when the visitor's device asks for reduced motion;
   2. scroll-linked parallax on quote backgrounds, tied to the visitor's scrolling.
 - No marquees, looping or entrance animations, hover transitions or video.
@@ -60,7 +59,7 @@ are the single biggest factor in whether they keep browsing.
   `autoplay-allowed` markers; both are gated on `prefers-reduced-motion` and enforced by
   `tools/check_site.py`.
 
-**Rationale**: The jewellery is the focus. A gentle, pausable slideshow shows more of the
+**Rationale**: The jewellery is the focus. A gentle slideshow that stops when touched or hovered shows more of the
 range; everything else stays still for comfort and performance.
 
 ### IV. Mobile-First Responsive
@@ -141,4 +140,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 3.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 4.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-09
