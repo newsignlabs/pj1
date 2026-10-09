@@ -180,6 +180,8 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T072 Slide photos cover the whole hero under the header; legibility gradients; header items stay light over the photo in both themes
 - [x] T073 Progress-bar indicators laid over the photo; audit requires hover/focus/hidden-tab pauses; constitution 4.0.0
 
+- [x] T074 Revision 11: restore the portrait framing on a plain dark hero (no blurred glow) because full bleed made the 895 px portraits soft
+
 ---
 
 ## Dependencies & Execution Order

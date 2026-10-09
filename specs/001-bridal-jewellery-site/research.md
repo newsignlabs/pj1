@@ -129,6 +129,10 @@
   gradients for legibility; the progress bars sit over the photo. Without a pause button
   (WCAG 2.2.2 trade-off accepted by the client), the slideshow still stops on hover,
   focus, touch and hidden tab and never runs with reduced motion.
+- **Revision 11**: full bleed was reverted. The photos are 3:4 portraits at most 895 px
+  wide; covering a 1440 px landscape hero enlarged them about 1.6× and cropped away the top
+  and bottom, so they looked soft. The portrait framing is back (no blurred ambient glow, by
+  request); full bleed needs landscape photos of at least 1920 × 1080.
 
 ## 12. Parallax quotes (revision 4)
 
