@@ -33,6 +33,28 @@
     });
   }
 
+  /* ---------- Header wordmark: tagline exactly as wide as "Cute Look" ---------- */
+  var fitTagline = function () {
+    var name = document.querySelector(".brand__name");
+    var tag = document.querySelector(".brand__tag");
+    if (!name || !tag || !name.offsetWidth) { return; }
+    var width = function (el) {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      return range.getBoundingClientRect().width;
+    };
+    var gaps = tag.textContent.length - 1;
+    tag.style.letterSpacing = "0px";
+    tag.style.marginRight = "0px";
+    var nameWidth = width(name) - parseFloat(getComputedStyle(name).letterSpacing);
+    var spacing = Math.max(0, (nameWidth - width(tag)) / gaps);
+    tag.style.letterSpacing = spacing + "px";
+    tag.style.marginRight = -spacing + "px";
+  };
+  fitTagline();
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fitTagline); }
+  window.addEventListener("resize", fitTagline);
+
   /* ---------- Mobile navigation: full-screen menu ---------- */
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");

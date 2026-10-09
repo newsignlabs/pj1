@@ -242,6 +242,12 @@ def main():
         if img.stat().st_size > budget:
             fail(str(rel), f"{img.stat().st_size / KB:.0f} KB (budget {budget // KB} KB)")
 
+    # CSS/JS links carry a content version so browsers never keep stale files
+    sys.path.insert(0, str(ROOT / "tools"))
+    import stamp_assets
+    for stale in stamp_assets.stale_pages():
+        fail(stale, "CSS/JS versions are missing or out of date: run python3 tools/stamp_assets.py")
+
     print(f"Checked {len(pages)} pages, {count} image files, CSS {css_total / KB:.1f} KB, JS {js_total / KB:.1f} KB")
     if errors:
         print(f"\n{len(errors)} problem(s):")

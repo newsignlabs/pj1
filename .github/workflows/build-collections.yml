@@ -11,6 +11,8 @@ on:
       - "content/collections.json"
       - "tools/optimize_images.py"
       - "tools/build_collections.py"
+      - "assets/css/**"
+      - "assets/js/**"
   workflow_dispatch:
 
 permissions:
@@ -39,12 +41,15 @@ jobs:
       - name: Rebuild collections.html
         run: python tools/build_collections.py
 
+      - name: Version CSS/JS links so browsers fetch changed files
+        run: python tools/stamp_assets.py
+
       - name: Check the site
         run: python tools/check_site.py
 
       - name: Commit generated files
         run: |
-          git add assets/img collections.html images-src/.optimized.json
+          git add assets/img images-src/.optimized.json *.html
           if git diff --cached --quiet; then
             echo "Nothing to update."
             exit 0

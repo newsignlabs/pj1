@@ -167,6 +167,14 @@ and the "Open in Google Maps" / "Get directions" links. Tip: in Google Maps, sea
 business listing and use its exact name and address (e.g. `Cute Look Bridal Collections, Main Bazaar, Jaipur`)
 so the pin lands on the shop.
 
+## Browser caching
+
+CSS and JS links carry a content version (`styles.css?v=3f9a1c2b`). After editing CSS or
+JS, run `python3 tools/stamp_assets.py` (the site check fails until you do; the GitHub
+workflow does it automatically for edits made on github.com). Visitors' browsers then load
+the new files on their next visit instead of showing a cached old design. When replacing a
+photo, give the new file a new name so phones don't keep the old image.
+
 ## Quality checks
 
 ```bash
