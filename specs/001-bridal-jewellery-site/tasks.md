@@ -210,6 +210,13 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T093 Cache busting: `tools/stamp_assets.py` adds a content version (`?v=<sha1>`) to CSS/JS links; the site check enforces it; the workflow re-stamps after CSS/JS edits
 - [x] T094 Client's bride portrait (uploaded to `images-src/about/`) becomes the Our Story photo, replacing the placeholder
 
+## Phase 18: Revision 15 — upload folders for every picture
+
+- [x] T095 Slot folders: `images-src/hero/slide-1..3/`, `images-src/quotes/quote-*/`, `images-src/collections/<category>/`, and flat `about/`, `features/`, `brand/`; the original product photo's crops moved into the slide/quote slots (output unchanged)
+- [x] T096 `tools/build_slots.py`: newest photo wins (git commit date), older ones deleted; centre-crop and grade (via `grade_hero.grade`), copy category covers, rename flat-slot photos, rebuild logo files; rebuilds only changed slots (`images-src/.slots.json`); warns about photos dropped outside a slot
+- [x] T097 Workflow renamed "Build site from photo folders": runs on any `images-src/**`, `tools/**`, CSS/JS change; full git history; runs build_slots, optimise, collections, stamp, check; commits all generated files
+- [x] T098 README "Updating photos" table of folders
+
 ---
 
 ## Dependencies & Execution Order

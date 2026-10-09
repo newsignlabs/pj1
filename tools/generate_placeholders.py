@@ -219,7 +219,7 @@ def main():
         motif = MOTIFS[collection]
         colours = BACKGROUNDS[collection]
         made += save(render(piece_size, colours, motif, collection),
-                     SRC / "collections" / f"{collection}.jpg", force)
+                     SRC / "collections" / collection / "cover.jpg", force)
         for sub in pieces:
             folder = SRC / "pieces" / collection / sub
             if folder.exists() and any(f.name != "sample.jpg" for f in folder.iterdir()):

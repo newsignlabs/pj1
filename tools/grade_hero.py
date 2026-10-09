@@ -1,45 +1,22 @@
 #!/usr/bin/env python3
-"""Cut cinematic frames out of the product photos and colour-grade them.
+"""The cinematic colour grade used for the Home slider and quote backgrounds.
 
-    images-src/hero/hero-studio.jpg ->  images-src/hero/hero-cinematic.jpg        (slide I, studio shot)
-    images-src/hero/hero-photo.jpg  ->  images-src/hero/hero-detail-earrings.jpg   (slide II, close-up)
-                                        images-src/hero/hero-detail-pendant.jpg    (slide III, close-up)
-                                        images-src/quotes/quote-*.jpg              (soft-focus quote backgrounds)
+Used by tools/build_slots.py, which takes the photo in each slot folder
+(images-src/hero/slide-N/, images-src/quotes/quote-*/), crops it and applies grade():
 
-Studio shot: already lit on black with pink smoke, so it only gets a gentle filmic
-curve and an edge vignette; its colours are kept.
-Slides: crop to 3:4, mute the busy backdrop (pink wall, green grass) outside the
-jewellery, filmic S-curve with warm highlights and cool shadows, vignette to black.
-Quote backgrounds: square close-ups, darker and softly blurred (shallow depth of
-field), so text sits on top legibly. Run tools/optimize_images.py afterwards.
-
-Crops are (left, top, width) in pixels of the original photo; adjust FRAMES when the
-photo changes.
-
-Usage: python3 tools/grade_hero.py
+  - "studio": the photo is already lit on black, so only a gentle edge vignette.
+  - "slide":  mute the backdrop outside the jewellery, filmic S-curve with warm
+              highlights and cool shadows, vignette to black.
+  - "quote":  darker and softly blurred (shallow depth of field) so text sits on top.
 """
+import sys
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCES = {
-    "photo": ROOT / "images-src" / "hero" / "hero-photo.jpg",
-    "studio": ROOT / "images-src" / "hero" / "hero-studio.jpg",
-}
 
-# name -> (output folder, (left, top, width), aspect h/w, focus (cx, cy, rx, ry), kind)
-# kind "studio" uses hero-studio.jpg; every other kind is cut from hero-photo.jpg.
-FRAMES = {
-    "hero-cinematic": ("hero", (0, 0, 895), 4 / 3, (0.5, 0.45, 0.6, 0.55), "studio"),
-    "hero-detail-earrings": ("hero", (225, 150, 600), 4 / 3, (0.5, 0.36, 0.5, 0.42), "slide"),
-    "hero-detail-pendant": ("hero", (300, 600, 600), 4 / 3, (0.5, 0.42, 0.5, 0.45), "slide"),
-    "quote-chain": ("quotes", (170, 330, 460), 1.0, (0.5, 0.5, 0.6, 0.6), "quote"),
-    "quote-pendant": ("quotes", (380, 760, 460), 1.0, (0.5, 0.45, 0.6, 0.6), "quote"),
-    "quote-earrings": ("quotes", (330, 220, 460), 1.0, (0.5, 0.5, 0.6, 0.6), "quote"),
-}
-QUOTE_SIZE = 1200
 LUMA = np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
 
 
@@ -90,22 +67,6 @@ def grade(img, focus_box, kind):
     return Image.fromarray((np.clip(rgb, 0, 1) * 255).astype(np.uint8))
 
 
-def main():
-    photos = {k: Image.open(v).convert("RGB") for k, v in SOURCES.items()}
-    for name, (folder, (left, top, width), aspect, focus_box, kind) in FRAMES.items():
-        photo = photos["studio" if kind == "studio" else "photo"]
-        height = round(width * aspect)
-        frame = photo.crop((left, top, left + width, top + height))
-        if kind == "quote":
-            # Upscale then blur: a deliberate shallow-focus look that hides the low resolution.
-            frame = frame.resize((QUOTE_SIZE, round(QUOTE_SIZE * aspect)), Image.LANCZOS)
-            frame = frame.filter(ImageFilter.GaussianBlur(5))
-        out = grade(frame, focus_box, kind)
-        dest = ROOT / "images-src" / folder / f"{name}.jpg"
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        out.save(dest, "JPEG", quality=92, optimize=True)
-        print(f"Wrote {dest.relative_to(ROOT)} ({out.width}x{out.height})")
-
 
 if __name__ == "__main__":
-    main()
+    sys.exit("Photos are now graded by tools/build_slots.py (drop a photo into its slot folder).")
