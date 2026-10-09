@@ -217,6 +217,8 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T097 Workflow renamed "Build site from photo folders": runs on any `images-src/**`, `tools/**`, CSS/JS change; full git history; runs build_slots, optimise, collections, stamp, check; commits all generated files
 - [x] T098 README "Updating photos" table of folders
 - [x] T099 Remove the heirloom quote; move the "Some jewels are worn" card into its place; remove unused quote backgrounds and folders
+- [x] T100 Header: WhatsApp button becomes a plain icon (no box) beside a new Instagram icon; phone menu adds an Instagram link
+- [ ] T101 Real Instagram profile URL (placeholder https://www.instagram.com/; needs client input)
 
 ---
 

@@ -597,7 +597,7 @@ a.card:hover {
   box-shadow: inset 0 -1px 0 var(--pink);
 }
 
-.nav-menu .nav-cta {
+.nav-menu .nav-social {
   display: none;
 }
 
@@ -823,9 +823,6 @@ a.card:hover {
     color: #ffffff;
   }
 
-  :root[data-theme="light"] .site-header--overlay .nav-menu .nav-cta a {
-    border-color: rgba(255, 255, 255, 0.6);
-  }
 }
 
 @media (min-width: 60rem) {
@@ -877,20 +874,30 @@ a.card:hover {
     gap: 2.25rem;
   }
 
-  .nav-menu .nav-cta {
+  /* WhatsApp and Instagram: plain icons, no box */
+  .nav-menu .nav-social {
     display: inline-flex;
   }
 
-  .nav-menu .nav-cta a {
-    gap: 0.5rem;
-    padding: 0 1.25rem;
-    border: 1px solid var(--rule-strong);
+  .nav-menu .nav-social + .nav-social {
+    margin-left: -1.5rem; /* the two icons sit together */
+  }
+
+  .nav-menu .nav-social a {
+    justify-content: center;
+    width: 2.75rem;
+    padding: 0;
     color: var(--silver-bright);
   }
 
-  .nav-menu .nav-cta a:hover {
-    border-color: var(--pink);
+  .nav-menu .nav-social a:hover {
     color: var(--pink);
+    box-shadow: none;
+  }
+
+  .nav-menu .nav-social .icon {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 

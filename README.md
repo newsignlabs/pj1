@@ -150,6 +150,13 @@ sed -i 's/919790112593/91XXXXXXXXXX/g' *.html
 sed -i 's/+91 97901 12593/+91 XXXXX XXXXX/g' *.html
 ```
 
+The Instagram link (header icon and phone menu) is `https://www.instagram.com/` until the
+shop's profile is known; replace it in all four pages:
+
+```bash
+sed -i 's|https://www.instagram.com/|https://www.instagram.com/YOUR_HANDLE/|g' *.html
+```
+
 Also update the email (`hello@cutelookbridal.example`), address, opening hours and brand
 name in the HTML files.
 
