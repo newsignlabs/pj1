@@ -193,6 +193,9 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T079 `content/collections.json` + `tools/build_collections.py` generate the Collections sections
 - [x] T080 Piece images 300/450/600 thumbnails + 1080 viewer size; "Show all" per category; `<dialog>` design viewer (`assets/js/collections.js`, Collections only)
 - [x] T081 Budgets: Collections HTML 150 KB, CSS 50 KB, JS 16 KB; constitution 4.1.0
+- [x] T082 Revision 13: title-only design cards (placeholder sub-collection titles), no descriptions in cards or viewer
+- [x] T083 Remove Hindi jewellery terms from all pages, alt text, metadata and image file names; "Headpieces" category (`#headpieces`)
+- [ ] T084 Final sub-collection titles per category (needs client input)
 
 ---
 

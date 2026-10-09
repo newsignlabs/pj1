@@ -1,6 +1,7 @@
 <!--
 Sync Impact Report
-- Version change: 4.0.0 → 4.1.0 (MINOR: card shape, collections scaling, budgets)
+- Version change: 4.1.0 → 4.1.1 (PATCH: English-only copy; title-only design cards)
+- Previous: 4.0.0 → 4.1.0 (MINOR: card shape, collections scaling, budgets)
 - Brand: cards are rounded (no clipped corners, no numbers inside cards)
 - Performance: Collections built from content/collections.json; "Show all" per category,
   on-demand photo viewer; Collections HTML ≤ 150 KB; CSS 50 KB; JS 16 KB
@@ -103,7 +104,8 @@ range; everything else stays still for comfort and performance.
   colours (WhatsApp green is allowed on WhatsApp buttons only).
 - Copy is written in a clear, friendly business tone for a new local shop: no theatrical
   wording such as "scene", "chapter" or "atelier" (use "shop" / "our shop"), and numbers
-  are natural (1, 2, 3 or 01, 02), never Roman numerals.
+  are natural (1, 2, 3 or 01, 02), never Roman numerals. Copy is in English only: no Hindi
+  jewellery terms (e.g. maang tikka, rani haar, chandbali, jhumka, kada, kundan).
 - Visual art direction is artistic and editorial, not corporate: a large display serif
   (Cormorant Garamond), italic pink accents, outlined numerals, asymmetric/staggered
   layouts, generous space.
@@ -146,4 +148,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 4.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-09
+**Version**: 4.1.1 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-09

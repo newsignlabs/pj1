@@ -19,25 +19,12 @@ SRC = ROOT / "images-src"
 
 # (slug, motif) for every piece, grouped by collection.
 CATALOGUE = {
-    "bridal-sets": [
-        "royal-kundan-bridal-set", "polki-heritage-set",
-        "temple-gold-bridal-set", "pearl-meenakari-set",
-    ],
-    "necklaces": [
-        "kundan-choker", "rani-haar", "layered-pearl-necklace", "emerald-drop-necklace",
-    ],
-    "earrings": [
-        "chandbali-earrings", "jhumka-earrings", "diamond-drop-earrings", "kundan-ear-chains",
-    ],
-    "bangles": [
-        "kundan-kada", "gold-bangle-set", "diamond-bracelet", "meenakari-bangles",
-    ],
-    "maang-tikka": [
-        "classic-maang-tikka", "matha-patti", "jhoomar-passa", "pearl-borla",
-    ],
-    "rings": [
-        "solitaire-engagement-ring", "polki-cocktail-ring", "couple-bands", "emerald-halo-ring",
-    ],
+    "bridal-sets": ["bridal-sets-1", "bridal-sets-2", "bridal-sets-3", "bridal-sets-4"],
+    "necklaces": ["necklaces-1", "necklaces-2", "necklaces-3", "necklaces-4"],
+    "earrings": ["earrings-1", "earrings-2", "earrings-3", "earrings-4"],
+    "bangles": ["bangles-1", "bangles-2", "bangles-3", "bangles-4"],
+    "headpieces": ["headpieces-1", "headpieces-2", "headpieces-3", "headpieces-4"],
+    "rings": ["rings-1", "rings-2", "rings-3", "rings-4"],
 }
 
 BACKGROUNDS = {
@@ -45,7 +32,7 @@ BACKGROUNDS = {
     "necklaces": ("#050505", "#24202a"),
     "earrings": ("#050505", "#2e1424"),
     "bangles": ("#050505", "#1e2228"),
-    "maang-tikka": ("#050505", "#2a1a2a"),
+    "headpieces": ("#050505", "#2a1a2a"),
     "rings": ("#050505", "#22222a"),
     "about": ("#050505", "#2c1826"),
 }
@@ -169,7 +156,7 @@ def ring(draw, w, h, rng, cx=None, cy=None, scale=1.0, gem=None):
                  fill=(255, 255, 255))
 
 
-def tikka(draw, w, h, rng):
+def headpiece(draw, w, h, rng):
     gem = GEMS[rng.choice(list(GEMS))]
     cx = w / 2
     for i in range(18):
@@ -206,7 +193,7 @@ MOTIFS = {
     "necklaces": necklace,
     "earrings": earrings,
     "bangles": bangles,
-    "maang-tikka": tikka,
+    "headpieces": headpiece,
     "rings": ring,
 }
 

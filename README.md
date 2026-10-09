@@ -56,7 +56,7 @@ Requires Python 3.10+ and Pillow (`pip install Pillow`).
 
 1. Put the original photo in `images-src/<group>/<slug>.jpg`. Groups are `hero`, `collections`,
    `pieces` and `about`. To replace a placeholder, reuse its file name
-   (e.g. `images-src/pieces/kundan-choker.jpg`).
+   (e.g. `images-src/pieces/necklaces-1.jpg`).
 2. Run the optimiser:
 
    ```bash
@@ -109,8 +109,8 @@ by hand.
 
 1. Put each photo in `images-src/pieces/<slug>.jpg` (portrait, 4:5 works best).
 2. Add an entry under the right category in `content/collections.json`:
-   `{"image": "<slug>", "name": "Design name", "description": "One line", "alt": "What the photo shows"}`
-   (`description` and `alt` are optional).
+   `{"image": "<slug>", "name": "Antique Premium", "alt": "What the photo shows"}`
+   (`name` is the only text on the card, e.g. the sub-collection; `alt` is optional).
 3. Run:
 
    ```bash

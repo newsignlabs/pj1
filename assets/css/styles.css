@@ -1785,16 +1785,10 @@ a.card:hover {
 }
 
 .piece h3 {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-size: 1.25rem;
 }
 
-.piece p {
-  margin: 0;
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--muted);
-}
 
 @media (min-width: 40rem) {
   .piece-grid {
@@ -1883,11 +1877,6 @@ a.card:hover {
   color: #ffffff;
 }
 
-.viewer__desc {
-  margin: 0;
-  font-size: 0.875rem;
-  color: #b9bcc3;
-}
 
 .viewer__close,
 .viewer__step {
