@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 14)
+**Status**: Implemented (revision 15)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -67,6 +67,12 @@ from the folder name, cover photo, photo count); tapping it opens a gallery dial
 all its photos (previous/next, thumbnails, arrow keys, swipe; whole uncropped photos).
 A GitHub Action rebuilds images and the page when photos are uploaded to `main`. First
 real photo: Bridal Sets › Antique.
+
+**Revision 15 (2026-10-09)**: every picture on the site has an upload folder ("slot"):
+slider slides, quote backgrounds, Home category cards, the feature photo, Our Story and
+the logo. A new photo in a slot replaces the old one (newest wins; older files deleted),
+is centre-cropped and graded as needed, and the GitHub workflow rebuilds and publishes the
+site after any upload to `images-src/`.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 

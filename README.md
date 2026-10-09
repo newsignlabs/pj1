@@ -50,57 +50,51 @@ python3 -m http.server 8080
 # then open http://localhost:8080
 ```
 
-## Images
+## Updating photos
 
-Requires Python 3.10+ and Pillow (`pip install Pillow`).
+Every picture on the site has a folder in `images-src/`. Put a photo in the folder (any
+file name; JPG, PNG, WebP or iPhone HEIC) and it replaces the picture on the site. Each
+folder holds **one** photo: if there are several, the most recently added one is used and
+the older ones are deleted automatically (they stay in the git history).
 
-1. Put the original photo in `images-src/<group>/<slug>.jpg`. Groups are `hero`, `collections`,
-   `pieces` and `about`. To replace a placeholder, reuse its file name
-   (e.g. `images-src/pieces/necklaces-1.jpg`).
-2. Run the optimiser:
+| Folder | Where it appears | Shape |
+|--------|------------------|-------|
+| `images-src/hero/slide-1/` | Home slider, slide 1 (studio shot; only an edge vignette) | 3:4 portrait |
+| `images-src/hero/slide-2/` | Home slider, slide 2 (cinematic grade) | 3:4 portrait |
+| `images-src/hero/slide-3/` | Home slider, slide 3 (cinematic grade) | 3:4 portrait |
+| `images-src/quotes/quote-chain/`, `quote-earrings/`, `quote-pendant/` | soft-focus backgrounds behind the Home quotes | square |
+| `images-src/collections/<category>/` | Home page category cards (Bridal Sets, Necklaces, ...) | 4:5 portrait |
+| `images-src/features/` | photo inside the "Some jewels are worn..." card | 3:4 portrait |
+| `images-src/about/` | Our Story photo | 4:5 portrait |
+| `images-src/brand/` | logo (drawn on black), favicon and home-screen icon | square |
+| `images-src/pieces/<category>/<sub-collection>/` | Collections page cards and galleries (keeps **all** photos; see below) | any |
 
-   ```bash
-   python3 tools/optimize_images.py           # only re-encodes changed sources
-   python3 tools/optimize_images.py --force   # re-encode everything
-   ```
+Photos are centre-cropped to the shape in the table, so keep the jewellery in the middle.
+Put photos *inside* these folders: a photo dropped next to them (for example straight into
+`images-src/hero/`) is not used, and the build shows a warning.
 
-   Each image is centre-cropped (pieces and collections 4:5, hero 16:9 landscape and 9:16 portrait),
-   resized to several widths and saved as WebP at quality 72. Files over budget
-   (120 KB, or 250 KB for the hero) are re-encoded at lower quality automatically.
-3. Photos look best when the jewellery sits in the centre of the frame. For the hero,
-   keep the left side (landscape) or the top half (portrait) fairly plain, because the
-   headline is placed there.
+**On github.com:** open the folder, choose **Add file → Upload files**, drop the photo and
+commit to `main`. The **Build site from photo folders** workflow
+(`.github/workflows/build-collections.yml`) then prepares and grades the pictures, makes
+the WebP files, rebuilds the pages and commits them; Catalyst Slate publishes the site,
+usually within two or three minutes. Watch it under the repository's **Actions** tab
+(green tick = done). GitHub Actions must be enabled and `main` must accept pushes from the
+workflow.
 
-`tools/generate_placeholders.py` recreates the placeholder artwork if needed.
-
-### Hero photo, scenes and quote backgrounds
-
-Scene I of the hero is the studio photograph `images-src/hero/hero-studio.jpg` (lit on
-black with pink smoke); it only gets an edge vignette. The close-up scenes and the quote
-backgrounds are cut from the original product photo, `images-src/hero/hero-photo.jpg`.
-To change either, replace the file and run:
-
-```bash
-python3 tools/grade_hero.py          # writes images-src/hero/*.jpg and images-src/quotes/*.jpg
-python3 tools/optimize_images.py     # writes the WebP variants
-```
-
-The script crops each frame (full set, earrings close-up, pendant close-up, and three
-square close-ups for quotes), mutes the background, adds a filmic curve and vignette, and
-softly blurs the quote frames. If a new photo is framed differently, adjust the crop boxes
-in `FRAMES` at the top of `tools/grade_hero.py`. Adding more product photos later can give
-each slide and quote its own picture.
-
-### Logo
-
-The logo source is `images-src/brand/logo.png` (drawn on black). After replacing it, run:
+**On a computer with Python** (Pillow and numpy; `pip install Pillow numpy pillow-heif`):
 
 ```bash
-python3 tools/build_brand_assets.py
+python3 tools/build_slots.py               # slot folders -> prepared pictures (and logo files)
+python3 tools/optimize_images.py --prune   # WebP files in several sizes
+python3 tools/build_collections.py         # Collections page
+python3 tools/stamp_assets.py              # CSS/JS versions
+python3 tools/check_site.py
 ```
 
-This turns the black background transparent and writes `assets/img/brand/logo-{64,128,256}.webp`,
-`assets/icons/favicon-32.png` and `assets/icons/apple-touch-icon.png`.
+`build_slots.py` grades the slider and quote pictures with `tools/grade_hero.py` and builds
+the logo files with `tools/build_brand_assets.py`. `optimize_images.py` keeps every WebP
+under its size budget (120 KB, 250 KB for the slider) by lowering quality if needed.
+`tools/generate_placeholders.py` recreates the sample artwork if ever needed.
 
 ### Adding photos to Collections (folders)
 
@@ -133,7 +127,7 @@ and commit to `main`. For a new sub-collection, open the category folder instead
 whole folder of photos onto the upload page; GitHub keeps the folder name. To remove a
 photo, open it on github.com and delete the file.
 
-The **Build collections from photo folders** workflow (`.github/workflows/build-collections.yml`)
+The **Build site from photo folders** workflow (`.github/workflows/build-collections.yml`)
 then makes the WebP images, rebuilds `collections.html` and commits them; Catalyst Slate
 publishes the site, usually within two or three minutes. (GitHub Actions must be enabled
 for the repository, and `main` must accept pushes from the workflow.)

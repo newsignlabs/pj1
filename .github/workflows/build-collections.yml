@@ -1,16 +1,16 @@
-# Upload photos to images-src/pieces/<category>/<sub-collection>/ on main (for example with
-# GitHub's "Add file > Upload files") and this workflow makes the WebP images, rebuilds
-# collections.html and commits the result. Catalyst Slate then publishes the site.
-name: Build collections from photo folders
+# Upload photos to any folder in images-src/ on main (for example with GitHub's
+# "Add file > Upload files"), or delete them, and this workflow prepares the pictures,
+# makes the WebP images, rebuilds the pages and commits the result. Catalyst Slate then
+# publishes the site. Folder guide: README.md "Updating photos".
+name: Build site from photo folders
 
 on:
   push:
     branches: [main]
     paths:
-      - "images-src/pieces/**"
+      - "images-src/**"
       - "content/collections.json"
-      - "tools/optimize_images.py"
-      - "tools/build_collections.py"
+      - "tools/**"
       - "assets/css/**"
       - "assets/js/**"
   workflow_dispatch:
@@ -27,13 +27,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history: "newest photo in a folder wins" uses commit dates
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install image libraries
-        run: pip install Pillow pillow-heif
+        run: pip install Pillow pillow-heif numpy
+
+      - name: Prepare slider, quote, category, Our Story, feature and logo photos
+        run: python tools/build_slots.py
 
       - name: Make WebP images (removes images of deleted photos)
         run: python tools/optimize_images.py --prune
@@ -49,13 +54,13 @@ jobs:
 
       - name: Commit generated files
         run: |
-          git add assets/img images-src/.optimized.json *.html
+          git add -A images-src assets *.html
           if git diff --cached --quiet; then
             echo "Nothing to update."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Build collections from uploaded photos"
+          git commit -m "Build site from uploaded photos"
           git pull --rebase origin main
           git push origin HEAD:main
