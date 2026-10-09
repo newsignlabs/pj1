@@ -31,7 +31,6 @@
   var root = document.documentElement;
   var img = viewer.querySelector(".viewer__img");
   var title = viewer.querySelector(".viewer__title");
-  var desc = viewer.querySelector(".viewer__desc");
   var count = viewer.querySelector("[data-count]");
   var links = [];
   var index = 0;
@@ -40,13 +39,11 @@
     index = (i + links.length) % links.length;
     var link = links[index];
     var thumb = link.querySelector("img");
-    var text = link.querySelector("p");
     viewer.classList.add("is-loading");
     img.removeAttribute("src");
     img.alt = thumb.alt;
     img.src = link.getAttribute("href");
     title.textContent = link.querySelector("h3").textContent;
-    desc.textContent = text ? text.textContent : "";
     count.textContent = (index + 1) + " / " + links.length;
   };
 

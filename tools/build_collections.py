@@ -6,8 +6,9 @@ the section with the same id in collections.html (add a new category by first co
 section in the HTML, then adding it to the JSON). Everything else on the page is left
 alone.
 
-Per piece the JSON needs "image" (the slug of images-src/pieces/<slug>.jpg) and "name";
-"description" and "alt" are optional (alt defaults to the name).
+Per piece the JSON needs "image" (the slug of images-src/pieces/<slug>.jpg) and "name"
+(the title shown on the card, e.g. a sub-collection such as "Antique Premium"); "alt"
+describes the photo and is optional (it defaults to the name). Cards show the title only.
 
 To keep the page fast with hundreds of photos:
   - every thumbnail is lazy loaded and offered at 300/450/600 px;
@@ -41,14 +42,12 @@ def card(piece, hidden):
     srcset = ", ".join(f"{base}-{w}.webp {w}w" for w in THUMBS)
     name = escape(piece["name"])
     alt = escape(piece.get("alt") or piece["name"])
-    desc = piece.get("description")
     more = " piece--more" if hidden else ""
-    body = f"<h3>{name}</h3>" + (f"<p>{escape(desc)}</p>" if desc else "")
     return (
         f'<li class="card piece{more}"><a class="card__inner piece__link" href="{base}-{LARGE}.webp" data-zoom>'
         f'<img src="{base}-{THUMBS[0]}.webp" srcset="{srcset}" sizes="{SIZES}" width="600" height="750" '
         f'loading="lazy" decoding="async" alt="{alt}">'
-        f'<span class="piece__body">{body}</span></a></li>'
+        f'<span class="piece__body"><h3>{name}</h3></span></a></li>'
     )
 
 
