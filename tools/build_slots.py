@@ -7,9 +7,7 @@ photo into the folder (any name, JPG/PNG/WebP/HEIC) and it replaces the picture:
     images-src/hero/slide-1/              Home slider, slide 1 (studio shot; edge vignette)
     images-src/hero/slide-2/              Home slider, slide 2 (close-up; cinematic grade)
     images-src/hero/slide-3/              Home slider, slide 3 (close-up; cinematic grade)
-    images-src/quotes/quote-chain/        quote backgrounds (soft focus, darkened)
-    images-src/quotes/quote-earrings/
-    images-src/quotes/quote-pendant/
+    images-src/quotes/quote-chain/        quote background (soft focus, darkened)
     images-src/collections/<category>/    Home page category card (one per category)
     images-src/features/                  photo inside the "Some jewels are worn..." card
     images-src/about/                     Our Story photo
@@ -56,8 +54,6 @@ GRADED = {
     "hero/slide-2": ("hero/hero-detail-earrings.jpg", "slide", 4 / 3, (0.5, 0.36, 0.5, 0.42)),
     "hero/slide-3": ("hero/hero-detail-pendant.jpg", "slide", 4 / 3, (0.5, 0.42, 0.5, 0.45)),
     "quotes/quote-chain": ("quotes/quote-chain.jpg", "quote", 1.0, (0.5, 0.5, 0.6, 0.6)),
-    "quotes/quote-earrings": ("quotes/quote-earrings.jpg", "quote", 1.0, (0.5, 0.5, 0.6, 0.6)),
-    "quotes/quote-pendant": ("quotes/quote-pendant.jpg", "quote", 1.0, (0.5, 0.45, 0.6, 0.6)),
 }
 # Folders that are themselves the slot: the photo is renamed to this file name.
 FLAT = {

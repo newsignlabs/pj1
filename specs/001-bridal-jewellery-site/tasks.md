@@ -216,6 +216,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T096 `tools/build_slots.py`: newest photo wins (git commit date), older ones deleted; centre-crop and grade (via `grade_hero.grade`), copy category covers, rename flat-slot photos, rebuild logo files; rebuilds only changed slots (`images-src/.slots.json`); warns about photos dropped outside a slot
 - [x] T097 Workflow renamed "Build site from photo folders": runs on any `images-src/**`, `tools/**`, CSS/JS change; full git history; runs build_slots, optimise, collections, stamp, check; commits all generated files
 - [x] T098 README "Updating photos" table of folders
+- [x] T099 Remove the heirloom quote; move the "Some jewels are worn" card into its place; remove unused quote backgrounds and folders
 
 ---
 

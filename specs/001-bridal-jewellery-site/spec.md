@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 15)
+**Status**: Implemented (revision 16)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -73,6 +73,10 @@ slider slides, quote backgrounds, Home category cards, the feature photo, Our St
 the logo. A new photo in a slot replaces the old one (newest wins; older files deleted),
 is centre-cropped and graded as needed, and the GitHub workflow rebuilds and publishes the
 site after any upload to `images-src/`.
+
+**Revision 16 (2026-10-09)**: the "An heirloom is a love letter" quote is removed; the framed
+"Some jewels are worn" card takes its place near the end of the Home page. Unused quote
+backgrounds (`quote-earrings`, `quote-pendant`) and their upload folders are removed.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -234,8 +238,9 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
   pause buttons.
   Auto-advance pauses on hover, keyboard focus, touch and hidden tabs, and is off for
   reduced motion.
-- **FR-031**: The Home page MUST include at least three full-width quote sections;
-  Collections and Contact MUST include one each. Quote styles MUST alternate between
+- **FR-031**: The Home page MUST include two full-width quote sections (a parallax photo
+  quote, then the framed "Some jewels are worn" card before the closing call to action);
+  Collections MUST include one. Quote styles MUST alternate between
   parallax photo quotes and full-screen cards with an embroidered border (FR-035).
 - **FR-032**: The logo MUST be prominent on every screen size (a hanging medallion of at
   least 80px on phones and 100px on desktop); the footer MUST show it as a large emblem.
