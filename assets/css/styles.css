@@ -1853,11 +1853,15 @@ a.card:hover {
   padding: 4rem var(--gutter) 5.5rem;
 }
 
+/* Black photo card with a pink gradient border */
 .viewer__frame {
   width: min(100%, calc((100svh - 17rem) * 0.8));
   overflow: hidden;
+  border: 2px solid transparent;
   border-radius: var(--radius);
-  background: #15131a;
+  background:
+    linear-gradient(#000000, #000000) padding-box,
+    linear-gradient(135deg, #fc65b0, #f9c6de 35%, #8a2a5c 65%, #fc65b0) border-box;
 }
 
 .viewer__img {
@@ -1866,6 +1870,7 @@ a.card:hover {
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: contain; /* whole photo, whatever its shape */
+  background: #000000;
 }
 
 /* Thumbnail strip (more than one photo) */
