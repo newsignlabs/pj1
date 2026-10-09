@@ -208,6 +208,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T091 Fix: the gallery dialog's placeholder image pointed at a piece photo, so deleting that photo failed the site check and the workflow did not publish; it now uses the logo
 - [x] T092 Header wordmark: "Bridal Collections" spaced to the exact width of "Cute Look" (CSS default, fitted in main.js for the visitor's font); collection cards use the pointer cursor instead of zoom
 - [x] T093 Cache busting: `tools/stamp_assets.py` adds a content version (`?v=<sha1>`) to CSS/JS links; the site check enforces it; the workflow re-stamps after CSS/JS edits
+- [x] T094 Client's bride portrait (uploaded to `images-src/about/`) becomes the Our Story photo, replacing the placeholder
 
 ---
 
