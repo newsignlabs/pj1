@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 8)
+**Status**: Implemented (revision 9)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -35,7 +35,11 @@ necklace goes inside the framed quote card "Some jewels are worn. Ours are inher
 address, phone/WhatsApp 919790112593, tagline "Bridal Collections"); "atelier" becomes
 "shop"/"our shop"; Roman numerals become natural numbers; wording such as "scenes" and
 "chapters" removed; copy rewritten in a light business tone, with the Our Story section
-describing a new shop in Annur. 
+describing a new shop in Annur.
+
+**Revision 9 (2026-10-09)**: the hero headline is set on three lines ("Bridal jewellery /
+for your / special day"); the hero slider auto-advances, with redesigned controls (round
+chevron arrows, progress bars, pause/play). 
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -189,8 +193,11 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 
 **Brand & art direction**
 
-- **FR-030**: The Home hero MUST be a slider of at least three scenes cut from the client's
-  product photography, with previous/next arrows and a scene counter, swipeable on touch.
+- **FR-030**: The Home hero MUST be a slider of at least three slides from the client's
+  product photography that auto-advances about every 6 s, with round previous/next arrows,
+  one progress bar per slide (click to jump), a pause/play button, and swipe on touch.
+  Auto-advance pauses on hover, keyboard focus, touch and hidden tabs, and is off for
+  reduced motion.
 - **FR-031**: The Home page MUST include at least three full-width quote sections;
   Collections and Contact MUST include one each. Quote styles MUST alternate between
   parallax photo quotes and full-screen cards with an embroidered border (FR-035).

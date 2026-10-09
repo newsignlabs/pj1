@@ -165,6 +165,15 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 14: Revision 9 — headline and auto slider
+
+- [x] T067 Hero headline on three lines: "Bridal jewellery / for your / special day"
+- [x] T068 Hero slider auto-advances (6 s) with pause/play, hover/focus/touch/hidden-tab pause, off for reduced motion
+- [x] T069 Redesigned slider controls: round chevron arrows, progress bars, pause button
+- [x] T070 Audit allows timers only in the `autoplay-allowed` block; constitution 3.0.0; CSS budget 45 KB
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.
