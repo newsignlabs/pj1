@@ -36,7 +36,8 @@ RULES = {
     # Photographs shown inside quote cards
     "features": [(None, 3 / 4, [400, 600, 895], 120 * KB)],
     "collections": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
-    "pieces": [(None, 4 / 5, [400, 600, 800], 120 * KB)],
+    # Thumbnails 300/450/600 for the grid; 1080 opens in the viewer on tap
+    "pieces": [(None, 4 / 5, [300, 450, 600, 1080], 120 * KB)],
     "about": [(None, 4 / 5, [600, 900, 1200], 120 * KB)],
 }
 

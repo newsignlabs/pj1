@@ -205,3 +205,21 @@
   other static host also works. A `_headers` file sets long caching for `/assets/img/*`
   (30 days) and shorter caching for CSS/JS (7 days), plus basic security headers.
   Hosts like Netlify/Cloudflare Pages apply Brotli/gzip automatically.
+
+## 13. Collections with 100+ photos (revision 12)
+
+- **Decision**: one Collections page generated from `content/collections.json` by
+  `tools/build_collections.py`. Each category shows its first 8 designs; a "Show all N
+  designs" button (collections.js) reveals the rest. Hidden cards are `display: none`, so
+  their lazy thumbnails are never requested. Thumbnails are 300/450/600 px WebP; every card
+  links to a 1080 px photo that a `<dialog>` viewer loads only when opened (previous/next,
+  arrow keys, swipe, Esc). Off-screen categories use `content-visibility: auto`.
+- **Measured** (120 designs, 375 px phone): HTML 97 KB (9.5 KB gzip); 48 cards rendered
+  initially; only the thumbnails near the screen download; opening a design fetches one
+  1080 px photo (~20–60 KB).
+- **Why**: works without JavaScript (all designs listed, still lazy), keeps one URL per
+  category for the Home page links, and adding photos is a JSON edit plus two scripts.
+- **Alternatives**: one page per category (more pages to maintain, extra navigation);
+  JSON fetched and rendered by JS (breaks without JS, slower first paint); infinite scroll
+  (no footer, poor for "find that design again"); a carousel per category (hides most
+  designs, harder on desktop).

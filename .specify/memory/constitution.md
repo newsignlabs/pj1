@@ -1,6 +1,10 @@
 <!--
 Sync Impact Report
-- Version change: 3.0.0 → 4.0.0 (MAJOR: Principle III redefined)
+- Version change: 4.0.0 → 4.1.0 (MINOR: card shape, collections scaling, budgets)
+- Brand: cards are rounded (no clipped corners, no numbers inside cards)
+- Performance: Collections built from content/collections.json; "Show all" per category,
+  on-demand photo viewer; Collections HTML ≤ 150 KB; CSS 50 KB; JS 16 KB
+- Previous: 3.0.0 → 4.0.0 (MAJOR: Principle III redefined)
 - Principle III: pause/play button no longer required (client request); the slideshow
   MUST still pause on hover/focus/touch and hidden tab and stay off for reduced motion
 - Templates requiring updates: none ✅
@@ -40,6 +44,8 @@ The site is image-heavy, so image delivery decides how fast it feels.
   layout does not shift while images load.
 - Images MUST be offered at multiple widths (`srcset`/`sizes`) so phones never
   download desktop-sized files.
+- Large galleries (the Collections page) show only the first designs of each category
+  until "Show all" is pressed, and load a large photo only when the visitor opens it.
 - Source images are never served directly; they pass through the repository's
   optimisation script, which enforces size and quality limits.
 
@@ -101,8 +107,8 @@ range; everything else stays still for comfort and performance.
 - Visual art direction is artistic and editorial, not corporate: a large display serif
   (Cormorant Garamond), italic pink accents, outlined numerals, asymmetric/staggered
   layouts, generous space.
-- Content cards (collections, pieces, highlights, contact, map) use clipped (chamfered)
-  corners with a thin silver-to-pink edge.
+- Content cards (collections, pieces, highlights, contact, map) have rounded corners with a
+  thin silver-to-pink edge, and carry no numbering inside them.
 - The footer is styled as a film's end credits, never as a corporate link grid.
 - On phones the menu is a full-screen "programme" framed by an embroidered border, never a
   plain drop-down list.
@@ -113,9 +119,9 @@ range; everything else stays still for comfort and performance.
 
 | Metric | Budget |
 |--------|--------|
-| HTML per page (uncompressed) | ≤ 40 KB |
-| Total CSS | ≤ 45 KB (≈ 9 KB compressed) |
-| Total JavaScript | ≤ 10 KB |
+| HTML per page (uncompressed) | ≤ 40 KB (Collections ≤ 150 KB, ≈ 15 KB compressed) |
+| Total CSS | ≤ 50 KB (≈ 10 KB compressed) |
+| Total JavaScript | ≤ 16 KB |
 | Self-hosted fonts | ≤ 60 KB |
 | Hero image (largest variant) | ≤ 250 KB |
 | Any product/collection image variant | ≤ 120 KB |
@@ -140,4 +146,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 4.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-09
+**Version**: 4.1.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-09

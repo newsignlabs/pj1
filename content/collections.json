@@ -1,0 +1,190 @@
+{
+  "categories": [
+    {
+      "id": "bridal-sets",
+      "title": "Bridal Sets",
+      "intro": "Complete wedding-day ensembles — necklace, earrings and tikka designed to be worn together.",
+      "pieces": [
+        {
+          "image": "royal-kundan-bridal-set",
+          "name": "Royal Kundan Bridal Set",
+          "description": "Choker, long haar, earrings and tikka in 22k gold set with uncut kundan.",
+          "alt": "Kundan bridal set with choker, long necklace, earrings and maang tikka"
+        },
+        {
+          "image": "polki-heritage-set",
+          "name": "Polki Heritage Set",
+          "description": "Hand-set polki diamonds with sapphire drops in a heritage frame.",
+          "alt": "Polki diamond necklace and earring set with blue sapphire drops"
+        },
+        {
+          "image": "temple-gold-bridal-set",
+          "name": "Temple Gold Bridal Set",
+          "description": "Antique-finish gold with temple motifs, made for South Indian brides.",
+          "alt": "Antique temple gold bridal necklace and earrings"
+        },
+        {
+          "image": "pearl-meenakari-set",
+          "name": "Pearl & Meenakari Set",
+          "description": "Layered pearls with hand-painted meenakari enamel on the reverse.",
+          "alt": "Layered pearl necklace and earring set with meenakari work"
+        }
+      ]
+    },
+    {
+      "id": "necklaces",
+      "title": "Necklaces",
+      "intro": "Statement chokers, rani haars and layered strands to anchor your bridal look.",
+      "pieces": [
+        {
+          "image": "kundan-choker",
+          "name": "Kundan Choker",
+          "description": "A close-fitting 22k gold choker with uncut kundan and ruby beads.",
+          "alt": "Gold kundan choker necklace with ruby beads"
+        },
+        {
+          "image": "rani-haar",
+          "name": "Rani Haar",
+          "description": "A long, multi-strand royal necklace that falls below the neckline.",
+          "alt": "Long multi-strand gold rani haar necklace"
+        },
+        {
+          "image": "layered-pearl-necklace",
+          "name": "Layered Pearl Necklace",
+          "description": "Three graduated strands of pearls finished with a gold pendant.",
+          "alt": "Three-strand pearl necklace with gold pendant"
+        },
+        {
+          "image": "emerald-drop-necklace",
+          "name": "Emerald Drop Necklace",
+          "description": "Gold beadwork with a single emerald drop for a refined finish.",
+          "alt": "Gold bead necklace with emerald drop pendant"
+        }
+      ]
+    },
+    {
+      "id": "earrings",
+      "title": "Earrings",
+      "intro": "Chandbalis, jhumkas and drops that frame the face beautifully in every photograph.",
+      "pieces": [
+        {
+          "image": "chandbali-earrings",
+          "name": "Chandbali Earrings",
+          "description": "Crescent-moon earrings with pearl fringes and kundan detailing.",
+          "alt": "Gold chandbali earrings with pearl fringe"
+        },
+        {
+          "image": "jhumka-earrings",
+          "name": "Jhumka Earrings",
+          "description": "Traditional bell-shaped jhumkas with pearl hangings.",
+          "alt": "Pair of gold jhumka earrings with pearls"
+        },
+        {
+          "image": "diamond-drop-earrings",
+          "name": "Diamond Drop Earrings",
+          "description": "Elegant diamond drops for the reception and beyond.",
+          "alt": "Diamond drop earrings in gold setting"
+        },
+        {
+          "image": "kundan-ear-chains",
+          "name": "Kundan Earrings with Sahara",
+          "description": "Kundan earrings with ear chains that support heavier designs.",
+          "alt": "Kundan earrings with supporting ear chains"
+        }
+      ]
+    },
+    {
+      "id": "bangles",
+      "title": "Bangles & Bracelets",
+      "intro": "Kadas, bangle sets and bracelets in gold, kundan and diamond.",
+      "pieces": [
+        {
+          "image": "kundan-kada",
+          "name": "Kundan Kada",
+          "description": "A broad, openable kada with kundan stones all around.",
+          "alt": "Broad gold kundan kada bangle"
+        },
+        {
+          "image": "gold-bangle-set",
+          "name": "Gold Bangle Set",
+          "description": "A set of four finely engraved 22k gold bangles.",
+          "alt": "Set of engraved gold bangles"
+        },
+        {
+          "image": "diamond-bracelet",
+          "name": "Diamond Bracelet",
+          "description": "A slim diamond bracelet that pairs with bridal and everyday wear.",
+          "alt": "Slim diamond bracelet"
+        },
+        {
+          "image": "meenakari-bangles",
+          "name": "Meenakari Bangles",
+          "description": "Colourful hand-enamelled bangles in traditional bridal shades.",
+          "alt": "Pair of meenakari enamel bangles"
+        }
+      ]
+    },
+    {
+      "id": "maang-tikka",
+      "title": "Maang Tikka & Headpieces",
+      "intro": "Tikkas, matha pattis and passas to complete the bridal hairstyle.",
+      "pieces": [
+        {
+          "image": "classic-maang-tikka",
+          "name": "Classic Maang Tikka",
+          "description": "A round kundan tikka with pearl border and ruby drop.",
+          "alt": "Round kundan maang tikka with ruby drop"
+        },
+        {
+          "image": "matha-patti",
+          "name": "Matha Patti",
+          "description": "A forehead piece with side chains that frame the hairline.",
+          "alt": "Gold matha patti headpiece with side chains"
+        },
+        {
+          "image": "jhoomar-passa",
+          "name": "Jhoomar Passa",
+          "description": "A side-worn passa inspired by royal Mughal jewellery.",
+          "alt": "Gold jhoomar passa headpiece"
+        },
+        {
+          "image": "pearl-borla",
+          "name": "Pearl Borla",
+          "description": "A spherical Rajasthani borla finished with pearls.",
+          "alt": "Pearl borla headpiece"
+        }
+      ]
+    },
+    {
+      "id": "rings",
+      "title": "Rings",
+      "intro": "Engagement solitaires, cocktail rings and wedding bands.",
+      "pieces": [
+        {
+          "image": "solitaire-engagement-ring",
+          "name": "Solitaire Engagement Ring",
+          "description": "A certified solitaire in a classic four-prong gold setting.",
+          "alt": "Solitaire engagement ring in gold"
+        },
+        {
+          "image": "polki-cocktail-ring",
+          "name": "Polki Cocktail Ring",
+          "description": "A bold polki ring that complements a traditional bridal set.",
+          "alt": "Polki cocktail ring"
+        },
+        {
+          "image": "couple-bands",
+          "name": "Couple Bands",
+          "description": "Matching wedding bands, engravable with names or dates.",
+          "alt": "Matching gold wedding bands"
+        },
+        {
+          "image": "emerald-halo-ring",
+          "name": "Emerald Halo Ring",
+          "description": "An emerald centre stone with a halo of diamonds.",
+          "alt": "Emerald ring with diamond halo"
+        }
+      ]
+    }
+  ]
+}
