@@ -47,7 +47,7 @@ def slugify(name):
 
 
 def natural(path):
-    return [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", path.name.lower())]
+    return [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", path.stem.lower())]
 
 
 def title_from(name):

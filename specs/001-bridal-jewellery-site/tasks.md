@@ -204,6 +204,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T087 Gallery dialog per card: all photos, previous/next, thumbnails, arrow keys, swipe, next photo preloaded
 - [x] T088 GitHub Action builds and commits images and the page after uploads to `main`
 - [x] T089 Add the client's temple necklace set photo to Bridal Sets › Antique
+- [x] T090 Second Antique photo; gallery photo card is black (no grey sides) with a pink gradient border; photos ordered by name without extension
 
 ---
 
