@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 10)
+**Status**: Implemented (revision 11)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -43,6 +43,11 @@ chevron arrows, progress bars, pause/play).
 
 **Revision 10 (2026-10-09)**: arrow and pause buttons removed; the slide photo covers the
 whole hero (full bleed, under the header) and the progress-bar indicators sit on top of it.
+
+**Revision 11 (2026-10-09)**: full-bleed photos looked soft and over-cropped, so the
+portrait framing is restored (top of the screen on phones, standing on the right on wide
+screens) on a plain dark background with no blurred glow; the hero stays dark in both
+themes. Still no arrow or pause buttons; indicators float at the bottom.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
@@ -197,9 +202,10 @@ Google Maps" gives directions, and the phone, email and WhatsApp links open the 
 **Brand & art direction**
 
 - **FR-030**: The Home hero MUST be a slider of at least three slides from the client's
-  product photography that covers the whole hero (full bleed, under the header) and
-  auto-advances about every 6 s, with one progress-bar indicator per slide laid over the
-  photo (click to jump), swipe on touch and arrow keys on the focused track; no arrow or
+  portrait product photography, shown at its natural shape and melting into the always-dark
+  hero background (no blurred copy), and
+  auto-advances about every 6 s, with one progress-bar indicator per slide floating at
+  the bottom (click to jump), swipe on touch and arrow keys on the focused track; no arrow or
   pause buttons.
   Auto-advance pauses on hover, keyboard focus, touch and hidden tabs, and is off for
   reduced motion.

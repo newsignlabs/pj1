@@ -7,9 +7,10 @@ WhatsApp as the way to get in touch.
 - Plain HTML, one CSS file (~16 KB) and one small JS file (~3 KB). No frameworks, no build step.
 - Every image is compressed **WebP** in several sizes (`srcset`), **lazy loaded**, with
   fixed dimensions so the page never jumps while loading.
-- Full-screen hero slider: three photos that cover the whole hero and change every 6 s
-  (stops on hover, touch or focus, and for visitors who ask for reduced motion), with
-  progress-bar indicators over the photo and swipe on phones.
+- Full-screen, always-dark hero slider: three portrait photos that melt into black (top of
+  the screen on phones, on the right on wide screens) and change every 6 s (stops on hover,
+  touch or focus, and for visitors who ask for reduced motion), with progress-bar
+  indicators and swipe on phones.
 - Quote interludes that alternate between soft-focus photo quotes with scroll-linked
   parallax (off for visitors who ask for reduced motion) and full-screen cards with an
   embroidered border.

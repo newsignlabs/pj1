@@ -866,14 +866,15 @@ a.card:hover {
   }
 }
 
-/* ---------- Hero: full-bleed slider ----------
-   Each slide's photograph covers the whole hero (behind the header too).
-   A dark overlay keeps the text readable; slide indicators float over the
-   image at the bottom. Auto-advances (see main.js); swipe on touch. */
+/* ---------- Hero: cinematic slider ----------
+   Always dark (both themes). Each slide's portrait photograph melts into black:
+   on phones it fills the top of the screen, on wide screens it stands on the
+   right. Slide indicators float at the bottom. Auto-advances (see main.js). */
 .hero {
   position: relative;
   height: 100vh;
   height: 100svh;
+  padding-top: var(--header-h);
   overflow: hidden;
   background: #000000;
 }
@@ -902,40 +903,45 @@ a.card:hover {
   background: #000000;
 }
 
-.hero__media,
-.hero__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero__media img {
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-/* Legibility overlay: dark at the bottom on phones, dark on the left on wide screens */
-.hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* Slide 1 (studio shot with pink smoke): let the smoke drift beyond the photo's edges */
+.hero__slide--1 {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 22%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0) 70%);
+    radial-gradient(ellipse 45% 35% at 78% 82%, rgba(214, 120, 160, 0.22), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 22% 88%, rgba(214, 120, 160, 0.16), transparent 70%),
+    #000000;
 }
 
-/* Film grain */
+/* Film grain + edge vignette */
 .hero__slide::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: var(--grain);
-  background-size: 180px 180px;
-  opacity: 0.35;
+  background:
+    radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.7) 100%),
+    var(--grain);
+  background-size: auto, 180px 180px;
+  opacity: 0.55;
   mix-blend-mode: overlay;
+}
+
+.hero__media {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  -webkit-mask-image: linear-gradient(180deg, #000000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000000 55%, transparent 100%);
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
 }
 
 .hero__content {
@@ -944,7 +950,7 @@ a.card:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  padding-bottom: 4.75rem; /* room for the slide indicators */
+  padding-bottom: 4rem; /* room for the slide indicators */
 }
 
 .hero__eyebrow {
@@ -1080,16 +1086,15 @@ a.card:hover {
   display: none;
 }
 
-/* Wide / landscape: text on the left over a left-to-right shade */
+/* Wide / landscape: photo standing on the right, text on the left */
 @media (min-width: 60rem), (orientation: landscape) {
-  .hero__media img {
-    object-position: center 35%;
-  }
-
-  .hero__media::after {
-    background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 20%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 38%, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0) 100%);
+  .hero__media {
+    left: auto;
+    right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000000 22%, #000000 85%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000000 22%, #000000 85%, transparent 100%);
   }
 
   .hero__content {
@@ -1097,7 +1102,6 @@ a.card:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: var(--header-h);
     padding-bottom: 3rem;
   }
 
