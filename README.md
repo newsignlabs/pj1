@@ -62,7 +62,7 @@ the older ones are deleted automatically (they stay in the git history).
 | `images-src/hero/slide-1/` | Home slider, slide 1 (studio shot; only an edge vignette) | 3:4 portrait |
 | `images-src/hero/slide-2/` | Home slider, slide 2 (cinematic grade) | 3:4 portrait |
 | `images-src/hero/slide-3/` | Home slider, slide 3 (cinematic grade) | 3:4 portrait |
-| `images-src/quotes/quote-chain/`, `quote-earrings/`, `quote-pendant/` | soft-focus backgrounds behind the Home quotes | square |
+| `images-src/quotes/quote-chain/` | soft-focus background behind the Home quote | square |
 | `images-src/collections/<category>/` | Home page category cards (Bridal Sets, Necklaces, ...) | 4:5 portrait |
 | `images-src/features/` | photo inside the "Some jewels are worn..." card | 3:4 portrait |
 | `images-src/about/` | Our Story photo | 4:5 portrait |
