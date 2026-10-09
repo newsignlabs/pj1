@@ -1,0 +1,56 @@
+# Upload photos to images-src/pieces/<category>/<sub-collection>/ on main (for example with
+# GitHub's "Add file > Upload files") and this workflow makes the WebP images, rebuilds
+# collections.html and commits the result. Catalyst Slate then publishes the site.
+name: Build collections from photo folders
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "images-src/pieces/**"
+      - "content/collections.json"
+      - "tools/optimize_images.py"
+      - "tools/build_collections.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-collections
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image libraries
+        run: pip install Pillow pillow-heif
+
+      - name: Make WebP images (removes images of deleted photos)
+        run: python tools/optimize_images.py --prune
+
+      - name: Rebuild collections.html
+        run: python tools/build_collections.py
+
+      - name: Check the site
+        run: python tools/check_site.py
+
+      - name: Commit generated files
+        run: |
+          git add assets/img collections.html images-src/.optimized.json
+          if git diff --cached --quiet; then
+            echo "Nothing to update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Build collections from uploaded photos"
+          git pull --rebase origin main
+          git push origin HEAD:main

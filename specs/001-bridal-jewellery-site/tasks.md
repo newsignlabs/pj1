@@ -197,6 +197,14 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T083 Remove Hindi jewellery terms from all pages, alt text, metadata and image file names; "Headpieces" category (`#headpieces`)
 - [ ] T084 Final sub-collection titles per category (needs client input)
 
+## Phase 17: Revision 14 — folder-based sub-collections and gallery
+
+- [x] T085 Folder layout `images-src/pieces/<category>/<sub-collection>/`; optimiser reads it recursively, slugifies names, keeps whole photos for the 1080 px gallery size, re-encodes only changed photos (hashes in `images-src/.optimized.json`), `--prune` removes deleted ones, HEIC via pillow-heif
+- [x] T086 `tools/build_collections.py` builds cards from folders (title, cover, photo count), adds new category folders, rebuilds the category links; `content/collections.json` keeps category order, titles and intros
+- [x] T087 Gallery dialog per card: all photos, previous/next, thumbnails, arrow keys, swipe, next photo preloaded
+- [x] T088 GitHub Action builds and commits images and the page after uploads to `main`
+- [x] T089 Add the client's temple necklace set photo to Bridal Sets › Antique
+
 ---
 
 ## Dependencies & Execution Order

@@ -223,3 +223,17 @@
   JSON fetched and rendered by JS (breaks without JS, slower first paint); infinite scroll
   (no footer, poor for "find that design again"); a carousel per category (hides most
   designs, harder on desktop).
+
+## 14. Folder uploads and sub-collection galleries (revision 14)
+
+- **Decision**: folders are the source of truth (`images-src/pieces/<category>/<sub-collection>/`).
+  A static host cannot list folders, so a manifest is still needed; it is generated into
+  `collections.html` by `tools/build_collections.py`, run locally or by a GitHub Action on
+  every push to `main` that touches the photo folders. The Action commits the WebP files and
+  page; Slate deploys that commit.
+- **Gallery**: one card per sub-collection carries its photo list in `data-gallery`; the
+  dialog loads each 1080 px photo only when shown (and preloads the next one). Thumbnails in
+  the strip are the 300 px card size and lazy.
+- **Alternatives**: a JSON manifest fetched by JS (breaks without JS; extra request);
+  Slate build command (not available for the static framework as configured); a CMS
+  (needs a server or third-party service).

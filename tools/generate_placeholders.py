@@ -17,15 +17,9 @@ from PIL import Image, ImageDraw, ImageFilter, ImageOps
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "images-src"
 
-# (slug, motif) for every piece, grouped by collection.
-CATALOGUE = {
-    "bridal-sets": ["bridal-sets-1", "bridal-sets-2", "bridal-sets-3", "bridal-sets-4"],
-    "necklaces": ["necklaces-1", "necklaces-2", "necklaces-3", "necklaces-4"],
-    "earrings": ["earrings-1", "earrings-2", "earrings-3", "earrings-4"],
-    "bangles": ["bangles-1", "bangles-2", "bangles-3", "bangles-4"],
-    "headpieces": ["headpieces-1", "headpieces-2", "headpieces-3", "headpieces-4"],
-    "rings": ["rings-1", "rings-2", "rings-3", "rings-4"],
-}
+# Sample sub-collections per category (images-src/pieces/<category>/<sub-collection>/sample.jpg)
+SUB_COLLECTIONS = ["antique", "antique-premium", "classic", "premium"]
+CATALOGUE = {c: SUB_COLLECTIONS for c in ["bridal-sets", "necklaces", "earrings", "bangles", "headpieces", "rings"]}
 
 BACKGROUNDS = {
     "bridal-sets": ("#050505", "#2a1622"),
@@ -226,8 +220,11 @@ def main():
         colours = BACKGROUNDS[collection]
         made += save(render(piece_size, colours, motif, collection),
                      SRC / "collections" / f"{collection}.jpg", force)
-        for slug in pieces:
-            made += save(render(piece_size, colours, motif, slug), SRC / "pieces" / f"{slug}.jpg", force)
+        for sub in pieces:
+            folder = SRC / "pieces" / collection / sub
+            if folder.exists() and any(f.name != "sample.jpg" for f in folder.iterdir()):
+                continue  # real photos already here
+            made += save(render(piece_size, colours, motif, f"{collection}-{sub}"), folder / "sample.jpg", force)
 
     def about(draw, w, h, rng):
         ring(draw, w, h, rng, cx=w * 0.5, cy=h * 0.7, scale=0.8, gem=GEMS["magenta"])

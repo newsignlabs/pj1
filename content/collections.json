@@ -1,166 +1,35 @@
 {
+  "_help": "Category order, titles and intros. Photos come from folders: images-src/pieces/<category id>/<sub-collection>/<photo>.jpg. Each sub-collection folder becomes one card; its name is the card title (\"antique-premium\" -> \"Antique Premium\"; a number prefix such as \"1-antique\" sets the order and is hidden).",
   "categories": [
     {
       "id": "bridal-sets",
       "title": "Bridal Sets",
-      "intro": "Complete wedding-day sets — necklace, earrings and headpiece designed to be worn together.",
-      "pieces": [
-        {
-          "image": "bridal-sets-1",
-          "name": "Antique",
-          "alt": "Bridal set with choker, long necklace, earrings and forehead pendant"
-        },
-        {
-          "image": "bridal-sets-2",
-          "name": "Antique Premium",
-          "alt": "Diamond necklace and earring set with blue sapphire drops"
-        },
-        {
-          "image": "bridal-sets-3",
-          "name": "Classic",
-          "alt": "Antique temple gold bridal necklace and earrings"
-        },
-        {
-          "image": "bridal-sets-4",
-          "name": "Premium",
-          "alt": "Layered pearl necklace and earring set with enamel work"
-        }
-      ]
+      "intro": "Complete wedding-day sets — necklace, earrings and headpiece designed to be worn together."
     },
     {
       "id": "necklaces",
       "title": "Necklaces",
-      "intro": "Chokers, long necklaces and layered strands to anchor your bridal look.",
-      "pieces": [
-        {
-          "image": "necklaces-1",
-          "name": "Antique",
-          "alt": "Gold choker necklace with ruby beads"
-        },
-        {
-          "image": "necklaces-2",
-          "name": "Antique Premium",
-          "alt": "Long multi-strand gold necklace"
-        },
-        {
-          "image": "necklaces-3",
-          "name": "Classic",
-          "alt": "Three-strand pearl necklace with gold pendant"
-        },
-        {
-          "image": "necklaces-4",
-          "name": "Premium",
-          "alt": "Gold bead necklace with emerald drop pendant"
-        }
-      ]
+      "intro": "Chokers, long necklaces and layered strands to anchor your bridal look."
     },
     {
       "id": "earrings",
       "title": "Earrings",
-      "intro": "Statement earrings, bell drops and studs that frame the face in every photograph.",
-      "pieces": [
-        {
-          "image": "earrings-1",
-          "name": "Antique",
-          "alt": "Crescent-shaped gold earrings with pearl fringe"
-        },
-        {
-          "image": "earrings-2",
-          "name": "Antique Premium",
-          "alt": "Pair of gold bell-shaped earrings with pearls"
-        },
-        {
-          "image": "earrings-3",
-          "name": "Classic",
-          "alt": "Diamond drop earrings in gold setting"
-        },
-        {
-          "image": "earrings-4",
-          "name": "Premium",
-          "alt": "Stone-set earrings with supporting ear chains"
-        }
-      ]
+      "intro": "Statement earrings, bell drops and studs that frame the face in every photograph."
     },
     {
       "id": "bangles",
       "title": "Bangles & Bracelets",
-      "intro": "Broad bangles, bangle sets and bracelets in gold, stone and diamond designs.",
-      "pieces": [
-        {
-          "image": "bangles-1",
-          "name": "Antique",
-          "alt": "Broad stone-set gold bangle"
-        },
-        {
-          "image": "bangles-2",
-          "name": "Antique Premium",
-          "alt": "Set of engraved gold bangles"
-        },
-        {
-          "image": "bangles-3",
-          "name": "Classic",
-          "alt": "Slim diamond bracelet"
-        },
-        {
-          "image": "bangles-4",
-          "name": "Premium",
-          "alt": "Pair of enamel bangles"
-        }
-      ]
+      "intro": "Broad bangles, bangle sets and bracelets in gold, stone and diamond designs."
     },
     {
       "id": "headpieces",
       "title": "Headpieces",
-      "intro": "Forehead pendants, hair chains and side ornaments to complete the bridal hairstyle.",
-      "pieces": [
-        {
-          "image": "headpieces-1",
-          "name": "Antique",
-          "alt": "Round forehead pendant with ruby drop"
-        },
-        {
-          "image": "headpieces-2",
-          "name": "Antique Premium",
-          "alt": "Gold headpiece with side chains"
-        },
-        {
-          "image": "headpieces-3",
-          "name": "Classic",
-          "alt": "Gold side headpiece"
-        },
-        {
-          "image": "headpieces-4",
-          "name": "Premium",
-          "alt": "Pearl headpiece"
-        }
-      ]
+      "intro": "Forehead pendants, hair chains and side ornaments to complete the bridal hairstyle."
     },
     {
       "id": "rings",
       "title": "Rings",
-      "intro": "Engagement solitaires, cocktail rings and wedding bands.",
-      "pieces": [
-        {
-          "image": "rings-1",
-          "name": "Antique",
-          "alt": "Solitaire engagement ring in gold"
-        },
-        {
-          "image": "rings-2",
-          "name": "Antique Premium",
-          "alt": "Diamond cocktail ring"
-        },
-        {
-          "image": "rings-3",
-          "name": "Classic",
-          "alt": "Matching gold wedding bands"
-        },
-        {
-          "image": "rings-4",
-          "name": "Premium",
-          "alt": "Emerald ring with diamond halo"
-        }
-      ]
+      "intro": "Engagement solitaires, cocktail rings and wedding bands."
     }
   ]
 }

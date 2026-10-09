@@ -1769,6 +1769,19 @@ a.card:hover {
   outline: none;
 }
 
+.piece__count {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.collection__empty {
+  color: var(--muted);
+}
+
 .more-btn {
   display: flex;
   margin: 2.5rem auto 0;
@@ -1841,7 +1854,7 @@ a.card:hover {
 }
 
 .viewer__frame {
-  width: min(100%, calc((100svh - 13rem) * 0.8));
+  width: min(100%, calc((100svh - 17rem) * 0.8));
   overflow: hidden;
   border-radius: var(--radius);
   background: #15131a;
@@ -1852,7 +1865,50 @@ a.card:hover {
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
+  object-fit: contain; /* whole photo, whatever its shape */
+}
+
+/* Thumbnail strip (more than one photo) */
+.viewer__thumbs {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.25rem;
+  scrollbar-width: none;
+}
+
+.viewer__thumbs:empty {
+  display: none;
+}
+
+.viewer__thumb {
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 3.75rem;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(228, 230, 234, 0.25);
+  border-radius: 0.5rem;
+  background: #15131a;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.viewer__thumb img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.viewer__thumb[aria-current="true"],
+.viewer__thumb:hover {
+  border-color: var(--pink);
+  opacity: 1;
+}
+
+.viewer__step[hidden] {
+  display: none;
 }
 
 .viewer.is-loading .viewer__img {
@@ -1942,7 +1998,7 @@ a.card:hover {
   }
 
   .viewer__frame {
-    width: min(100%, calc((100svh - 10rem) * 0.8));
+    width: min(100%, calc((100svh - 14rem) * 0.8));
   }
 }
 

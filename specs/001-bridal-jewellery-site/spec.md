@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 13)
+**Status**: Implemented (revision 14)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -60,6 +60,13 @@ thumbnails, a design viewer that loads the 1080 px photo only when opened, and
 "Antique" and "Antique Premium", still to be finalised; placeholders for now), no
 description; English-only copy with no Hindi jewellery terms; "Maang Tikka & Headpieces"
 becomes "Headpieces"; piece photos renamed `<category>-<n>`.
+
+**Revision 14 (2026-10-09)**: photos are organised in folders,
+`images-src/pieces/<category>/<sub-collection>/`. Each sub-collection is one card (title
+from the folder name, cover photo, photo count); tapping it opens a gallery dialog with
+all its photos (previous/next, thumbnails, arrow keys, swipe; whole uncropped photos).
+A GitHub Action rebuilds images and the page when photos are uploaded to `main`. First
+real photo: Bridal Sets › Antique.
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 

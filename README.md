@@ -102,27 +102,49 @@ python3 tools/build_brand_assets.py
 This turns the black background transparent and writes `assets/img/brand/logo-{64,128,256}.webp`,
 `assets/icons/favicon-32.png` and `assets/icons/apple-touch-icon.png`.
 
-### Adding designs to Collections
+### Adding photos to Collections (folders)
 
-The Collections page is built from `content/collections.json`; don't edit its design cards
-by hand.
+Photos live in one folder per category and sub-collection:
 
-1. Put each photo in `images-src/pieces/<slug>.jpg` (portrait, 4:5 works best).
-2. Add an entry under the right category in `content/collections.json`:
-   `{"image": "<slug>", "name": "Antique Premium", "alt": "What the photo shows"}`
-   (`name` is the only text on the card, e.g. the sub-collection; `alt` is optional).
-3. Run:
+```text
+images-src/pieces/
+  bridal-sets/            <- category (its title and intro are in content/collections.json)
+    antique/              <- sub-collection = one card titled "Antique"
+      cover.jpg           <- card cover (optional; otherwise the first photo by name)
+      temple-necklace-set.jpg
+      IMG_0912.jpg
+    antique-premium/      <- card "Antique Premium"
+  necklaces/
+  ...
+```
 
-   ```bash
-   python3 tools/optimize_images.py      # 300/450/600 px thumbnails + 1080 px viewer photo
-   python3 tools/build_collections.py    # rewrites the category sections of collections.html
-   python3 tools/check_site.py
-   ```
+- Each sub-collection folder becomes one card; its name is the card title
+  (`antique-premium` → "Antique Premium"). A number prefix (`1-antique`, `2-classic`) sets
+  the order and is not shown.
+- Tapping a card opens a gallery of all its photos (arrows, thumbnails, swipe).
+- A new category folder appears automatically at the end of the page; add it to
+  `content/collections.json` to set its title, intro and position.
+- Photos can be JPG, PNG, WebP or HEIC (iPhone). Any size; tall photos are shown whole in
+  the gallery and cropped to 4:5 for the card. Deleting a photo removes it from the site.
 
-Each category shows its first 8 designs with a "Show all" button; thumbnails load lazily
-and a design's large photo loads only when a visitor taps it. To add a new category, copy a
-`<section class="collection">` in `collections.html`, give it a new `id`, add the category
-to the JSON (and to the category links at the top of the page), then run the build.
+**Quick upload (no tools needed):** on github.com open the sub-collection folder, for example
+`images-src/pieces/bridal-sets/antique/`, choose **Add file → Upload files**, drop the photos
+and commit to `main`. For a new sub-collection, open the category folder instead and drag a
+whole folder of photos onto the upload page; GitHub keeps the folder name. To remove a
+photo, open it on github.com and delete the file.
+
+The **Build collections from photo folders** workflow (`.github/workflows/build-collections.yml`)
+then makes the WebP images, rebuilds `collections.html` and commits them; Catalyst Slate
+publishes the site, usually within two or three minutes. (GitHub Actions must be enabled
+for the repository, and `main` must accept pushes from the workflow.)
+
+**On a computer with Python:** copy photos into the folders and run
+
+```bash
+python3 tools/optimize_images.py --prune   # WebP thumbnails + gallery photos; drops deleted ones
+python3 tools/build_collections.py         # rewrites the collection sections of collections.html
+python3 tools/check_site.py
+```
 
 ## WhatsApp number and contact details
 
