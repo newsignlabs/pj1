@@ -1,8 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 2.1.2 → 2.2.0 (MINOR: copy tone guidance added)
-- Brand & Visual Identity: site copy uses a clear, friendly business tone; no theatrical
-  wording ("scene", "chapter", "atelier"); numbers are natural (1, 2, 3), never Roman
+- Version change: 2.2.0 → 3.0.0 (MAJOR: Principle III redefined)
+- Principle III: the hero slider may auto-advance (client request), with pause/play,
+  pause on hover/focus/touch and hidden tab, and no auto-advance for reduced motion
+- Performance Budgets: CSS 40 → 45 KB
 - Templates requiring updates: none ✅
 -->
 
@@ -46,21 +47,21 @@ The site is image-heavy, so image delivery decides how fast it feels.
 **Rationale**: Bridal clients browse on phones, often on mobile data. Fast, light images
 are the single biggest factor in whether they keep browsing.
 
-### III. Calm, Visitor-Driven Motion (NON-NEGOTIABLE)
+### III. Calm, Controlled Motion (NON-NEGOTIABLE)
 
-- Nothing moves on its own: no autoplay, auto-advancing carousels, marquees, looping or
-  entrance animations, hover transitions, video or timers.
-- The home hero MAY be a slider of still "scenes" that changes only when the visitor swipes
-  or presses an arrow, and the change is instant (no slide animation).
-- Quote interludes MAY use parallax on their background image, tied directly to the
-  visitor's scrolling (CSS scroll-driven animation, with a small scroll-listener fallback),
-  and MUST be disabled for `prefers-reduced-motion: reduce`. This is the only motion
-  allowed, and it lives between the `motion-allowed` markers in the stylesheet.
-- A "cinematic" look is achieved with still means: colour grading, letterbox bars,
-  vignette, static grain and glow.
+- The only motion allowed is:
+  1. the home hero slider, which MAY auto-advance (about every 6 s, sliding smoothly to the
+     next slide). It MUST offer a pause/play button, pause while the pointer or keyboard
+     focus is in the hero, while it is touched and while the tab is hidden, and MUST NOT
+     auto-advance when the visitor's device asks for reduced motion;
+  2. scroll-linked parallax on quote backgrounds, tied to the visitor's scrolling.
+- No marquees, looping or entrance animations, hover transitions or video.
+- CSS motion lives between the `motion-allowed` markers and JS timers between the
+  `autoplay-allowed` markers; both are gated on `prefers-reduced-motion` and enforced by
+  `tools/check_site.py`.
 
-**Rationale**: The jewellery is the focus. Visitor-driven effects add richness on phones;
-autonomous motion distracts, costs performance and can cause discomfort.
+**Rationale**: The jewellery is the focus. A gentle, pausable slideshow shows more of the
+range; everything else stays still for comfort and performance.
 
 ### IV. Mobile-First Responsive
 
@@ -114,7 +115,7 @@ autonomous motion distracts, costs performance and can cause discomfort.
 | Metric | Budget |
 |--------|--------|
 | HTML per page (uncompressed) | ≤ 40 KB |
-| Total CSS | ≤ 40 KB (≈ 8.5 KB compressed) |
+| Total CSS | ≤ 45 KB (≈ 9 KB compressed) |
 | Total JavaScript | ≤ 10 KB |
 | Self-hosted fonts | ≤ 60 KB |
 | Hero image (largest variant) | ≤ 250 KB |
@@ -140,4 +141,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 2.2.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 3.0.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

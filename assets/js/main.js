@@ -2,7 +2,7 @@
  * Cute Look Bridal Jewels — progressive enhancement only.
  * The site works without this file: menu links show, the hero slider can be
  * swiped, quote backgrounds stay still, and the site stays in the dark theme.
- * Nothing here moves on its own: no timers, no autoplay.
+ * The hero slider is the only thing that moves on its own (see its autoplay block).
  */
 (function () {
   "use strict";
@@ -92,51 +92,69 @@
     year.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Hero slider: manual only (arrows, swipe, keyboard), instant ---------- */
+  /* ---------- Hero slider: auto-advances, with arrows, progress bars, swipe and keyboard ---------- */
   var slider = document.querySelector("[data-slider]");
   if (slider) {
     var track = slider.querySelector(".hero__slides");
     var slides = track.querySelectorAll(".hero__slide");
     var prev = slider.querySelector("[data-prev]");
     var next = slider.querySelector("[data-next]");
-    var count = slider.querySelector(".hero__count");
-    var current = slider.querySelector("[data-current]");
+    var dotsBox = slider.querySelector(".hero__dots");
+    var dots = slider.querySelectorAll("[data-goto]");
+    var playBtn = slider.querySelector("[data-play]");
+    var status = slider.querySelector("[data-status]");
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var index = 0;
 
-    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
-
     var update = function () {
-      current.textContent = pad(index + 1);
       for (var i = 0; i < slides.length; i++) {
         var hidden = i !== index;
         slides[i].inert = hidden;
         slides[i].setAttribute("aria-hidden", String(hidden));
       }
+      for (var d = 0; d < dots.length; d++) {
+        dots[d].classList.remove("is-active");
+        dots[d].removeAttribute("aria-current");
+      }
+      if (dots[index]) {
+        void dots[index].offsetWidth; // restart the progress fill
+        dots[index].classList.add("is-active");
+        dots[index].setAttribute("aria-current", "true");
+      }
+      status.textContent = "Slide " + (index + 1) + " of " + slides.length;
     };
 
     var go = function (i) {
+      var wraps = i < 0 || i >= slides.length;
       index = (i + slides.length) % slides.length;
-      track.scrollTo({ left: index * track.clientWidth, behavior: "instant" });
+      // Slide smoothly between neighbours; jump when wrapping round or when motion is reduced.
+      track.scrollTo({ left: index * track.clientWidth, behavior: still || wraps ? "instant" : "smooth" });
       update();
+      schedule();
     };
 
     prev.hidden = false;
     next.hidden = false;
-    count.hidden = false;
+    dotsBox.hidden = false;
     prev.addEventListener("click", function () { go(index - 1); });
     next.addEventListener("click", function () { go(index + 1); });
+    Array.prototype.forEach.call(dots, function (dot) {
+      dot.addEventListener("click", function () { go(Number(dot.getAttribute("data-goto"))); });
+    });
 
     track.addEventListener("keydown", function (event) {
       if (event.key === "ArrowLeft") { go(index - 1); }
       if (event.key === "ArrowRight") { go(index + 1); }
     });
 
-    // Keep the counter in step with swipes.
+    // Keep the progress bars in step with swipes (only once a scroll settles on a slide).
     track.addEventListener("scroll", function () {
-      var i = Math.round(track.scrollLeft / track.clientWidth);
-      if (i !== index && i >= 0 && i < slides.length) {
+      var pos = track.scrollLeft / track.clientWidth;
+      var i = Math.round(pos);
+      if (Math.abs(pos - i) < 0.02 && i !== index && i >= 0 && i < slides.length) {
         index = i;
         update();
+        schedule();
       }
     }, { passive: true });
 
@@ -145,7 +163,53 @@
       track.scrollTo({ left: index * track.clientWidth, behavior: "instant" });
     });
 
+    /* autoplay-allowed:start — the site's only timer (constitution III). Auto-advance
+       stops for prefers-reduced-motion, and pauses on the pause button, while the pointer
+       or keyboard focus is in the hero, while it is touched, and when the tab is hidden. */
+    var DELAY = 6000;
+    var timer = null;
+    var userPaused = still;
+    var held = false;
+
+    function schedule() {
+      clearTimeout(timer);
+      slider.classList.toggle("is-paused", userPaused || held);
+      if (!userPaused && !held && !document.hidden) {
+        timer = setTimeout(function () { go(index + 1); }, DELAY);
+      }
+    }
+
+    var hold = function (on) { held = on; schedule(); };
+    slider.addEventListener("mouseenter", function () { hold(true); });
+    slider.addEventListener("mouseleave", function () { hold(false); });
+    slider.addEventListener("focusin", function () { hold(true); });
+    slider.addEventListener("focusout", function (event) {
+      if (!slider.contains(event.relatedTarget)) { hold(false); }
+    });
+    track.addEventListener("touchstart", function () { hold(true); }, { passive: true });
+    track.addEventListener("touchend", function () { hold(false); }, { passive: true });
+    document.addEventListener("visibilitychange", schedule);
+
+    var setPlayLabel = function () {
+      playBtn.setAttribute("aria-label", userPaused ? "Play slideshow" : "Pause slideshow");
+      playBtn.setAttribute("aria-pressed", String(userPaused));
+      // Announce slide changes only while the slideshow is paused (WAI carousel pattern).
+      status.setAttribute("aria-live", userPaused ? "polite" : "off");
+    };
+
+    if (!still) {
+      playBtn.hidden = false;
+      playBtn.addEventListener("click", function () {
+        userPaused = !userPaused;
+        setPlayLabel();
+        schedule();
+      });
+    }
+    setPlayLabel();
+    /* autoplay-allowed:end */
+
     update();
+    schedule();
   }
 
   /* ---------- Quote parallax fallback ----------

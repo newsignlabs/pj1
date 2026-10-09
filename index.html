@@ -78,7 +78,7 @@
           </picture>
           <div class="container hero__content">
             <p class="hero__eyebrow"><span>01</span> Bridal Collections</p>
-            <h1 class="hero__title" id="hero-title">Bridal jewellery for your <em>special day</em></h1>
+            <h1 class="hero__title hero__title--lines" id="hero-title"><span class="hero__line">Bridal jewellery</span> <span class="hero__line">for your</span> <span class="hero__line"><em>special day</em></span></h1>
             <p class="hero__lead">Necklaces, earrings, bangles and complete bridal sets in kundan, temple and stone designs, now at our new shop in Annur, Coimbatore.</p>
             <div class="hero__actions">
               <a class="btn btn--primary" href="collections.html">Collections</a>
@@ -120,9 +120,15 @@
         </article>
       </div>
       <div class="hero__controls">
-        <button class="hero__arrow" type="button" data-prev hidden aria-label="Previous slide"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-prev"></use></svg></button>
-        <p class="hero__count" hidden aria-live="polite"><span data-current>01</span> / 03</p>
-        <button class="hero__arrow" type="button" data-next hidden aria-label="Next slide"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-next"></use></svg></button>
+        <button class="hero__arrow" type="button" data-prev hidden aria-label="Previous slide"><svg class="icon icon--stroke" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="hero__dots" role="group" aria-label="Choose a slide" hidden>
+          <button class="hero__dot" type="button" data-goto="0" aria-label="Slide 1 of 3"><span></span></button>
+          <button class="hero__dot" type="button" data-goto="1" aria-label="Slide 2 of 3"><span></span></button>
+          <button class="hero__dot" type="button" data-goto="2" aria-label="Slide 3 of 3"><span></span></button>
+        </div>
+        <button class="hero__arrow" type="button" data-next hidden aria-label="Next slide"><svg class="icon icon--stroke" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button class="hero__play" type="button" data-play hidden aria-label="Pause slideshow"><svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5l11 7-11 7z"/></svg></button>
+        <p class="sr-only" data-status aria-live="off"></p>
         <p class="hero__credits">Swipe for more</p>
       </div>
     </section>

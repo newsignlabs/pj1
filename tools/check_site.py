@@ -8,9 +8,9 @@ Checks every top-level HTML page for:
   - iframes: only the Google Maps embed, lazy loaded, with a title
   - local links and assets resolve to real files (and #anchors exist)
   - WhatsApp: every page has a wa.me link and all links use one number
-  - no autonomous motion: no animation/transition/@keyframes/marquee/autoplay/smooth
-    scroll, except scroll-linked parallax between the CSS "motion-allowed" markers,
-    which must be gated on prefers-reduced-motion and scroll timelines; no timers
+  - motion only where allowed: no animation/transition/@keyframes/marquee/smooth scroll
+    outside the CSS "motion-allowed" markers (gated on prefers-reduced-motion), and no
+    timers outside the JS "autoplay-allowed" block (hero slider auto-advance)
   - no third-party scripts, stylesheets or fonts
   - size budgets for HTML, CSS, JS, self-hosted fonts and image variants
 
@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 KB = 1024
 BUDGETS = {
     "html": 40 * KB,
-    "css": 40 * KB,
+    "css": 45 * KB,
     "js": 10 * KB,
     "image": 120 * KB,
     "hero": 250 * KB,
@@ -209,7 +209,15 @@ def main():
     if js_total > BUDGETS["js"]:
         fail("JS", f"{js_total / KB:.1f} KB (budget {BUDGETS['js'] // KB} KB)")
     for js in (ROOT / "assets" / "js").glob("*.js"):
-        code = re.sub(r"/\*.*?\*/|//[^\n]*", "", js.read_text(encoding="utf-8"), flags=re.S)
+        source = js.read_text(encoding="utf-8")
+        # The hero slider's auto-advance is the one permitted timer; it must stop for
+        # reduced motion and offer a pause control.
+        block = re.search(r"/\* autoplay-allowed:start.*?/\* autoplay-allowed:end \*/", source, flags=re.S)
+        if block:
+            if "prefers-reduced-motion" not in source or "visibilitychange" not in block.group(0) or "data-play" not in source:
+                fail(js.name, "autoplay block must honour reduced motion, pause when hidden and have a pause button")
+            source = source.replace(block.group(0), "")
+        code = re.sub(r"/\*.*?\*/|//[^\n]*", "", source, flags=re.S)
         if re.search(r"\.animate\(|setInterval|setTimeout|autoplay", code):
             fail(js.name, "script appears to move things on its own (animate/setInterval/setTimeout/autoplay)")
 

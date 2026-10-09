@@ -117,6 +117,14 @@
 - **Alternatives considered**: CSS-only `:target`/radio sliders (break history and
   keyboard use); slider libraries (heavy, animate by default).
 
+- **Revision 9**: by client request the slider now auto-advances every 6 s with a smooth
+  slide (instant when wrapping round or under reduced motion). Controls: round chevron
+  arrows, three progress bars whose active bar fills over the interval (CSS, inside the
+  motion-allowed block, paused with the slideshow), and a pause/play button
+  (`aria-pressed`). Following the WAI carousel pattern, the status region is
+  `aria-live="off"` while playing and `polite` when paused. The timer lives between
+  `autoplay-allowed` markers so the audit can confirm it is the only one.
+
 ## 12. Parallax quotes (revision 4)
 
 - **Decision**: Background `<img>` (lazy, `srcset`) in a 126%-tall layer, moved -10% → +10%
