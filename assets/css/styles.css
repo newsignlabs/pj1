@@ -1975,21 +1975,25 @@ a.card:hover {
   font-style: italic;
 }
 
-.fin {
-  margin: 0 0 0.5rem;
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-style: italic;
-  line-height: 1;
-  color: var(--pink);
-}
-
 .footer-bottom {
   margin: 0;
-  padding-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.footer-credit {
+  margin: 0;
+  padding-bottom: 1.5rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  opacity: 0.75;
+}
+
+.footer-credit a {
+  display: inline-block;
+  padding-block: 0.4rem; /* comfortable tap height for a tiny link */
 }
 
 /* Giant outlined wordmark bleeding off the bottom edge */
