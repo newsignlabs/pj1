@@ -45,6 +45,9 @@ Relationship: Collection 1 — N Piece (min 4 per collection).
 
 ## Business contact details
 
-Placeholders, to be replaced before launch: WhatsApp `+91 98765 43210`
-(`919876543210` in links), phone, email `hello@cutelookbridal.example`, address,
-opening hours.
+- WhatsApp and phone: `+91 97901 12593` (`919790112593` in `wa.me` and `tel:` links)
+- Shop: 2390 Adhithya complex, Kanjappalli pirivu, Avinashi road, Annur, Coimbatore - 641653
+  (also the Google Maps query on the Contact page)
+- Tagline: "Bridal Collections" (brand shown as "Cute Look Bridal Collections")
+- Still placeholders: email `hello@cutelookbridal.example` (shown on the Contact page;
+  commented out in the footer) and opening hours.

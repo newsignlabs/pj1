@@ -1,7 +1,8 @@
 <!--
 Sync Impact Report
-- Version change: 2.1.1 → 2.1.2 (PATCH: brand name)
-- The business is now named Cute Look; no principle changes
+- Version change: 2.1.2 → 2.2.0 (MINOR: copy tone guidance added)
+- Brand & Visual Identity: site copy uses a clear, friendly business tone; no theatrical
+  wording ("scene", "chapter", "atelier"); numbers are natural (1, 2, 3), never Roman
 - Templates requiring updates: none ✅
 -->
 
@@ -94,7 +95,10 @@ autonomous motion distracts, costs performance and can cause discomfort.
   bar and is remembered on the device. The hero and photographic quote sections stay dark
   in both themes, like a cinema screen. The logo's silver and pink are the only accent
   colours (WhatsApp green is allowed on WhatsApp buttons only).
-- Art direction is artistic and editorial, not corporate: a large display serif
+- Copy is written in a clear, friendly business tone for a new local shop: no theatrical
+  wording such as "scene", "chapter" or "atelier" (use "shop" / "our shop"), and numbers
+  are natural (1, 2, 3 or 01, 02), never Roman numerals.
+- Visual art direction is artistic and editorial, not corporate: a large display serif
   (Cormorant Garamond), italic pink accents, outlined numerals, asymmetric/staggered
   layouts, generous space.
 - Content cards (collections, pieces, highlights, contact, map) use clipped (chamfered)
@@ -136,4 +140,4 @@ documented reason, an updated version number and a review of dependent templates
 Versioning follows semantic versioning: MAJOR for removed or redefined principles,
 MINOR for new principles or sections, PATCH for wording clarifications.
 
-**Version**: 2.1.2 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06
+**Version**: 2.2.0 | **Ratified**: 2026-10-06 | **Last Amended**: 2026-10-06

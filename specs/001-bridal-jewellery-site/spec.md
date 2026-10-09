@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 7)
+**Status**: Implemented (revision 8)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -29,7 +29,13 @@ first scene uses the client's new studio photograph (black backdrop, pink smoke)
 **Revision 7 (2026-10-07)**: the brand name becomes **Cute Look** everywhere; collection
 card captions become a solid white strip with a clipped corner in light mode (see-through
 in dark mode) instead of a white gradient; the client's photograph of a worn temple
-necklace goes inside the framed quote card "Some jewels are worn. Ours are inherited." 
+necklace goes inside the framed quote card "Some jewels are worn. Ours are inherited."
+
+**Revision 8 (2026-10-09)**: real business details applied on every page (Annur shop
+address, phone/WhatsApp 919790112593, tagline "Bridal Collections"); "atelier" becomes
+"shop"/"our shop"; Roman numerals become natural numbers; wording such as "scenes" and
+"chapters" removed; copy rewritten in a light business tone, with the Our Story section
+describing a new shop in Annur. 
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
