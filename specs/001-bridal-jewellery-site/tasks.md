@@ -206,6 +206,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T089 Add the client's temple necklace set photo to Bridal Sets › Antique
 - [x] T090 Second Antique photo; gallery photo card is black (no grey sides) with a pink gradient border; photos ordered by name without extension
 - [x] T091 Fix: the gallery dialog's placeholder image pointed at a piece photo, so deleting that photo failed the site check and the workflow did not publish; it now uses the logo
+- [x] T092 Header wordmark: "Bridal Collections" spaced to the exact width of "Cute Look" (CSS default, fitted in main.js for the visitor's font); collection cards use the pointer cursor instead of zoom
 
 ---
 
