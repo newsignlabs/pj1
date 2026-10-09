@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>(function (d) { d.className = d.className.replace("no-js", "js"); try { var t = localStorage.getItem("cutelook-theme"); if (t === "light" || t === "dark") { d.setAttribute("data-theme", t); } } catch (e) {} })(document.documentElement);</script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/collections.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -99,60 +100,12 @@
           </div>
           <p>Complete wedding-day ensembles — necklace, earrings and tikka designed to be worn together.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/royal-kundan-bridal-set-400.webp"
-             srcset="assets/img/pieces/royal-kundan-bridal-set-400.webp 400w, assets/img/pieces/royal-kundan-bridal-set-600.webp 600w, assets/img/pieces/royal-kundan-bridal-set-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Kundan bridal set with choker, long necklace, earrings and maang tikka">
-              <div class="piece__body">
-                <h3>Royal Kundan Bridal Set</h3>
-                <p>Choker, long haar, earrings and tikka in 22k gold set with uncut kundan.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/polki-heritage-set-400.webp"
-             srcset="assets/img/pieces/polki-heritage-set-400.webp 400w, assets/img/pieces/polki-heritage-set-600.webp 600w, assets/img/pieces/polki-heritage-set-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Polki diamond necklace and earring set with blue sapphire drops">
-              <div class="piece__body">
-                <h3>Polki Heritage Set</h3>
-                <p>Hand-set polki diamonds with sapphire drops in a heritage frame.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/temple-gold-bridal-set-400.webp"
-             srcset="assets/img/pieces/temple-gold-bridal-set-400.webp 400w, assets/img/pieces/temple-gold-bridal-set-600.webp 600w, assets/img/pieces/temple-gold-bridal-set-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Antique temple gold bridal necklace and earrings">
-              <div class="piece__body">
-                <h3>Temple Gold Bridal Set</h3>
-                <p>Antique-finish gold with temple motifs, made for South Indian brides.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/pearl-meenakari-set-400.webp"
-             srcset="assets/img/pieces/pearl-meenakari-set-400.webp 400w, assets/img/pieces/pearl-meenakari-set-600.webp 600w, assets/img/pieces/pearl-meenakari-set-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Layered pearl necklace and earring set with meenakari work">
-              <div class="piece__body">
-                <h3>Pearl &amp; Meenakari Set</h3>
-                <p>Layered pearls with hand-painted meenakari enamel on the reverse.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="bridal-sets-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/royal-kundan-bridal-set-1080.webp" data-zoom><img src="assets/img/pieces/royal-kundan-bridal-set-300.webp" srcset="assets/img/pieces/royal-kundan-bridal-set-300.webp 300w, assets/img/pieces/royal-kundan-bridal-set-450.webp 450w, assets/img/pieces/royal-kundan-bridal-set-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Kundan bridal set with choker, long necklace, earrings and maang tikka"><span class="piece__body"><h3>Royal Kundan Bridal Set</h3><p>Choker, long haar, earrings and tikka in 22k gold set with uncut kundan.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/polki-heritage-set-1080.webp" data-zoom><img src="assets/img/pieces/polki-heritage-set-300.webp" srcset="assets/img/pieces/polki-heritage-set-300.webp 300w, assets/img/pieces/polki-heritage-set-450.webp 450w, assets/img/pieces/polki-heritage-set-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Polki diamond necklace and earring set with blue sapphire drops"><span class="piece__body"><h3>Polki Heritage Set</h3><p>Hand-set polki diamonds with sapphire drops in a heritage frame.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/temple-gold-bridal-set-1080.webp" data-zoom><img src="assets/img/pieces/temple-gold-bridal-set-300.webp" srcset="assets/img/pieces/temple-gold-bridal-set-300.webp 300w, assets/img/pieces/temple-gold-bridal-set-450.webp 450w, assets/img/pieces/temple-gold-bridal-set-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Antique temple gold bridal necklace and earrings"><span class="piece__body"><h3>Temple Gold Bridal Set</h3><p>Antique-finish gold with temple motifs, made for South Indian brides.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/pearl-meenakari-set-1080.webp" data-zoom><img src="assets/img/pieces/pearl-meenakari-set-300.webp" srcset="assets/img/pieces/pearl-meenakari-set-300.webp 300w, assets/img/pieces/pearl-meenakari-set-450.webp 450w, assets/img/pieces/pearl-meenakari-set-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Layered pearl necklace and earring set with meenakari work"><span class="piece__body"><h3>Pearl &amp; Meenakari Set</h3><p>Layered pearls with hand-painted meenakari enamel on the reverse.</p></span></a></li>
+        </ul>
       </div>
     </section>
     <section class="collection" id="necklaces" aria-labelledby="necklaces-title">
@@ -165,60 +118,12 @@
           </div>
           <p>Statement chokers, rani haars and layered strands to anchor your bridal look.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/kundan-choker-400.webp"
-             srcset="assets/img/pieces/kundan-choker-400.webp 400w, assets/img/pieces/kundan-choker-600.webp 600w, assets/img/pieces/kundan-choker-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Gold kundan choker necklace with ruby beads">
-              <div class="piece__body">
-                <h3>Kundan Choker</h3>
-                <p>A close-fitting 22k gold choker with uncut kundan and ruby beads.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/rani-haar-400.webp"
-             srcset="assets/img/pieces/rani-haar-400.webp 400w, assets/img/pieces/rani-haar-600.webp 600w, assets/img/pieces/rani-haar-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Long multi-strand gold rani haar necklace">
-              <div class="piece__body">
-                <h3>Rani Haar</h3>
-                <p>A long, multi-strand royal necklace that falls below the neckline.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/layered-pearl-necklace-400.webp"
-             srcset="assets/img/pieces/layered-pearl-necklace-400.webp 400w, assets/img/pieces/layered-pearl-necklace-600.webp 600w, assets/img/pieces/layered-pearl-necklace-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Three-strand pearl necklace with gold pendant">
-              <div class="piece__body">
-                <h3>Layered Pearl Necklace</h3>
-                <p>Three graduated strands of pearls finished with a gold pendant.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/emerald-drop-necklace-400.webp"
-             srcset="assets/img/pieces/emerald-drop-necklace-400.webp 400w, assets/img/pieces/emerald-drop-necklace-600.webp 600w, assets/img/pieces/emerald-drop-necklace-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Gold bead necklace with emerald drop pendant">
-              <div class="piece__body">
-                <h3>Emerald Drop Necklace</h3>
-                <p>Gold beadwork with a single emerald drop for a refined finish.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="necklaces-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/kundan-choker-1080.webp" data-zoom><img src="assets/img/pieces/kundan-choker-300.webp" srcset="assets/img/pieces/kundan-choker-300.webp 300w, assets/img/pieces/kundan-choker-450.webp 450w, assets/img/pieces/kundan-choker-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Gold kundan choker necklace with ruby beads"><span class="piece__body"><h3>Kundan Choker</h3><p>A close-fitting 22k gold choker with uncut kundan and ruby beads.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/rani-haar-1080.webp" data-zoom><img src="assets/img/pieces/rani-haar-300.webp" srcset="assets/img/pieces/rani-haar-300.webp 300w, assets/img/pieces/rani-haar-450.webp 450w, assets/img/pieces/rani-haar-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Long multi-strand gold rani haar necklace"><span class="piece__body"><h3>Rani Haar</h3><p>A long, multi-strand royal necklace that falls below the neckline.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/layered-pearl-necklace-1080.webp" data-zoom><img src="assets/img/pieces/layered-pearl-necklace-300.webp" srcset="assets/img/pieces/layered-pearl-necklace-300.webp 300w, assets/img/pieces/layered-pearl-necklace-450.webp 450w, assets/img/pieces/layered-pearl-necklace-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Three-strand pearl necklace with gold pendant"><span class="piece__body"><h3>Layered Pearl Necklace</h3><p>Three graduated strands of pearls finished with a gold pendant.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/emerald-drop-necklace-1080.webp" data-zoom><img src="assets/img/pieces/emerald-drop-necklace-300.webp" srcset="assets/img/pieces/emerald-drop-necklace-300.webp 300w, assets/img/pieces/emerald-drop-necklace-450.webp 450w, assets/img/pieces/emerald-drop-necklace-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Gold bead necklace with emerald drop pendant"><span class="piece__body"><h3>Emerald Drop Necklace</h3><p>Gold beadwork with a single emerald drop for a refined finish.</p></span></a></li>
+        </ul>
       </div>
     </section>
     <section class="collection" id="earrings" aria-labelledby="earrings-title">
@@ -231,60 +136,12 @@
           </div>
           <p>Chandbalis, jhumkas and drops that frame the face beautifully in every photograph.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/chandbali-earrings-400.webp"
-             srcset="assets/img/pieces/chandbali-earrings-400.webp 400w, assets/img/pieces/chandbali-earrings-600.webp 600w, assets/img/pieces/chandbali-earrings-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Gold chandbali earrings with pearl fringe">
-              <div class="piece__body">
-                <h3>Chandbali Earrings</h3>
-                <p>Crescent-moon earrings with pearl fringes and kundan detailing.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/jhumka-earrings-400.webp"
-             srcset="assets/img/pieces/jhumka-earrings-400.webp 400w, assets/img/pieces/jhumka-earrings-600.webp 600w, assets/img/pieces/jhumka-earrings-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Pair of gold jhumka earrings with pearls">
-              <div class="piece__body">
-                <h3>Jhumka Earrings</h3>
-                <p>Traditional bell-shaped jhumkas with pearl hangings.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/diamond-drop-earrings-400.webp"
-             srcset="assets/img/pieces/diamond-drop-earrings-400.webp 400w, assets/img/pieces/diamond-drop-earrings-600.webp 600w, assets/img/pieces/diamond-drop-earrings-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Diamond drop earrings in gold setting">
-              <div class="piece__body">
-                <h3>Diamond Drop Earrings</h3>
-                <p>Elegant diamond drops for the reception and beyond.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/kundan-ear-chains-400.webp"
-             srcset="assets/img/pieces/kundan-ear-chains-400.webp 400w, assets/img/pieces/kundan-ear-chains-600.webp 600w, assets/img/pieces/kundan-ear-chains-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Kundan earrings with supporting ear chains">
-              <div class="piece__body">
-                <h3>Kundan Earrings with Sahara</h3>
-                <p>Kundan earrings with ear chains that support heavier designs.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="earrings-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/chandbali-earrings-1080.webp" data-zoom><img src="assets/img/pieces/chandbali-earrings-300.webp" srcset="assets/img/pieces/chandbali-earrings-300.webp 300w, assets/img/pieces/chandbali-earrings-450.webp 450w, assets/img/pieces/chandbali-earrings-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Gold chandbali earrings with pearl fringe"><span class="piece__body"><h3>Chandbali Earrings</h3><p>Crescent-moon earrings with pearl fringes and kundan detailing.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/jhumka-earrings-1080.webp" data-zoom><img src="assets/img/pieces/jhumka-earrings-300.webp" srcset="assets/img/pieces/jhumka-earrings-300.webp 300w, assets/img/pieces/jhumka-earrings-450.webp 450w, assets/img/pieces/jhumka-earrings-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Pair of gold jhumka earrings with pearls"><span class="piece__body"><h3>Jhumka Earrings</h3><p>Traditional bell-shaped jhumkas with pearl hangings.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/diamond-drop-earrings-1080.webp" data-zoom><img src="assets/img/pieces/diamond-drop-earrings-300.webp" srcset="assets/img/pieces/diamond-drop-earrings-300.webp 300w, assets/img/pieces/diamond-drop-earrings-450.webp 450w, assets/img/pieces/diamond-drop-earrings-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Diamond drop earrings in gold setting"><span class="piece__body"><h3>Diamond Drop Earrings</h3><p>Elegant diamond drops for the reception and beyond.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/kundan-ear-chains-1080.webp" data-zoom><img src="assets/img/pieces/kundan-ear-chains-300.webp" srcset="assets/img/pieces/kundan-ear-chains-300.webp 300w, assets/img/pieces/kundan-ear-chains-450.webp 450w, assets/img/pieces/kundan-ear-chains-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Kundan earrings with supporting ear chains"><span class="piece__body"><h3>Kundan Earrings with Sahara</h3><p>Kundan earrings with ear chains that support heavier designs.</p></span></a></li>
+        </ul>
       </div>
     </section>
     <section class="quote-card" aria-label="Quote">
@@ -310,60 +167,12 @@
           </div>
           <p>Kadas, bangle sets and bracelets in gold, kundan and diamond.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/kundan-kada-400.webp"
-             srcset="assets/img/pieces/kundan-kada-400.webp 400w, assets/img/pieces/kundan-kada-600.webp 600w, assets/img/pieces/kundan-kada-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Broad gold kundan kada bangle">
-              <div class="piece__body">
-                <h3>Kundan Kada</h3>
-                <p>A broad, openable kada with kundan stones all around.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/gold-bangle-set-400.webp"
-             srcset="assets/img/pieces/gold-bangle-set-400.webp 400w, assets/img/pieces/gold-bangle-set-600.webp 600w, assets/img/pieces/gold-bangle-set-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Set of engraved gold bangles">
-              <div class="piece__body">
-                <h3>Gold Bangle Set</h3>
-                <p>A set of four finely engraved 22k gold bangles.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/diamond-bracelet-400.webp"
-             srcset="assets/img/pieces/diamond-bracelet-400.webp 400w, assets/img/pieces/diamond-bracelet-600.webp 600w, assets/img/pieces/diamond-bracelet-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Slim diamond bracelet">
-              <div class="piece__body">
-                <h3>Diamond Bracelet</h3>
-                <p>A slim diamond bracelet that pairs with bridal and everyday wear.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/meenakari-bangles-400.webp"
-             srcset="assets/img/pieces/meenakari-bangles-400.webp 400w, assets/img/pieces/meenakari-bangles-600.webp 600w, assets/img/pieces/meenakari-bangles-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Pair of meenakari enamel bangles">
-              <div class="piece__body">
-                <h3>Meenakari Bangles</h3>
-                <p>Colourful hand-enamelled bangles in traditional bridal shades.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="bangles-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/kundan-kada-1080.webp" data-zoom><img src="assets/img/pieces/kundan-kada-300.webp" srcset="assets/img/pieces/kundan-kada-300.webp 300w, assets/img/pieces/kundan-kada-450.webp 450w, assets/img/pieces/kundan-kada-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Broad gold kundan kada bangle"><span class="piece__body"><h3>Kundan Kada</h3><p>A broad, openable kada with kundan stones all around.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/gold-bangle-set-1080.webp" data-zoom><img src="assets/img/pieces/gold-bangle-set-300.webp" srcset="assets/img/pieces/gold-bangle-set-300.webp 300w, assets/img/pieces/gold-bangle-set-450.webp 450w, assets/img/pieces/gold-bangle-set-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Set of engraved gold bangles"><span class="piece__body"><h3>Gold Bangle Set</h3><p>A set of four finely engraved 22k gold bangles.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/diamond-bracelet-1080.webp" data-zoom><img src="assets/img/pieces/diamond-bracelet-300.webp" srcset="assets/img/pieces/diamond-bracelet-300.webp 300w, assets/img/pieces/diamond-bracelet-450.webp 450w, assets/img/pieces/diamond-bracelet-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Slim diamond bracelet"><span class="piece__body"><h3>Diamond Bracelet</h3><p>A slim diamond bracelet that pairs with bridal and everyday wear.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/meenakari-bangles-1080.webp" data-zoom><img src="assets/img/pieces/meenakari-bangles-300.webp" srcset="assets/img/pieces/meenakari-bangles-300.webp 300w, assets/img/pieces/meenakari-bangles-450.webp 450w, assets/img/pieces/meenakari-bangles-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Pair of meenakari enamel bangles"><span class="piece__body"><h3>Meenakari Bangles</h3><p>Colourful hand-enamelled bangles in traditional bridal shades.</p></span></a></li>
+        </ul>
       </div>
     </section>
     <section class="collection" id="maang-tikka" aria-labelledby="maang-tikka-title">
@@ -376,60 +185,12 @@
           </div>
           <p>Tikkas, matha pattis and passas to complete the bridal hairstyle.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/classic-maang-tikka-400.webp"
-             srcset="assets/img/pieces/classic-maang-tikka-400.webp 400w, assets/img/pieces/classic-maang-tikka-600.webp 600w, assets/img/pieces/classic-maang-tikka-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Round kundan maang tikka with ruby drop">
-              <div class="piece__body">
-                <h3>Classic Maang Tikka</h3>
-                <p>A round kundan tikka with pearl border and ruby drop.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/matha-patti-400.webp"
-             srcset="assets/img/pieces/matha-patti-400.webp 400w, assets/img/pieces/matha-patti-600.webp 600w, assets/img/pieces/matha-patti-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Gold matha patti headpiece with side chains">
-              <div class="piece__body">
-                <h3>Matha Patti</h3>
-                <p>A forehead piece with side chains that frame the hairline.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/jhoomar-passa-400.webp"
-             srcset="assets/img/pieces/jhoomar-passa-400.webp 400w, assets/img/pieces/jhoomar-passa-600.webp 600w, assets/img/pieces/jhoomar-passa-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Gold jhoomar passa headpiece">
-              <div class="piece__body">
-                <h3>Jhoomar Passa</h3>
-                <p>A side-worn passa inspired by royal Mughal jewellery.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/pearl-borla-400.webp"
-             srcset="assets/img/pieces/pearl-borla-400.webp 400w, assets/img/pieces/pearl-borla-600.webp 600w, assets/img/pieces/pearl-borla-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Pearl borla headpiece">
-              <div class="piece__body">
-                <h3>Pearl Borla</h3>
-                <p>A spherical Rajasthani borla finished with pearls.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="maang-tikka-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/classic-maang-tikka-1080.webp" data-zoom><img src="assets/img/pieces/classic-maang-tikka-300.webp" srcset="assets/img/pieces/classic-maang-tikka-300.webp 300w, assets/img/pieces/classic-maang-tikka-450.webp 450w, assets/img/pieces/classic-maang-tikka-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Round kundan maang tikka with ruby drop"><span class="piece__body"><h3>Classic Maang Tikka</h3><p>A round kundan tikka with pearl border and ruby drop.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/matha-patti-1080.webp" data-zoom><img src="assets/img/pieces/matha-patti-300.webp" srcset="assets/img/pieces/matha-patti-300.webp 300w, assets/img/pieces/matha-patti-450.webp 450w, assets/img/pieces/matha-patti-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Gold matha patti headpiece with side chains"><span class="piece__body"><h3>Matha Patti</h3><p>A forehead piece with side chains that frame the hairline.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/jhoomar-passa-1080.webp" data-zoom><img src="assets/img/pieces/jhoomar-passa-300.webp" srcset="assets/img/pieces/jhoomar-passa-300.webp 300w, assets/img/pieces/jhoomar-passa-450.webp 450w, assets/img/pieces/jhoomar-passa-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Gold jhoomar passa headpiece"><span class="piece__body"><h3>Jhoomar Passa</h3><p>A side-worn passa inspired by royal Mughal jewellery.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/pearl-borla-1080.webp" data-zoom><img src="assets/img/pieces/pearl-borla-300.webp" srcset="assets/img/pieces/pearl-borla-300.webp 300w, assets/img/pieces/pearl-borla-450.webp 450w, assets/img/pieces/pearl-borla-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Pearl borla headpiece"><span class="piece__body"><h3>Pearl Borla</h3><p>A spherical Rajasthani borla finished with pearls.</p></span></a></li>
+        </ul>
       </div>
     </section>
     <section class="collection" id="rings" aria-labelledby="rings-title">
@@ -442,60 +203,12 @@
           </div>
           <p>Engagement solitaires, cocktail rings and wedding bands.</p>
         </header>
-        <div class="piece-grid">
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/solitaire-engagement-ring-400.webp"
-             srcset="assets/img/pieces/solitaire-engagement-ring-400.webp 400w, assets/img/pieces/solitaire-engagement-ring-600.webp 600w, assets/img/pieces/solitaire-engagement-ring-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Solitaire engagement ring in gold">
-              <div class="piece__body">
-                <h3>Solitaire Engagement Ring</h3>
-                <p>A certified solitaire in a classic four-prong gold setting.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/polki-cocktail-ring-400.webp"
-             srcset="assets/img/pieces/polki-cocktail-ring-400.webp 400w, assets/img/pieces/polki-cocktail-ring-600.webp 600w, assets/img/pieces/polki-cocktail-ring-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Polki cocktail ring">
-              <div class="piece__body">
-                <h3>Polki Cocktail Ring</h3>
-                <p>A bold polki ring that complements a traditional bridal set.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/couple-bands-400.webp"
-             srcset="assets/img/pieces/couple-bands-400.webp 400w, assets/img/pieces/couple-bands-600.webp 600w, assets/img/pieces/couple-bands-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Matching gold wedding bands">
-              <div class="piece__body">
-                <h3>Couple Bands</h3>
-                <p>Matching wedding bands, engravable with names or dates.</p>
-              </div>
-            </div>
-          </article>
-          <article class="card piece">
-            <div class="card__inner">
-              <img src="assets/img/pieces/emerald-halo-ring-400.webp"
-             srcset="assets/img/pieces/emerald-halo-ring-400.webp 400w, assets/img/pieces/emerald-halo-ring-600.webp 600w, assets/img/pieces/emerald-halo-ring-800.webp 800w"
-             sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw"
-             width="800" height="1000" loading="lazy" decoding="async"
-             alt="Emerald ring with diamond halo">
-              <div class="piece__body">
-                <h3>Emerald Halo Ring</h3>
-                <p>An emerald centre stone with a halo of diamonds.</p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <ul class="piece-grid" id="rings-grid" role="list">
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/solitaire-engagement-ring-1080.webp" data-zoom><img src="assets/img/pieces/solitaire-engagement-ring-300.webp" srcset="assets/img/pieces/solitaire-engagement-ring-300.webp 300w, assets/img/pieces/solitaire-engagement-ring-450.webp 450w, assets/img/pieces/solitaire-engagement-ring-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Solitaire engagement ring in gold"><span class="piece__body"><h3>Solitaire Engagement Ring</h3><p>A certified solitaire in a classic four-prong gold setting.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/polki-cocktail-ring-1080.webp" data-zoom><img src="assets/img/pieces/polki-cocktail-ring-300.webp" srcset="assets/img/pieces/polki-cocktail-ring-300.webp 300w, assets/img/pieces/polki-cocktail-ring-450.webp 450w, assets/img/pieces/polki-cocktail-ring-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Polki cocktail ring"><span class="piece__body"><h3>Polki Cocktail Ring</h3><p>A bold polki ring that complements a traditional bridal set.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/couple-bands-1080.webp" data-zoom><img src="assets/img/pieces/couple-bands-300.webp" srcset="assets/img/pieces/couple-bands-300.webp 300w, assets/img/pieces/couple-bands-450.webp 450w, assets/img/pieces/couple-bands-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Matching gold wedding bands"><span class="piece__body"><h3>Couple Bands</h3><p>Matching wedding bands, engravable with names or dates.</p></span></a></li>
+          <li class="card piece"><a class="card__inner piece__link" href="assets/img/pieces/emerald-halo-ring-1080.webp" data-zoom><img src="assets/img/pieces/emerald-halo-ring-300.webp" srcset="assets/img/pieces/emerald-halo-ring-300.webp 300w, assets/img/pieces/emerald-halo-ring-450.webp 450w, assets/img/pieces/emerald-halo-ring-600.webp 600w" sizes="(min-width: 1200px) 280px, (min-width: 960px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="750" loading="lazy" decoding="async" alt="Emerald ring with diamond halo"><span class="piece__body"><h3>Emerald Halo Ring</h3><p>An emerald centre stone with a halo of diamonds.</p></span></a></li>
+        </ul>
       </div>
     </section>
 
@@ -507,6 +220,20 @@
         <a class="btn btn--wa" href="https://wa.me/919790112593?text=Hello%21%20I%27d%20like%20to%20ask%20about%20a%20piece%20from%20your%20bridal%20collections." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> Ask on WhatsApp</a>
       </div>
     </section>
+
+    <dialog class="viewer" aria-labelledby="viewer-title" data-viewer>
+      <button class="viewer__close" type="button" data-close aria-label="Close"><svg class="icon icon--stroke" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg></button>
+      <figure class="viewer__figure">
+        <div class="viewer__frame"><img class="viewer__img" src="assets/img/pieces/royal-kundan-bridal-set-300.webp" width="1080" height="1350" loading="lazy" decoding="async" alt=""></div>
+        <figcaption class="viewer__caption">
+          <span class="viewer__count" data-count></span>
+          <h2 class="viewer__title" id="viewer-title">Design</h2>
+          <p class="viewer__desc"></p>
+        </figcaption>
+      </figure>
+      <button class="viewer__step viewer__step--prev" type="button" data-step="-1" aria-label="Previous design"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-prev"></use></svg></button>
+      <button class="viewer__step viewer__step--next" type="button" data-step="1" aria-label="Next design"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-next"></use></svg></button>
+    </dialog>
   </main>
 
   <footer class="site-footer">

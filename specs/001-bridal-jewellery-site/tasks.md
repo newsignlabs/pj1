@@ -184,6 +184,18 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 16: Revision 12 — rounded cards, Contact tidy, scalable Collections
+
+- [x] T075 Brand scrollbars (WebKit thumb gradient; Firefox `scrollbar-color`)
+- [x] T076 Rounded cards (`--radius`), caption strip rounded corner; remove numbers inside collection and highlight cards
+- [x] T077 Light-mode footer wordmark filled pink at 50 % opacity
+- [x] T078 Contact: remove the intro paragraph and the quote card
+- [x] T079 `content/collections.json` + `tools/build_collections.py` generate the Collections sections
+- [x] T080 Piece images 300/450/600 thumbnails + 1080 viewer size; "Show all" per category; `<dialog>` design viewer (`assets/js/collections.js`, Collections only)
+- [x] T081 Budgets: Collections HTML 150 KB, CSS 50 KB, JS 16 KB; constitution 4.1.0
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.

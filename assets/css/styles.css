@@ -99,7 +99,7 @@
   --gutter: 1rem;
   --container: 76rem;
   --header-h: 4.5rem;
-  --cut: 1.5rem;
+  --radius: 1.25rem;
 
   /* Film grain: a static SVG noise tile */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -238,10 +238,37 @@ ul {
 /* Numbers use lining figures, so "1" reads as a one, not a Roman "I" */
 .section-title__num,
 .menu-num,
-.collection-card__num,
-.highlight__num,
 .hero__eyebrow span {
   font-variant-numeric: lining-nums;
+}
+
+/* ---------- Scrollbars: slim pink-to-silver thumb on the page colour ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--bg);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--pink), var(--silver));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-width: 2px;
+  background: var(--pink);
+}
+
+/* Firefox (no ::-webkit-scrollbar): standard thin scrollbar in brand colours */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--pink) var(--bg);
+  }
 }
 
 /* ---------- Small editorial pieces ---------- */
@@ -353,41 +380,35 @@ ul {
   color: #ffffff;
 }
 
-/* ---------- Clipped-edge cards ----------
-   .card is the 1px gradient edge; .card__inner is the face, cut 0.6px
-   less so the diagonal edge stays ~1px wide. Top-left and bottom-right
-   corners are cut. */
+/* ---------- Rounded cards ----------
+   .card is the 1px gradient edge; .card__inner is the face, rounded 1px
+   less so the edge stays an even 1px all the way round. */
 .card {
-  --c: var(--cut);
   position: relative;
   display: block;
   padding: 1px;
+  border-radius: var(--radius);
   background: linear-gradient(150deg, var(--pink-soft), var(--edge-1) 28%, var(--edge-2) 62%, var(--pink-soft));
-  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
   color: inherit;
   text-decoration: none;
 }
 
 .card__inner {
-  --ci: calc(var(--c) - 0.6px);
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 1px);
   background: var(--surface);
-  clip-path: polygon(var(--ci) 0, 100% 0, 100% calc(100% - var(--ci)), calc(100% - var(--ci)) 100%, 0 100%, 0 var(--ci));
 }
 
 .card--plain {
   background: var(--line);
 }
 
-/* Focus ring follows the clipped shape (drawn on the unclipped parent) */
-.card-wrap:focus-within {
-  filter: drop-shadow(0 0 1px var(--pink)) drop-shadow(0 0 1px var(--pink));
-}
-
 a.card:focus-visible {
-  outline: none;
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
 }
 
 a.card:hover {
@@ -1239,8 +1260,8 @@ a.card:hover {
   position: relative;
 }
 
-/* Caption strip: a solid band with its own clipped top-right corner (the card's
-   bottom-right chamfer clips it too). White in light mode, see-through in dark. */
+/* Caption strip: a solid band with a rounded top-right corner.
+   White in light mode, see-through in dark. */
 .collection-card__caption {
   position: absolute;
   left: 0;
@@ -1248,16 +1269,9 @@ a.card:hover {
   bottom: 0;
   padding: 0.7rem 1rem 0.85rem;
   background: var(--strip-bg);
-  clip-path: polygon(0 0, calc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0 100%);
+  border-top-right-radius: var(--radius);
 }
 
-.collection-card__num {
-  display: block;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--pink);
-}
 
 .collection-card h3 {
   margin: 0.15rem 0 0;
@@ -1321,15 +1335,6 @@ a.card:hover {
   padding: 2rem 1.5rem 1.75rem;
 }
 
-.highlight__num {
-  display: block;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-display);
-  font-size: 3rem;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--pink);
-}
 
 .highlight h3 {
   margin-bottom: 0.5rem;
@@ -1725,17 +1730,56 @@ a.card:hover {
   border-top: 1px solid var(--line);
 }
 
+/* Large categories: skip rendering off-screen sections until they are scrolled near */
+.collection {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1400px;
+}
+
 .piece-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.piece {
-  --c: 1.125rem;
+/* Designs behind "Show all" (collections.js); their thumbnails are not fetched */
+.piece-grid.is-collapsed .piece--more {
+  display: none;
+}
+
+.piece__link {
+  color: inherit;
+  text-decoration: none;
+  cursor: zoom-in;
+}
+
+.piece__link:hover h3 {
+  color: var(--pink);
+}
+
+.piece:focus-within {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+}
+
+.piece__link:focus-visible {
+  outline: none;
+}
+
+.more-btn {
+  display: flex;
+  margin: 2.5rem auto 0;
+}
+
+.more-btn[hidden] {
+  display: none;
 }
 
 .piece__body {
+  display: block;
   flex: 1;
   padding: 0.9rem 1rem 1.25rem;
 }
@@ -1766,6 +1810,150 @@ a.card:hover {
 
   .piece-grid > :nth-child(even) {
     margin-top: 2rem;
+  }
+}
+
+/* ---------- Design viewer (collections.js): large photo in a dialog ---------- */
+.viewer {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(8, 7, 10, 0.96);
+  color: #e4e6ea;
+}
+
+.viewer::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.viewer[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewer__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 4rem var(--gutter) 5.5rem;
+}
+
+.viewer__frame {
+  width: min(100%, calc((100svh - 13rem) * 0.8));
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #15131a;
+}
+
+.viewer__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.viewer.is-loading .viewer__img {
+  opacity: 0.3;
+}
+
+.viewer__caption {
+  max-width: 32rem;
+  text-align: center;
+}
+
+.viewer__count {
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  font-variant-numeric: lining-nums;
+  color: #f9a8cf;
+}
+
+.viewer__title {
+  margin: 0.25rem 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.viewer__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #b9bcc3;
+}
+
+.viewer__close,
+.viewer__step {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid rgba(228, 230, 234, 0.35);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #e4e6ea;
+  cursor: pointer;
+}
+
+.viewer__close:hover,
+.viewer__step:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.viewer__close {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.viewer__step {
+  bottom: 1.25rem;
+}
+
+.viewer__step .icon {
+  width: 1.5rem;
+  height: 0.75rem;
+}
+
+.viewer__step--prev {
+  left: calc(50% - 3.75rem);
+}
+
+.viewer__step--next {
+  right: calc(50% - 3.75rem);
+}
+
+@media (min-width: 60rem) {
+  .viewer__step {
+    bottom: auto;
+    top: 50%;
+    margin-top: -1.5rem;
+  }
+
+  .viewer__step--prev {
+    left: 2rem;
+  }
+
+  .viewer__step--next {
+    right: 2rem;
+  }
+
+  .viewer__figure {
+    padding-bottom: 2rem;
+  }
+
+  .viewer__frame {
+    width: min(100%, calc((100svh - 10rem) * 0.8));
   }
 }
 
@@ -2053,6 +2241,10 @@ a.card:hover {
   -webkit-text-stroke: 1px rgba(252, 101, 176, 0.35);
   pointer-events: none;
   user-select: none;
+}
+
+:root[data-theme="light"] .footer-wordmark {
+  color: rgba(252, 101, 176, 0.5);
 }
 
 .footer-spacer {

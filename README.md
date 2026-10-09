@@ -20,7 +20,7 @@ WhatsApp as the way to get in touch.
 - Logo as a hanging medallion in the header on phones, and an end-credits footer with a
   large ringed emblem.
 - Artistic, editorial design: self-hosted Cormorant Garamond, outlined chapter numerals,
-  staggered layouts and clipped-edge cards.
+  staggered layouts and rounded cards.
 - Mobile-first and responsive from 320px phones to wide desktops.
 - WhatsApp click-to-chat (`wa.me`) through a floating button on every page, plus the
   header, footer and Contact page. No contact form; nothing is stored.
@@ -102,11 +102,27 @@ python3 tools/build_brand_assets.py
 This turns the black background transparent and writes `assets/img/brand/logo-{64,128,256}.webp`,
 `assets/icons/favicon-32.png` and `assets/icons/apple-touch-icon.png`.
 
-### Adding a piece
+### Adding designs to Collections
 
-1. Add `images-src/pieces/<new-slug>.jpg` and run the optimiser.
-2. In `collections.html`, copy an existing `<article class="piece">` block inside the right
-   collection and update the image paths, `alt` text, name and description.
+The Collections page is built from `content/collections.json`; don't edit its design cards
+by hand.
+
+1. Put each photo in `images-src/pieces/<slug>.jpg` (portrait, 4:5 works best).
+2. Add an entry under the right category in `content/collections.json`:
+   `{"image": "<slug>", "name": "Design name", "description": "One line", "alt": "What the photo shows"}`
+   (`description` and `alt` are optional).
+3. Run:
+
+   ```bash
+   python3 tools/optimize_images.py      # 300/450/600 px thumbnails + 1080 px viewer photo
+   python3 tools/build_collections.py    # rewrites the category sections of collections.html
+   python3 tools/check_site.py
+   ```
+
+Each category shows its first 8 designs with a "Show all" button; thumbnails load lazily
+and a design's large photo loads only when a visitor taps it. To add a new category, copy a
+`<section class="collection">` in `collections.html`, give it a new `id`, add the category
+to the JSON (and to the category links at the top of the page), then run the build.
 
 ## WhatsApp number and contact details
 

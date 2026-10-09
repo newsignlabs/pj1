@@ -26,8 +26,9 @@ ROOT = Path(__file__).resolve().parent.parent
 KB = 1024
 BUDGETS = {
     "html": 40 * KB,
-    "css": 45 * KB,
-    "js": 10 * KB,
+    "html-collections": 150 * KB,  # grows ~0.6 KB per design; ~15 KB gzip at 150 KB
+    "css": 50 * KB,
+    "js": 16 * KB,
     "image": 120 * KB,
     "hero": 250 * KB,
     "fonts": 60 * KB,
@@ -113,8 +114,9 @@ def main():
 
     for name, (p, text) in parsed.items():
         size = len(text.encode("utf-8"))
-        if size > BUDGETS["html"]:
-            fail(name, f"HTML is {size / KB:.1f} KB (budget {BUDGETS['html'] // KB} KB)")
+        budget = BUDGETS["html-collections"] if name == "collections.html" else BUDGETS["html"]
+        if size > budget:
+            fail(name, f"HTML is {size / KB:.1f} KB (budget {budget // KB} KB)")
         if "<marquee" in text.lower():
             fail(name, "uses <marquee>")
         if "<video" in text.lower():

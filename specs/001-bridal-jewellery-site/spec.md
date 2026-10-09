@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-06
 
-**Status**: Implemented (revision 11)
+**Status**: Implemented (revision 12)
 
 **Revision 2 (2026-10-06)**, from client feedback on the first build: no contact form; add a
 map to the Contact page; no "Enquire on WhatsApp" buttons on every piece; use the supplied
@@ -48,6 +48,13 @@ whole hero (full bleed, under the header) and the progress-bar indicators sit on
 portrait framing is restored (top of the screen on phones, standing on the right on wide
 screens) on a plain dark background with no blurred glow; the hero stays dark in both
 themes. Still no arrow or pause buttons; indicators float at the bottom.
+
+**Revision 12 (2026-10-09)**: brand-coloured scrollbars; rounded cards with no numbers
+inside; light-mode footer wordmark filled pink at 50 % opacity; Contact intro text and
+quote card removed; Collections scales to 100+ photos (generated from
+`content/collections.json`, first 8 designs per category with "Show all", lazy 300–600 px
+thumbnails, a design viewer that loads the 1080 px photo only when opened, and
+`content-visibility` on off-screen categories).
 
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
