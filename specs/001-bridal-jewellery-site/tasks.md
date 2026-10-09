@@ -152,6 +152,16 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 13: Revision 8 — real business details (developer edits made consistent)
+
+- [x] T059 Developer edited `index.html`: tagline "Bridal Collections", page/share titles, footer credits ("Jewels by", "Our Shop"), real phone, email row and "Fin." commented out
+- [x] T060 Apply the same footer, tagline and ring text to Collections, Contact and 404
+- [x] T061 One WhatsApp/phone number on every link: `919790112593` (fixes a `wa.me` link missing the 91 country code)
+- [x] T062 Annur shop address in the Contact details, footer and Google Maps embed/directions; Contact label "Our Shop"
+- [ ] T063 Real email address and opening hours (needs client input)
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.
