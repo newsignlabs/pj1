@@ -159,6 +159,9 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T061 One WhatsApp/phone number on every link: `919790112593` (fixes a `wa.me` link missing the 91 country code)
 - [x] T062 Annur shop address in the Contact details, footer and Google Maps embed/directions; Contact label "Our Shop"
 - [ ] T063 Real email address and opening hours (needs client input)
+- [x] T064 Footer ring text "BEAUTIFUL DESIGNS & QUALITY", "Fin." removed, "Designed by NewsignLabs" credit linking to newsignlabs.in
+- [x] T065 Replace "atelier" with "shop"/"our shop"; Roman numerals with natural numbers (lining figures); remove "scene"/"chapter" wording
+- [x] T066 Rewrite site copy in a light business tone; Our Story describes a new shop in Annur; neutral "Why shop with us" points (no unverified hallmark/repair claims)
 
 ---
 

@@ -231,6 +231,16 @@ ul {
   stroke-linejoin: round;
 }
 
+/* Numbers use lining figures, so "1" reads as a one, not a Roman "I" */
+.section-title__num,
+.menu-num,
+.collection-card__num,
+.highlight__num,
+.hero__eyebrow span,
+.hero__count {
+  font-variant-numeric: lining-nums;
+}
+
 /* ---------- Small editorial pieces ---------- */
 .eyebrow {
   display: inline-flex;
@@ -1951,14 +1961,14 @@ a.card:hover {
   overflow-wrap: break-word;
 }
 
-.footer-scenes {
+.footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 3rem;
 }
 
-.footer-scenes li + li::before {
+.footer-links li + li::before {
   content: "\25C6";
   padding-inline: 0.75rem;
   font-size: 0.5rem;
@@ -1966,7 +1976,7 @@ a.card:hover {
   vertical-align: middle;
 }
 
-.footer-scenes a {
+.footer-links a {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
