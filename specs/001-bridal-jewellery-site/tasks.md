@@ -174,6 +174,14 @@ description: "Task list for the bridal jewellery showcase website"
 
 ---
 
+## Phase 15: Revision 10 — full-bleed hero
+
+- [x] T071 Remove the arrow and pause buttons (HTML, CSS, JS)
+- [x] T072 Slide photos cover the whole hero under the header; legibility gradients; header items stay light over the photo in both themes
+- [x] T073 Progress-bar indicators laid over the photo; audit requires hover/focus/hidden-tab pauses; constitution 4.0.0
+
+---
+
 ## Dependencies & Execution Order
 
 - Setup (T001–T003) → Foundational (T004–T010) → US1, US2, US3 (independent of each other) → Polish.
