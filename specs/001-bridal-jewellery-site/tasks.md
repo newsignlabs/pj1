@@ -205,6 +205,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T088 GitHub Action builds and commits images and the page after uploads to `main`
 - [x] T089 Add the client's temple necklace set photo to Bridal Sets › Antique
 - [x] T090 Second Antique photo; gallery photo card is black (no grey sides) with a pink gradient border; photos ordered by name without extension
+- [x] T091 Fix: the gallery dialog's placeholder image pointed at a piece photo, so deleting that photo failed the site check and the workflow did not publish; it now uses the logo
 
 ---
 
