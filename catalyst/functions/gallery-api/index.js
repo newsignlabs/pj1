@@ -5,12 +5,13 @@
  * repository. The "Build site from photo folders" workflow then builds the pictures and
  * Catalyst Slate publishes the site. No npm dependencies (Node 18+).
  *
- * Routes (JSON; all but /login need "Authorization: Bearer <token>"):
- *   POST /login   {username, password}            -> {token, name, role}
- *   GET  /tree                                    -> {head, role, files[], collections}
- *   POST /blob    {content: base64 image}         -> {sha}
- *   POST /commit  {message, changes[], collections?} -> {commit}
- *   GET  /status?sha=<commit>                     -> {state, conclusion, url}
+ * Routes (all POST with a JSON body; all but /login also need "token" from /login in the body,
+ * because Catalyst rejects requests that carry their own Authorization header):
+ *   /login   {username, password}                    -> {token, name, role}
+ *   /tree    {token}                                 -> {head, role, files[], collections}
+ *   /blob    {token, content: base64 image}          -> {sha}
+ *   /commit  {token, message, changes[], collections?} -> {commit}
+ *   /status  {token, sha}                            -> {state, conclusion, url}
  *
  * Roles: "client" manages Collections photos and sub-collections and edits category titles
  * and intros; "developer" can also add or remove categories and replace the slider, quote,
@@ -330,8 +331,8 @@ function send(res, status, data, origin) {
   const headers = { "Content-Type": "application/json", "Cache-Control": "no-store" };
   if (origin) {
     headers["Access-Control-Allow-Origin"] = origin;
-    headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type";
-    headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS";
+    headers["Access-Control-Allow-Headers"] = "Content-Type";
+    headers["Access-Control-Allow-Methods"] = "POST, OPTIONS";
     headers.Vary = "Origin";
   }
   res.writeHead(status, headers);
@@ -346,18 +347,23 @@ module.exports = async (req, res) => {
     const url = new URL(req.url, "http://local");
     const route = url.pathname.replace(/\/+$/, "").split("/").pop();
 
-    if (route === "login" && req.method === "POST") return send(res, 200, await login(await readBody(req)), origin);
+    if (req.method !== "POST") throw new HttpError(405, "Use POST.");
+    const body = await readBody(req);
 
-    const session = verify(String(req.headers.authorization || "").replace(/^Bearer\s+/i, ""));
+    if (route === "login") return send(res, 200, await login(body), origin);
+
+    // The session token travels in the JSON body, not in an Authorization header: Catalyst
+    // treats any Authorization header as a Catalyst sign-in and rejects it with 401.
+    const session = verify(body.token);
     if (!session) throw new HttpError(401, "Please log in again.");
 
-    if (route === "tree" && req.method === "GET") {
+    if (route === "tree") {
       const { head, files, collections } = await readTree();
       return send(res, 200, { head, role: session.role, name: session.name, files, collections }, origin);
     }
-    if (route === "blob" && req.method === "POST") return send(res, 200, await createBlob(await readBody(req)), origin);
-    if (route === "commit" && req.method === "POST") return send(res, 200, await commit(await readBody(req), session), origin);
-    if (route === "status" && req.method === "GET") return send(res, 200, await status(url.searchParams.get("sha")), origin);
+    if (route === "blob") return send(res, 200, await createBlob(body), origin);
+    if (route === "commit") return send(res, 200, await commit(body, session), origin);
+    if (route === "status") return send(res, 200, await status(body.sha), origin);
     throw new HttpError(404, "Not found.");
   } catch (err) {
     const status = err instanceof HttpError ? err.status : 500;
