@@ -224,10 +224,11 @@ description: "Task list for the bridal jewellery showcase website"
 
 - [x] T102 Catalyst Advanced I/O function `gallery-api` (no dependencies): scrypt logins with signed 12 h sessions, two roles (client, developer), GitHub App token, path allow-list, image signature check, one commit per save (retries if main moved), workflow status
 - [x] T103 `/admin/` page: categories, sub-collections, add (resized in the browser) / delete / cover / rename, category text, site pictures (developer), pending-changes tray, publish status
-- [x] T104 `tools/admin_password.py`; `tools/build_collections.py` drops sections of deleted categories; robots.txt excludes /admin/ and /catalyst/
+- [x] T104 `tools/build_collections.py` drops sections of deleted categories; robots.txt excludes /admin/ and /catalyst/
 - [x] T105 End-to-end test against a git-backed mock GitHub: client and developer saves produce the expected commits and the real build passes
 - [ ] T106 Create the GitHub App, deploy the function, set environment variables and `admin/config.js` (developer, see admin/README.md)
 - [x] T107 Floating Instagram button stacked above the floating WhatsApp button on every page
+- [x] T108 Admin logins use plain-text passwords from the function's environment (DEVELOPER_PASSWORD, CLIENT_PASSWORD; constant-time check); tools/admin_password.py removed
 
 ---
 

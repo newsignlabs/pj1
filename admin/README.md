@@ -48,18 +48,12 @@ Repository settings to keep:
   workflow commits the built pictures).
 - If you protect `main` later, add the App to the rule's **bypass list**.
 
-### 2. Make the two admin passwords
+### 2. Choose the two admin passwords
 
-On a computer with Python 3:
-
-```bash
-python3 tools/admin_password.py developer developer "Developer"
-python3 tools/admin_password.py cutelook client "Cute Look"
-```
-
-Each command asks for a password (12+ characters) and prints one line of JSON. Put both in
-a list: `[{...developer...}, {...cutelook...}]` — this is `ADMIN_USERS`. Passwords are stored
-only as scrypt hashes. To change a password later, run the command again and replace that entry.
+Pick one password for the developer and one for the shop (12+ characters, not used
+anywhere else). They are stored as plain text in the function's environment variables
+(step 3), so only people with access to the Catalyst project can read them. To change a
+password, edit the variable in the Catalyst console; it applies at the next login.
 
 ### 3. Deploy the Catalyst function
 
@@ -81,7 +75,9 @@ Environment variables**, add:
 | `GH_INSTALLATION_ID` | Installation ID from step 1 |
 | `GH_PRIVATE_KEY` | full contents of the `.pem` file (new lines may be written as `\n`) |
 | `GH_OWNER` / `GH_REPO` / `GH_BRANCH` | `newsignlabs` / `pj1` / `main` |
-| `ADMIN_USERS` | the JSON list from step 2 |
+| `DEVELOPER_PASSWORD` | developer password from step 2 (username: `developer`) |
+| `CLIENT_PASSWORD` | shop password from step 2 (username: `cutelook`) |
+| `DEVELOPER_USERNAME` / `CLIENT_USERNAME` | optional, to use other usernames |
 | `SESSION_SECRET` | a long random string, e.g. `python3 -c "import secrets;print(secrets.token_urlsafe(48))"` |
 | `ALLOWED_ORIGINS` | `https://pj1-midrqtyj.onslate.in` (add the custom domain too when it exists, comma-separated) |
 

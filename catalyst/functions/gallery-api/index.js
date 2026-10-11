@@ -19,7 +19,8 @@
  * Environment variables (Catalyst console > Functions > gallery-api > Configuration):
  *   GH_APP_ID, GH_INSTALLATION_ID, GH_PRIVATE_KEY   GitHub App (private key PEM; "\n" allowed)
  *   GH_OWNER, GH_REPO, GH_BRANCH                    e.g. newsignlabs, pj1, main
- *   ADMIN_USERS     JSON from tools/admin_password.py: [{"username","name","role","salt","hash"}]
+ *   DEVELOPER_PASSWORD, CLIENT_PASSWORD   the two admin passwords (plain text)
+ *   DEVELOPER_USERNAME, CLIENT_USERNAME   optional; default "developer" and "cutelook"
  *   SESSION_SECRET  long random string (signs login sessions)
  *   ALLOWED_ORIGINS comma-separated site origins, e.g. https://pj1-midrqtyj.onslate.in
  */
@@ -70,26 +71,29 @@ function verify(token) {
   }
 }
 
+// The two admin accounts, from plain-text passwords in the function's environment variables.
 function users() {
-  try {
-    return JSON.parse(env("ADMIN_USERS"));
-  } catch (e) {
-    throw new HttpError(500, "ADMIN_USERS is not valid JSON.");
-  }
+  const list = [
+    { username: env("DEVELOPER_USERNAME", "developer"), name: "Developer", role: "developer", password: process.env.DEVELOPER_PASSWORD },
+    { username: env("CLIENT_USERNAME", "cutelook"), name: "Cute Look", role: "client", password: process.env.CLIENT_PASSWORD },
+  ].filter((u) => u.password);
+  if (!list.length) throw new HttpError(500, "Server is not configured (DEVELOPER_PASSWORD / CLIENT_PASSWORD missing).");
+  return list.map((u) => ({ ...u, username: u.username.trim().toLowerCase() }));
 }
 
+// Compare fixed-length digests so the check takes the same time whatever is typed.
+const digest = (text) => crypto.createHash("sha256").update(String(text)).digest();
+
 async function login(body) {
+  const typed = digest(body.password || "");
   const user = users().find((u) => u.username === String(body.username || "").trim().toLowerCase());
-  const salt = Buffer.from(user ? user.salt : "00", "hex");
-  const hash = crypto.scryptSync(String(body.password || ""), salt, 64, { N: 16384, r: 8, p: 1 });
-  const ok = user && crypto.timingSafeEqual(hash, Buffer.from(user.hash, "hex"));
+  const ok = user && crypto.timingSafeEqual(typed, digest(user.password));
   if (!ok) {
     await new Promise((r) => setTimeout(r, 600)); // slow down guessing
     throw new HttpError(401, "Wrong username or password.");
   }
-  const role = user.role === "developer" ? "developer" : "client";
-  const token = sign({ u: user.username, name: user.name || user.username, role, exp: Date.now() + SESSION_HOURS * 3600e3 });
-  return { token, name: user.name || user.username, role };
+  const token = sign({ u: user.username, name: user.name, role: user.role, exp: Date.now() + SESSION_HOURS * 3600e3 });
+  return { token, name: user.name, role: user.role };
 }
 
 /* ---------- GitHub App ---------- */
