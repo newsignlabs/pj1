@@ -114,7 +114,7 @@ range; everything else stays still for comfort and performance.
 - Dark is the default theme. A light (ivory) theme is available from a switch in the top
   bar and is remembered on the device. The hero and photographic quote sections stay dark
   in both themes, like a cinema screen. The logo's silver and pink are the only accent
-  colours (WhatsApp green is allowed on WhatsApp buttons only).
+  colours (WhatsApp green on WhatsApp buttons and Instagram's gradient on the floating Instagram button only).
 - Copy is written in a clear, friendly business tone for a new local shop: no theatrical
   wording such as "scene", "chapter" or "atelier" (use "shop" / "our shop"), and numbers
   are natural (1, 2, 3 or 01, 02), never Roman numerals. Copy is in English only: no Hindi
