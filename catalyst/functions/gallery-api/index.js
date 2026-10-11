@@ -100,14 +100,17 @@ async function login(body) {
 
 let cachedToken = null;
 
-// Accept the private key however it was pasted: with real line breaks, with "\n", or with
-// the line breaks turned into spaces (common when pasting into a one-line field on a phone).
+// Accept the private key however it was pasted: with real line breaks, with "\n", with the
+// line breaks turned into spaces (common when pasting into a one-line field on a phone), or
+// even without the -----BEGIN/END----- lines.
 function pem(raw) {
   const text = String(raw).replace(/\\n/g, "\n").trim();
   const m = text.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
-  if (!m) throw new HttpError(500, "GH_PRIVATE_KEY is not a PEM private key.");
-  const body = m[2].replace(/\s+/g, "").match(/.{1,64}/g).join("\n");
-  return `-----BEGIN ${m[1]}-----\n${body}\n-----END ${m[1]}-----\n`;
+  const body = (m ? m[2] : text.replace(/-----[A-Z ]+-----/g, "")).replace(/\s+/g, "");
+  if (!/^MII[A-Za-z0-9+/=]+$/.test(body)) throw new HttpError(500, "GH_PRIVATE_KEY is not a private key.");
+  // GitHub App keys are PKCS#1 ("RSA PRIVATE KEY"); PKCS#8 keys carry the RSA algorithm id.
+  const label = m ? m[1] : /^MII.{0,8}IBADANBgkqhkiG9w0BAQEF/.test(body) ? "PRIVATE KEY" : "RSA PRIVATE KEY";
+  return `-----BEGIN ${label}-----\n${body.match(/.{1,64}/g).join("\n")}\n-----END ${label}-----\n`;
 }
 
 async function installationToken() {
