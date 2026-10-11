@@ -106,10 +106,13 @@
   function api(route, options) {
     options = options || {};
     if (!API) { return Promise.reject(new Error("The admin is not connected yet: set the function address in admin/config.js.")); }
+    // Every call is a POST; the session token goes in the body (Catalyst rejects requests that
+    // carry their own Authorization header).
+    var body = Object.assign({}, options.body || {}, session && route !== "login" ? { token: session.token } : {});
     return fetch(API + "/" + route, {
-      method: options.method || "GET",
-      headers: Object.assign({ "Content-Type": "application/json" }, session ? { Authorization: "Bearer " + session.token } : {}),
-      body: options.body ? JSON.stringify(options.body) : undefined
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
     }).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (data) {
         if (res.status === 401 && route !== "login") { logout(); }
@@ -521,7 +524,7 @@
 
   function watch(sha, tries) {
     setTimeout(function () {
-      api("status?sha=" + sha).then(function (s) {
+      api("status", { body: { sha: sha } }).then(function (s) {
         if (s.state !== "completed") {
           if (tries < 60) { watch(sha, tries + 1); }
           return;
