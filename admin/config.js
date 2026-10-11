@@ -4,5 +4,5 @@
  * e.g. "https://cutelook-60086752536.development.catalystserverless.in/server/gallery-api"
  */
 window.CUTELOOK_ADMIN = {
-  api: ""
+  api: "https://clb-60086752536.development.catalystserverless.in/server/gallery-api/"
 };
