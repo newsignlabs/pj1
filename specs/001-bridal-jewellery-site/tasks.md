@@ -229,6 +229,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [ ] T106 Create the GitHub App, deploy the function, set environment variables and `admin/config.js` (developer, see admin/README.md)
 - [x] T107 Floating Instagram button stacked above the floating WhatsApp button on every page
 - [x] T108 Admin logins use plain-text passwords from the function's environment (DEVELOPER_PASSWORD, CLIENT_PASSWORD; constant-time check); tools/admin_password.py removed
+- [x] T109 Browser-only setup: `catalyst/gallery-api.zip` (tools/pack_function.py, checked by check_site, repacked by the workflow) for Catalyst console File Upload; private key accepted with spaces or \n instead of line breaks; admin/README.md rewritten for phone setup
 
 ---
 

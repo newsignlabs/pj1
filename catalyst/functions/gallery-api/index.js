@@ -100,12 +100,22 @@ async function login(body) {
 
 let cachedToken = null;
 
+// Accept the private key however it was pasted: with real line breaks, with "\n", or with
+// the line breaks turned into spaces (common when pasting into a one-line field on a phone).
+function pem(raw) {
+  const text = String(raw).replace(/\\n/g, "\n").trim();
+  const m = text.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
+  if (!m) throw new HttpError(500, "GH_PRIVATE_KEY is not a PEM private key.");
+  const body = m[2].replace(/\s+/g, "").match(/.{1,64}/g).join("\n");
+  return `-----BEGIN ${m[1]}-----\n${body}\n-----END ${m[1]}-----\n`;
+}
+
 async function installationToken() {
   if (cachedToken && cachedToken.expires - Date.now() > 5 * 60e3) return cachedToken.token;
   const now = Math.floor(Date.now() / 1000);
   const head = b64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
   const claims = b64url(JSON.stringify({ iat: now - 60, exp: now + 540, iss: env("GH_APP_ID") }));
-  const key = env("GH_PRIVATE_KEY").replace(/\\n/g, "\n");
+  const key = pem(env("GH_PRIVATE_KEY"));
   const signature = b64url(crypto.createSign("RSA-SHA256").update(`${head}.${claims}`).sign(key));
   const res = await gh(`/app/installations/${env("GH_INSTALLATION_ID")}/access_tokens`, {
     method: "POST",

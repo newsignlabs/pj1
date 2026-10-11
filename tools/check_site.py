@@ -245,6 +245,9 @@ def main():
     # CSS/JS links carry a content version so browsers never keep stale files
     sys.path.insert(0, str(ROOT / "tools"))
     import stamp_assets
+    import pack_function
+    if not pack_function.is_current():
+        fail("catalyst/gallery-api.zip", "out of date with catalyst/functions/gallery-api: run python3 tools/pack_function.py")
     for stale in stamp_assets.stale_pages():
         fail(stale, "CSS/JS versions are missing or out of date: run python3 tools/stamp_assets.py")
 
