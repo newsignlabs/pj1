@@ -2386,9 +2386,11 @@ a.card:hover {
   filter: brightness(1.1);
 }
 
+/* The Instagram glyph fills 18 of its 24 units (WhatsApp fills all 24), so it is drawn
+   larger to look the same size as the WhatsApp icon (1.75rem). */
 .ig-float .icon {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2.15rem;
+  height: 2.15rem;
 }
 
 /* ---------- 404 ---------- */
