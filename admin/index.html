@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08070a">
+  <title>Photo admin · Cute Look</title>
+  <link rel="icon" href="../assets/icons/favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="admin.css">
+  <script src="config.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <noscript><p class="notice">The photo admin needs JavaScript.</p></noscript>
+
+  <!-- Login -->
+  <main class="login" id="login-view" hidden>
+    <form class="login__card" id="login-form">
+      <img class="login__logo" src="../assets/img/brand/logo-128.webp" width="96" height="96" alt="">
+      <h1>Photo admin</h1>
+      <p class="muted">Cute Look Bridal Collections</p>
+      <label>Username <input name="username" autocomplete="username" required autocapitalize="none"></label>
+      <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+      <p class="error" id="login-error" role="alert"></p>
+      <button class="btn btn--primary" type="submit">Log in</button>
+    </form>
+  </main>
+
+  <!-- App -->
+  <div class="app" id="app-view" hidden>
+    <header class="topbar">
+      <div class="topbar__brand"><img src="../assets/img/brand/logo-64.webp" width="36" height="36" alt=""><span>Photo admin</span></div>
+      <nav class="tabs" aria-label="Sections">
+        <button type="button" class="tab" data-tab="collections" aria-pressed="true">Collections</button>
+        <button type="button" class="tab" data-tab="pictures" aria-pressed="false" hidden>Site pictures</button>
+      </nav>
+      <div class="topbar__user"><span id="user-name"></span> <button type="button" class="link" id="logout">Log out</button></div>
+    </header>
+
+    <div class="banner" id="banner" role="status" hidden></div>
+
+    <section class="panel" id="collections-panel">
+      <div class="categories" id="categories" role="tablist" aria-label="Categories"></div>
+      <div id="category"></div>
+    </section>
+
+    <section class="panel" id="pictures-panel" hidden>
+      <p class="muted">Each picture holds one photo. Choose a new photo to replace it; it is cropped from the centre.</p>
+      <div class="slots" id="slots"></div>
+    </section>
+
+    <footer class="tray" id="tray" hidden>
+      <span id="tray-text"></span>
+      <span class="tray__actions">
+        <button type="button" class="btn" id="discard">Discard</button>
+        <button type="button" class="btn btn--primary" id="save">Save &amp; publish</button>
+      </span>
+    </footer>
+  </div>
+
+  <input type="file" id="file-input" accept="image/*,.heic,.heif" multiple hidden>
+</body>
+</html>
