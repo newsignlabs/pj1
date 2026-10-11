@@ -3,3 +3,5 @@ Allow: /
 Disallow: /images-src/
 Disallow: /tools/
 Disallow: /specs/
+Disallow: /admin/
+Disallow: /catalyst/

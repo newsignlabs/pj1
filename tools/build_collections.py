@@ -152,6 +152,12 @@ def main():
             last = list(re.finditer(r'<section class="collection" id="[^"]+".*?</section>', page, re.S))[-1]
             page = page[: last.end()] + "\n    " + html + page[last.end():]
 
+    # Categories that were removed (no JSON entry and no folder): drop their sections
+    wanted = {c["id"] for c in categories}
+    for m in list(re.finditer(r'\n\s*<section class="collection" id="([^"]+)".*?</section>', page, re.S)):
+        if m.group(1) not in wanted:
+            page = page.replace(m.group(0), "", 1)
+
     nav = "\n".join(f'          <li><a href="#{escape(c["id"])}">{escape(c["title"])}</a></li>' for c in categories)
     page = re.sub(r'(<nav class="category-nav"[^>]*>\s*<div class="container">\s*<ul>\n).*?(\n\s*</ul>)',
                   lambda m: m.group(1) + nav + m.group(2), page, count=1, flags=re.S)

@@ -1,0 +1,8 @@
+{
+  "name": "gallery-api",
+  "version": "1.0.0",
+  "description": "Cute Look admin: commits photo changes to GitHub",
+  "main": "index.js",
+  "private": true,
+  "engines": { "node": ">=18" }
+}

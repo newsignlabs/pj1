@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "targets": ["gallery-api"],
+    "ignore": [],
+    "source": "functions"
+  }
+}

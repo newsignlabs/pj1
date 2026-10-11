@@ -795,7 +795,8 @@ a.card:hover {
   overflow: hidden;
 }
 
-.menu-open .wa-float {
+.menu-open .wa-float,
+.menu-open .ig-float {
   display: none;
 }
 
@@ -2312,7 +2313,7 @@ a.card:hover {
 }
 
 .footer-spacer {
-  height: 4.5rem; /* room so the floating WhatsApp button never covers the credits */
+  height: 8.5rem; /* room so the floating Instagram and WhatsApp buttons never cover the credits */
 }
 
 @media (min-width: 60rem) {
@@ -2361,6 +2362,33 @@ a.card:hover {
 .wa-float .icon {
   width: 1.75rem;
   height: 1.75rem;
+}
+
+/* Instagram sits directly above WhatsApp, in Instagram's own gradient */
+.ig-float {
+  position: fixed;
+  right: 1rem;
+  bottom: 5.25rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.ig-float:hover {
+  color: #ffffff;
+  filter: brightness(1.1);
+}
+
+.ig-float .icon {
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 /* ---------- 404 ---------- */

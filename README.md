@@ -164,6 +164,14 @@ and the "Open in Google Maps" / "Get directions" links. Tip: in Google Maps, sea
 business listing and use its exact name and address (e.g. `Cute Look Bridal Collections, Main Bazaar, Jaipur`)
 so the pin lands on the shop.
 
+## Photo admin page
+
+`/admin/` lets the shop add and delete Collections photos, manage sub-collections and edit
+category text from a phone, without GitHub; the developer account can also replace the
+other site pictures and add categories. It talks to the `gallery-api` Catalyst function
+(`catalyst/functions/gallery-api/`), which commits to `main` with a GitHub App. Setup steps
+(GitHub App permissions, Catalyst deploy, passwords) are in [`admin/README.md`](admin/README.md).
+
 ## Browser caching
 
 CSS and JS links carry a content version (`styles.css?v=3f9a1c2b`). After editing CSS or
