@@ -48,55 +48,73 @@ Repository settings to keep:
   workflow commits the built pictures).
 - If you protect `main` later, add the App to the rule's **bypass list**.
 
-### 2. Make the two admin passwords
+### 2. Choose the two admin passwords
 
-On a computer with Python 3:
+Pick one password for the developer and one for the shop (12+ characters, not used
+anywhere else). They are stored as plain text in the function's environment variables
+(step 3), so only people with access to the Catalyst project can read them. To change a
+password, edit the variable in the Catalyst console; it applies at the next login.
 
-```bash
-python3 tools/admin_password.py developer developer "Developer"
-python3 tools/admin_password.py cutelook client "Cute Look"
-```
+### 3. Create the Catalyst function (in the browser — no laptop or CLI needed)
 
-Each command asks for a password (12+ characters) and prints one line of JSON. Put both in
-a list: `[{...developer...}, {...cutelook...}]` — this is `ADMIN_USERS`. Passwords are stored
-only as scrypt hashes. To change a password later, run the command again and replace that entry.
+Everything below works from a phone browser. Use the same Catalyst project that hosts
+the Slate site.
 
-### 3. Deploy the Catalyst function
+**a. Create the function — choose one way**
 
-Requires the Catalyst CLI (`npm install -g zcatalyst-cli`) and Node 18+.
+- **Upload the ready-made ZIP (easiest).** Download
+  <https://github.com/newsignlabs/pj1/raw/main/catalyst/gallery-api.zip> to the phone.
+  In the **Catalyst console → Serverless → Functions → Create Function**, choose
+  **File Upload**, then:
+  - Function name: `gallery-api`
+  - Type: **Advanced I/O**
+  - Stack: **Node.js 18** or newer
+  - Upload `gallery-api.zip` and create.
+- **Or paste the code.** **Create Function** → name `gallery-api`, type **Advanced I/O**,
+  stack **Node.js 18** or newer, **blank template** (not Express). In the function's code
+  editor, replace everything in `index.js` with the code from
+  <https://raw.githubusercontent.com/newsignlabs/pj1/main/catalyst/functions/gallery-api/index.js>
+  (open it, select all, copy, paste) and **Save / Deploy**. No npm packages are needed.
 
-```bash
-cd catalyst
-catalyst login
-catalyst init          # choose the existing project (the one with the Slate app); keep functions/
-catalyst deploy --only functions
-```
-
-Then in the **Catalyst console → Serverless → Functions → gallery-api → Configuration →
-Environment variables**, add:
+**b. Environment variables** — open **gallery-api → Configuration → Environment
+variables** and add:
 
 | Variable | Value |
 |----------|-------|
 | `GH_APP_ID` | App ID from step 1 |
 | `GH_INSTALLATION_ID` | Installation ID from step 1 |
-| `GH_PRIVATE_KEY` | full contents of the `.pem` file (new lines may be written as `\n`) |
+| `GH_PRIVATE_KEY` | the whole `.pem` file, from `-----BEGIN` to `-----END … KEY-----` (see the phone tip below) |
 | `GH_OWNER` / `GH_REPO` / `GH_BRANCH` | `newsignlabs` / `pj1` / `main` |
-| `ADMIN_USERS` | the JSON list from step 2 |
-| `SESSION_SECRET` | a long random string, e.g. `python3 -c "import secrets;print(secrets.token_urlsafe(48))"` |
+| `DEVELOPER_PASSWORD` | developer password from step 2 (username: `developer`) |
+| `CLIENT_PASSWORD` | shop password from step 2 (username: `cutelook`) |
+| `DEVELOPER_USERNAME` / `CLIENT_USERNAME` | optional, to use other usernames |
+| `SESSION_SECRET` | any long random text, 40+ characters (letters and numbers typed at random are fine); it signs logins |
 | `ALLOWED_ORIGINS` | `https://pj1-midrqtyj.onslate.in` (add the custom domain too when it exists, comma-separated) |
 
-Copy the function's **URL** (ends in `/server/gallery-api`). If the browser reports a CORS
-error, also add the site address under **Catalyst console → Settings → Authorized Domains**.
+Phone tip for `GH_PRIVATE_KEY`: open the downloaded `.pem` file in the phone's Files app
+with a text viewer or editor, select all, copy, and paste into the value box. It is fine if
+the line breaks turn into spaces or `\n` — the function rebuilds the key.
 
-### 4. Connect the admin page
+**c. Copy the function URL** shown on the function's page (it ends in
+`/server/gallery-api`). If the admin later shows a CORS / "Failed to fetch" error, add the
+site address under **Catalyst console → Settings → Authorized Domains**.
 
-Put the function URL in `admin/config.js`:
+### 4. Connect the admin page (on github.com)
+
+Open `admin/config.js` in the repository on github.com, tap the **pencil (Edit)**, put the
+function URL between the quotes, and **Commit changes** to `main`:
 
 ```js
 window.CUTELOOK_ADMIN = { api: "https://…/server/gallery-api" };
 ```
 
-Commit to `main`. Open `https://<site>/admin/` and log in with each account.
+After about a minute, open `https://pj1-midrqtyj.onslate.in/admin/` and log in with each
+account.
+
+**Updating the function later:** when its code changes in the repository, the ZIP at
+`catalyst/gallery-api.zip` is rebuilt automatically; upload it again in the console (or
+paste the new `index.js`). On a computer you can instead use the Catalyst CLI from the
+`catalyst/` folder (`catalyst deploy --only functions`).
 
 ---
 

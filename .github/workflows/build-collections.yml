@@ -11,6 +11,7 @@ on:
       - "images-src/**"
       - "content/collections.json"
       - "tools/**"
+      - "catalyst/functions/**"
       - "assets/css/**"
       - "assets/js/**"
   workflow_dispatch:
@@ -49,12 +50,15 @@ jobs:
       - name: Version CSS/JS links so browsers fetch changed files
         run: python tools/stamp_assets.py
 
+      - name: Repack the admin function ZIP
+        run: python tools/pack_function.py
+
       - name: Check the site
         run: python tools/check_site.py
 
       - name: Commit generated files
         run: |
-          git add -A images-src assets *.html
+          git add -A images-src assets *.html catalyst/gallery-api.zip
           if git diff --cached --quiet; then
             echo "Nothing to update."
             exit 0
