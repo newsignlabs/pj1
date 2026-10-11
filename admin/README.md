@@ -93,7 +93,7 @@ variables** and add:
 
 Phone tip for `GH_PRIVATE_KEY`: open the downloaded `.pem` file in the phone's Files app
 with a text viewer or editor, select all, copy, and paste into the value box. It is fine if
-the line breaks turn into spaces or `\n`, or if the `-----BEGIN`/`-----END` lines are left out — the function rebuilds the key.
+the line breaks turn into spaces or `\n` — the function rebuilds the key.
 
 **c. Copy the function URL** shown on the function's page (it ends in
 `/server/gallery-api`). If the admin later shows a CORS / "Failed to fetch" error, add the
