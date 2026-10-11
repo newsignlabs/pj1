@@ -218,7 +218,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T098 README "Updating photos" table of folders
 - [x] T099 Remove the heirloom quote; move the "Some jewels are worn" card into its place; remove unused quote backgrounds and folders
 - [x] T100 Header: WhatsApp button becomes a plain icon (no box) beside a new Instagram icon; phone menu adds an Instagram link
-- [ ] T101 Real Instagram profile URL (placeholder https://www.instagram.com/; needs client input)
+- [x] T101 Instagram profile: https://www.instagram.com/cute_look_bridal_collections/
 
 ---
 
