@@ -172,6 +172,11 @@ other site pictures and add categories. It talks to the `gallery-api` Catalyst f
 (`catalyst/functions/gallery-api/`), which commits to `main` with a GitHub App. Setup steps
 (GitHub App permissions, Catalyst deploy, passwords) are in [`admin/README.md`](admin/README.md).
 
+Prices are typed in the admin under each photo (whole rupees) and saved in
+`content/prices.json`. A card shows "From ₹…" (its lowest price), the gallery shows each
+photo's price, and photos without a price show "Price on request". The admin switch
+**Show prices on the website** hides or shows all prices at once.
+
 ## Browser caching
 
 CSS and JS links carry a content version (`styles.css?v=3f9a1c2b`). After editing CSS or

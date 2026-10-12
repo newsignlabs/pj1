@@ -230,6 +230,7 @@ description: "Task list for the bridal jewellery showcase website"
 - [x] T107 Floating Instagram button stacked above the floating WhatsApp button on every page
 - [x] T108 Admin logins use plain-text passwords from the function's environment (DEVELOPER_PASSWORD, CLIENT_PASSWORD; constant-time check); tools/admin_password.py removed
 - [x] T109 Browser-only setup: `catalyst/gallery-api.zip` (tools/pack_function.py, checked by check_site, repacked by the workflow) for Catalyst console File Upload; private key accepted with spaces or \n instead of line breaks; admin/README.md rewritten for phone setup
+- [x] T110 Prices: `content/prices.json` (whole rupees per photo + "show" switch); build_collections.py adds card "From ₹…" / "Price on request" and per-photo gallery prices; admin price box under each photo and a "Show prices on the website" switch; gallery-api reads/validates/commits prices and drops prices of deleted photos; workflow also runs on prices.json
 
 ---
 

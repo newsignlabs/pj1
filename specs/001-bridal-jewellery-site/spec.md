@@ -83,6 +83,12 @@ client) manages Collections photos, sub-collections and category text; the devel
 also replace site pictures and add or remove categories. A Catalyst function holds the
 GitHub App key and commits each save; the existing workflow builds and publishes.
 
+**Revision 18 (2026-10-12)**: prices. Each Collections photo can have a price in whole
+rupees (₹, Indian digit grouping), stored in `content/prices.json` and edited in the admin
+by both accounts. A card shows "From ₹<lowest>" ("₹<price>" for a one-photo card), the
+gallery shows each photo's price, and an unpriced card or photo shows "Price on request".
+No note under prices. An admin-only switch shows or hides all prices on the website.
+
 **Input**: User description: "I need to create a static website for a bridal jewellery business. The website will have home, collections and Contact page. The page will have whatsapp integration so the clients send messages through website. The website will be full of images so lazy loading needs to be implemented with webp file formats. Compressed images are to be served throughout the site for fast loading. Screen height static hero banner. No motion, animation or marquee. No heavy frameworks as it is a simple frontend only site. Mobile responsive."
 
 ## User Scenarios & Testing *(mandatory)*
