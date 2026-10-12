@@ -7,6 +7,7 @@
  *  - Gallery: tapping a card (a sub-collection such as "Antique") opens a dialog with all
  *    of its photos. Photos are fetched only when shown (plus the next one, so stepping is
  *    quick). Previous/next buttons, thumbnails, arrow keys and swipe change the photo.
+ *    Each photo's price comes from the card's data-prices (absent when prices are hidden).
  */
 (function () {
   "use strict";
@@ -35,10 +36,12 @@
   var img = viewer.querySelector(".viewer__img");
   var title = viewer.querySelector(".viewer__title");
   var count = viewer.querySelector("[data-count]");
+  var price = viewer.querySelector("[data-price]");
   var thumbs = viewer.querySelector("[data-thumbs]");
   var steps = viewer.querySelectorAll("[data-step]");
   var opener = null;
   var photos = [];
+  var prices = null;
   var name = "";
   var index = 0;
 
@@ -51,6 +54,8 @@
     img.alt = name + ", photo " + (index + 1) + " of " + photos.length;
     img.src = large(index);
     count.textContent = (index + 1) + " / " + photos.length;
+    price.hidden = !prices;
+    if (prices) { price.textContent = prices[index] || "Price on request"; }
     Array.prototype.forEach.call(thumbs.children, function (t, n) {
       t.setAttribute("aria-current", n === index ? "true" : "false");
     });
@@ -68,6 +73,7 @@
     event.preventDefault();
     opener = link;
     photos = link.getAttribute("data-gallery").split("|");
+    prices = link.hasAttribute("data-prices") ? link.getAttribute("data-prices").split("|") : null;
     name = link.querySelector("h3").textContent;
     title.textContent = name;
     thumbs.textContent = "";

@@ -1,0 +1,5 @@
+{
+  "_help": "Prices in whole rupees, edited in the photo admin (/admin/). Keys are photo paths under images-src/pieces/ (category/sub-collection/photo). \"show\": false hides every price on the website.",
+  "show": true,
+  "prices": {}
+}
