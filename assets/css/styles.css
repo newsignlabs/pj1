@@ -1784,6 +1784,15 @@ a.card:hover {
   outline: none;
 }
 
+.piece__price {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: var(--pink);
+}
+
 .piece__count {
   display: block;
   margin-top: 0.2rem;
@@ -1951,6 +1960,14 @@ a.card:hover {
   margin: 0.25rem 0;
   font-size: 1.5rem;
   color: #ffffff;
+}
+
+.viewer__price {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: #f9a8cf;
 }
 
 

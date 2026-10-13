@@ -8,13 +8,13 @@
  * Routes (all POST with a JSON body; all but /login also need "token" from /login in the body,
  * because Catalyst rejects requests that carry their own Authorization header):
  *   /login   {username, password}                    -> {token, name, role}
- *   /tree    {token}                                 -> {head, role, files[], collections}
+ *   /tree    {token}                                 -> {head, role, files[], collections, prices}
  *   /blob    {token, content: base64 image}          -> {sha}
- *   /commit  {token, message, changes[], collections?} -> {commit}
+ *   /commit  {token, message, changes[], collections?, prices?} -> {commit}
  *   /status  {token, sha}                            -> {state, conclusion, url}
  *
- * Roles: "client" manages Collections photos and sub-collections and edits category titles
- * and intros; "developer" can also add or remove categories and replace the slider, quote,
+ * Roles: "client" manages Collections photos and sub-collections, edits category titles
+ * and intros, photo prices and the show/hide-prices switch; "developer" can also add or remove categories and replace the slider, quote,
  * category-card, feature, Our Story and logo pictures.
  *
  * Environment variables (Catalyst console > Functions > gallery-api > Configuration):
@@ -163,6 +163,9 @@ async function headCommit() {
 const IMAGE = /\.(jpe?g|png|webp|heic|heif)$/i;
 const SEGMENT = /^[A-Za-z0-9][A-Za-z0-9 ._-]{0,79}$/;
 const COLLECTIONS_JSON = "content/collections.json";
+const PRICES_JSON = "content/prices.json";
+const PIECES = "images-src/pieces/";
+const MAX_PRICE = 99999999; // ₹9,99,99,999
 
 function segmentsOk(parts) {
   return parts.every((p) => SEGMENT.test(p) && !p.includes(".."));
@@ -207,6 +210,24 @@ function validateCollections(next, current, role) {
   return { ...(current._help ? { _help: current._help } : {}), categories };
 }
 
+// content/prices.json: whole rupees per Collections photo (key: path under images-src/pieces/).
+// Prices of photos that no longer exist after this commit are dropped.
+function validatePrices(next, current, photos) {
+  if (!next || typeof next !== "object" || typeof next.show !== "boolean") throw new HttpError(400, "Prices are missing.");
+  const input = next.prices && typeof next.prices === "object" ? next.prices : {};
+  const keys = Object.keys(input);
+  if (keys.length > 5000) throw new HttpError(400, "Too many prices.");
+  const prices = {};
+  for (const key of keys.sort()) {
+    const value = input[key];
+    if (!Number.isInteger(value) || value < 1 || value > MAX_PRICE) {
+      throw new HttpError(400, `Price for ${key.split("/").pop()} must be a whole number of rupees.`);
+    }
+    if (photos.has(PIECES + key)) prices[key] = value;
+  }
+  return { ...(current._help ? { _help: current._help } : {}), show: next.show, prices };
+}
+
 /* ---------- Routes ---------- */
 
 async function readTree() {
@@ -215,13 +236,17 @@ async function readTree() {
   const files = tree.tree
     .filter((t) => t.type === "blob" && t.path.startsWith("images-src/") && IMAGE.test(t.path))
     .map((t) => ({ path: t.path, sha: t.sha, size: t.size }));
-  const entry = tree.tree.find((t) => t.path === COLLECTIONS_JSON);
-  let collections = { categories: [] };
-  if (entry) {
+  const readJson = async (path, fallback) => {
+    const entry = tree.tree.find((t) => t.path === path);
+    if (!entry) return fallback;
     const blob = await gh(`${repo()}/git/blobs/${entry.sha}`);
-    collections = JSON.parse(Buffer.from(blob.content, "base64").toString("utf8"));
-  }
-  return { head: head.sha, files, collections, paths: new Set(tree.tree.map((t) => t.path)) };
+    return JSON.parse(Buffer.from(blob.content, "base64").toString("utf8"));
+  };
+  const [collections, prices] = await Promise.all([
+    readJson(COLLECTIONS_JSON, { categories: [] }),
+    readJson(PRICES_JSON, { show: true, prices: {} }),
+  ]);
+  return { head: head.sha, files, collections, prices, paths: new Set(tree.tree.map((t) => t.path)) };
 }
 
 function looksLikeImage(buf) {
@@ -245,7 +270,7 @@ async function createBlob(body) {
 
 async function commit(body, session) {
   const changes = Array.isArray(body.changes) ? body.changes : [];
-  if (!changes.length && !body.collections) throw new HttpError(400, "Nothing to save.");
+  if (!changes.length && !body.collections && !body.prices) throw new HttpError(400, "Nothing to save.");
   if (changes.length > 200) throw new HttpError(400, "Too many changes at once (200 max).");
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
@@ -274,6 +299,19 @@ async function commit(body, session) {
         body: { content: JSON.stringify(json, null, 2) + "\n", encoding: "utf-8" },
       });
       entries.push({ path: COLLECTIONS_JSON, mode: "100644", type: "blob", sha: blob.sha });
+    }
+    if (body.prices) {
+      const photos = new Set(current.paths);
+      for (const e of entries) {
+        if (e.sha) photos.add(e.path);
+        else photos.delete(e.path);
+      }
+      const json = validatePrices(body.prices, current.prices, photos);
+      const blob = await gh(`${repo()}/git/blobs`, {
+        method: "POST",
+        body: { content: JSON.stringify(json, null, 2) + "\n", encoding: "utf-8" },
+      });
+      entries.push({ path: PRICES_JSON, mode: "100644", type: "blob", sha: blob.sha });
     }
     if (!entries.length) throw new HttpError(400, "Nothing to save.");
 
@@ -358,8 +396,8 @@ module.exports = async (req, res) => {
     if (!session) throw new HttpError(401, "Please log in again.");
 
     if (route === "tree") {
-      const { head, files, collections } = await readTree();
-      return send(res, 200, { head, role: session.role, name: session.name, files, collections }, origin);
+      const { head, files, collections, prices } = await readTree();
+      return send(res, 200, { head, role: session.role, name: session.name, files, collections, prices }, origin);
     }
     if (route === "blob") return send(res, 200, await createBlob(body), origin);
     if (route === "commit") return send(res, 200, await commit(body, session), origin);
@@ -373,4 +411,4 @@ module.exports = async (req, res) => {
 };
 
 // Exposed for tests
-module.exports._internal = { photoAllowed, validateCollections, sign, verify };
+module.exports._internal = { photoAllowed, validateCollections, validatePrices, sign, verify };

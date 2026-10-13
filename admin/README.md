@@ -13,11 +13,11 @@ admin page (/admin/, on Slate)  ──login──▶  Catalyst function gallery-
 
 | Account | Can do |
 |---------|--------|
-| **client** | Collections: add / delete photos, choose a card cover, create / rename / delete sub-collections, edit category titles and intros |
+| **client** | Collections: add / delete photos, choose a card cover, create / rename / delete sub-collections, edit category titles and intros, set prices, show / hide prices |
 | **developer** | Everything above, plus add / delete categories and replace the slider, quote, Home category-card, feature, Our Story and logo pictures |
 
 The GitHub key never reaches the browser; the function only accepts image files inside the
-photo folders and `content/collections.json`, so the admin cannot change code or pages.
+photo folders, `content/collections.json` and `content/prices.json`, so the admin cannot change code or pages.
 
 ---
 
@@ -126,9 +126,13 @@ paste the new `index.js`). On a computer you can instead use the Catalyst CLI fr
 3. **Add photos** (camera roll or files, several at once), **🗑** to delete (tap **↺** to
    undo), **★** to make a photo the card's cover, **Rename** / **Delete** a sub-collection,
    **+ New sub-collection**, or edit the category title and introduction.
-4. Nothing changes on the website until you press **Save & publish** in the bar at the
+4. **Prices:** type the price in rupees (numbers only) in the box under each photo; leave it
+   empty for "Price on request". A card shows "From ₹…", its lowest price. The switch
+   **Show prices on the website** at the top hides or shows every price; typed prices are
+   kept either way.
+5. Nothing changes on the website until you press **Save & publish** in the bar at the
    bottom. Photos are shrunk on your phone before uploading, so it is quick on mobile data.
-5. Wait for **Published ✓** (2–3 minutes), then refresh the website.
+6. Wait for **Published ✓** (2–3 minutes), then refresh the website.
 
 Every save is a GitHub commit, so anything deleted can be restored from the history by the
 developer.

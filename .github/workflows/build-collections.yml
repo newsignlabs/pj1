@@ -10,6 +10,7 @@ on:
     paths:
       - "images-src/**"
       - "content/collections.json"
+      - "content/prices.json"
       - "tools/**"
       - "catalyst/functions/**"
       - "assets/css/**"

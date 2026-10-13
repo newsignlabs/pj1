@@ -1,6 +1,6 @@
 /*
  * Cute Look photo admin.
- * Edits are collected locally (new photos, deletions, renames, category text) and saved
+ * Edits are collected locally (new photos, deletions, renames, category text, prices) and saved
  * in one go: new photos are shrunk in the browser, uploaded to the gallery-api Catalyst
  * function, and committed to GitHub as a single commit. The GitHub workflow then builds
  * the site and Catalyst Slate publishes it.
@@ -37,9 +37,11 @@
   var session = null;
   try { session = JSON.parse(sessionStorage.getItem("cutelook-admin") || "null"); } catch (e) { /* private mode */ }
   var original = new Map();   // path -> sha (what is on GitHub now)
-  var work = new Map();       // path -> {sha} | {file, url} ; + deleted flag
+  var work = new Map();       // path -> {sha} | {file, url} ; + deleted flag, price (whole rupees)
   var origCollections = { categories: [] };
   var collections = { categories: [] };
+  var showPrices = true;      // content/prices.json "show": prices on the website or not
+  var origPrices = "";        // prices as loaded, to spot changes
   var emptySubs = new Set();  // "category/sub" created here but still without photos
   var currentCat = null;
   var tab = "collections";
@@ -92,6 +94,9 @@
       return ca === cb ? natural(stem(base(a)), stem(base(b))) : (ca ? -1 : 1);
     });
   }
+
+  // 125000 -> "₹1,25,000" (Indian digit grouping)
+  var rupees = function (n) { return "₹" + Number(n).toLocaleString("en-IN", { maximumFractionDigits: 0 }); };
 
   function banner(text, kind, link) {
     var b = $("#banner");
@@ -160,7 +165,14 @@
       original = new Map();
       work.forEach(function (e) { if (e.url) { URL.revokeObjectURL(e.url); } });
       work = new Map();
-      data.files.forEach(function (f) { original.set(f.path, f.sha); work.set(f.path, { sha: f.sha }); });
+      var prices = (data.prices && data.prices.prices) || {};
+      data.files.forEach(function (f) {
+        var price = f.path.indexOf(PIECES) === 0 ? prices[f.path.slice(PIECES.length)] : null;
+        original.set(f.path, f.sha);
+        work.set(f.path, { sha: f.sha, price: Number.isInteger(price) && price > 0 ? price : null });
+      });
+      showPrices = !data.prices || data.prices.show !== false;
+      origPrices = pricesJson();
       origCollections = data.collections || { categories: [] };
       collections = JSON.parse(JSON.stringify(origCollections));
       emptySubs.clear();
@@ -219,8 +231,20 @@
     return list;
   }
 
+  // Prices of the photos that stay (they follow a photo when it is moved or renamed)
+  function priceMap() {
+    var map = {};
+    Array.from(work.keys()).sort().forEach(function (p) {
+      var e = work.get(p);
+      if (!e.deleted && e.price && p.indexOf(PIECES) === 0) { map[p.slice(PIECES.length)] = e.price; }
+    });
+    return map;
+  }
+  function pricesJson() { return JSON.stringify({ show: showPrices, prices: priceMap() }); }
+
   var collectionsChanged = function () { return JSON.stringify(collections) !== JSON.stringify(origCollections); };
-  var pendingCount = function () { return changes().length + (collectionsChanged() ? 1 : 0); };
+  var pricesChanged = function () { return pricesJson() !== origPrices; };
+  var pendingCount = function () { return changes().length + (collectionsChanged() ? 1 : 0) + (pricesChanged() ? 1 : 0); };
 
   /* ---------- Editing ---------- */
 
@@ -307,7 +331,23 @@
         el("button", { type: "button", class: "icon-btn", title: e.deleted ? "Keep" : "Delete", "aria-label": e.deleted ? "Keep photo" : "Delete photo", text: e.deleted ? "↺" : "🗑", onclick: function () { removePhoto(path); } })
       ])
     ]);
-    return tile;
+    if (path.indexOf(PIECES) !== 0) { return tile; }
+    var input = el("input", {
+      type: "text", inputmode: "numeric", maxlength: "8", placeholder: "On request",
+      "aria-label": "Price in rupees for " + base(path), value: e.price ? String(e.price) : "", disabled: !!e.deleted,
+      oninput: function () {
+        var digits = input.value.replace(/\D+/g, "").replace(/^0+/, "").slice(0, 8);
+        if (input.value !== digits) { input.value = digits; }
+        e.price = digits ? Number(digits) : null;
+        shown.textContent = e.price ? rupees(e.price) : "Price on request";
+        updateTray();
+      }
+    });
+    var shown = el("span", { class: "price__shown", text: e.price ? rupees(e.price) : "Price on request" });
+    return el("div", { class: "photo-item" }, [
+      tile,
+      el("label", { class: "price" }, [el("span", { class: "price__field" }, [el("span", { class: "price__sign", text: "₹" }), input]), shown])
+    ]);
   }
 
   function renderCategories() {
@@ -435,12 +475,19 @@
     if (deleted - moved > 0) { parts.push((deleted - moved) + " deletion" + (deleted - moved === 1 ? "" : "s")); }
     if (moved) { parts.push(moved + " renamed or moved"); }
     if (collectionsChanged()) { parts.push("category details"); }
+    if (pricesChanged()) { parts.push("prices"); }
     $("#tray").hidden = !parts.length;
     $("#tray-text").textContent = "Unsaved: " + parts.join(", ");
     return parts.join(", ");
   }
 
+  $("#show-prices").addEventListener("change", function (event) {
+    showPrices = event.target.checked;
+    updateTray();
+  });
+
   function render() {
+    $("#show-prices").checked = showPrices;
     document.querySelectorAll(".tab").forEach(function (t) { t.setAttribute("aria-pressed", String(t.getAttribute("data-tab") === tab)); });
     $("#collections-panel").hidden = tab !== "collections";
     $("#pictures-panel").hidden = tab !== "pictures";
@@ -508,7 +555,8 @@
       return api("commit", { method: "POST", body: {
         message: summary,
         changes: list.map(function (c) { return { op: c.op, path: c.path, sha: c.sha }; }),
-        collections: collectionsChanged() ? collections : undefined
+        collections: collectionsChanged() ? collections : undefined,
+        prices: pricesChanged() ? { show: showPrices, prices: priceMap() } : undefined
       } });
     }).then(function (res) {
       banner("Saved. Publishing to the website… (usually 2–3 minutes)");
