@@ -15,6 +15,7 @@ on:
       - "catalyst/functions/**"
       - "assets/css/**"
       - "assets/js/**"
+      - "admin/**"
   workflow_dispatch:
 
 permissions:
@@ -48,7 +49,7 @@ jobs:
       - name: Rebuild collections.html
         run: python tools/build_collections.py
 
-      - name: Version CSS/JS links so browsers fetch changed files
+      - name: Version CSS/JS links (site and admin) so browsers fetch changed files
         run: python tools/stamp_assets.py
 
       - name: Repack the admin function ZIP
@@ -59,7 +60,7 @@ jobs:
 
       - name: Commit generated files
         run: |
-          git add -A images-src assets *.html catalyst/gallery-api.zip
+          git add -A images-src assets *.html admin/index.html catalyst/gallery-api.zip
           if git diff --cached --quiet; then
             echo "Nothing to update."
             exit 0
