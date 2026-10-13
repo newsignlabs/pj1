@@ -1,5 +1,7 @@
 {
   "_help": "Prices in whole rupees, edited in the photo admin (/admin/). Keys are photo paths under images-src/pieces/ (category/sub-collection/photo). \"show\": false hides every price on the website.",
   "show": true,
-  "prices": {}
+  "prices": {
+    "bridal-sets/AD Premium/cover-1791542323033.png": 1999
+  }
 }
