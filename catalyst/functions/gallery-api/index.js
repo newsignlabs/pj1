@@ -23,7 +23,7 @@
  *   DEVELOPER_PASSWORD, CLIENT_PASSWORD   the two admin passwords (plain text)
  *   DEVELOPER_USERNAME, CLIENT_USERNAME   optional; default "developer" and "cutelook"
  *   SESSION_SECRET  long random string (signs login sessions)
- *   ALLOWED_ORIGINS comma-separated site origins, e.g. https://pj1-midrqtyj.onslate.in
+ *   ALLOWED_ORIGINS comma-separated site origins, e.g. https://pj1-rffuefdg.onslate.in
  */
 "use strict";
 

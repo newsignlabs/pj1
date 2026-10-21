@@ -89,7 +89,7 @@ variables** and add:
 | `CLIENT_PASSWORD` | shop password from step 2 (username: `cutelook`) |
 | `DEVELOPER_USERNAME` / `CLIENT_USERNAME` | optional, to use other usernames |
 | `SESSION_SECRET` | any long random text, 40+ characters (letters and numbers typed at random are fine); it signs logins |
-| `ALLOWED_ORIGINS` | `https://pj1-midrqtyj.onslate.in` (add the custom domain too when it exists, comma-separated) |
+| `ALLOWED_ORIGINS` | `https://pj1-rffuefdg.onslate.in` (add the custom domain too when it exists, comma-separated) |
 
 Phone tip for `GH_PRIVATE_KEY`: open the downloaded `.pem` file in the phone's Files app
 with a text viewer or editor, select all, copy, and paste into the value box. It is fine if
@@ -108,7 +108,7 @@ function URL between the quotes, and **Commit changes** to `main`:
 window.CUTELOOK_ADMIN = { api: "https://…/server/gallery-api" };
 ```
 
-After about a minute, open `https://pj1-midrqtyj.onslate.in/admin/` and log in with each
+After about a minute, open `https://pj1-rffuefdg.onslate.in/admin/` and log in with each
 account.
 
 **Updating the function later:** when its code changes in the repository, the ZIP at
